@@ -314,7 +314,7 @@
       let rawItems = [];
       let filtered = [];
       let selectedIndex = -1;
-      let currentFile = "";
+      let bundles = [];
 
       function labelForFile(name) {
         return name
@@ -505,19 +505,34 @@
         const res = await fetch("./manifest.json", { cache: "no-store" });
         if (!res.ok) throw new Error("manifest.json okunamadı");
         const data = await res.json();
-        const files = Array.isArray(data.files) ? data.files : [];
-        files.sort((a, b) => a.localeCompare(b, "tr", { sensitivity: "base" }));
-        for (const f of files) {
-          const opt = document.createElement("option");
-          opt.value = f;
-          opt.textContent = labelForFile(f);
-          elDataset.appendChild(opt);
+        bundles = [];
+        if (Array.isArray(data.bundles) && data.bundles.length) {
+          for (const b of data.bundles) {
+            const files = Array.isArray(b.files) ? b.files : [];
+            if (!files.length) continue;
+            bundles.push({
+              label: (b.label && String(b.label).trim()) || labelForFile(files[0]),
+              files,
+            });
+          }
+        } else if (Array.isArray(data.files)) {
+          const files = data.files.slice().sort((a, b) => a.localeCompare(b, "tr", { sensitivity: "base" }));
+          for (const f of files) {
+            bundles.push({ label: labelForFile(f), files: [f] });
+          }
         }
+        bundles.sort((a, b) => a.label.localeCompare(b.label, "tr", { sensitivity: "base" }));
+        bundles.forEach((b, i) => {
+          const opt = document.createElement("option");
+          opt.value = String(i);
+          opt.textContent = b.files.length > 1 ? `${b.label} (${b.files.length} parça)` : b.label;
+          elDataset.appendChild(opt);
+        });
         elStatus.textContent = "";
       }
 
-      async function loadDataset(filename) {
-        if (!filename) {
+      async function loadDataset(bundleIndex) {
+        if (bundleIndex === "" || bundleIndex == null) {
           rawItems = [];
           filtered = [];
           elQ.value = "";
@@ -529,6 +544,13 @@
           return;
         }
 
+        const bundle = bundles[Number(bundleIndex)];
+        if (!bundle || !bundle.files.length) {
+          rawItems = [];
+          filtered = [];
+          return;
+        }
+
         elQ.disabled = true;
         elStatus.textContent = "Yükleniyor…";
         elStatus.classList.remove("error");
@@ -536,19 +558,23 @@
         elList.innerHTML = "";
 
         try {
-          const url = "./" + encodePathSegment(filename);
-          const res = await fetch(url, { cache: "no-store" });
-          if (!res.ok) throw new Error(res.status + " " + res.statusText);
-          const json = await res.json();
-          const arr = Array.isArray(json.data) ? json.data : [];
-          rawItems = arr.map((item) => {
+          const merged = [];
+          for (const filename of bundle.files) {
+            const url = "./" + encodePathSegment(filename);
+            const res = await fetch(url, { cache: "no-store" });
+            if (!res.ok) throw new Error(filename + ": " + res.status + " " + res.statusText);
+            const json = await res.json();
+            const arr = Array.isArray(json.data) ? json.data : [];
+            merged.push(...arr);
+          }
+          rawItems = merged.map((item) => {
             const copy = { ...item };
             copy._search = searchBlob(item);
             return copy;
           });
-          currentFile = filename;
           elQ.disabled = false;
-          elStatus.textContent = `${rawItems.length} kayıt · ${labelForFile(filename)}`;
+          const partNote = bundle.files.length > 1 ? ` · ${bundle.files.length} parça birleştirildi` : "";
+          elStatus.textContent = `${rawItems.length} kayıt · ${bundle.label}${partNote}`;
           applyFilter();
         } catch (e) {
           rawItems = [];

@@ -1,67 +1,459 @@
 {
-  "files": [
-    "akilli-saat.json",
-    "akilli-telefonlar.json",
-    "ankastre-set.json",
-    "ates-olcer.json",
-    "bakliyat.json",
-    "bal.json",
-    "bebek-mamasi.json",
-    "biberon-isitici-ve-sterilizator.json",
-    "biberon.json",
-    "bulasik-makinesi.json",
-    "buzdolabi.json",
-    "camasir-makinesi.json",
-    "damacana-pompasi.json",
-    "davlumbaz.json",
-    "derin-dondurucu.json",
-    "deterjan.json",
-    "diş macunu.json",
-    "duş jeli.json",
-    "fotokopi kağıdı.json",
-    "gogus-pompasi.json",
-    "hasere-ilaci.json",
-    "hava-nemlendirici.json",
-    "interkom.json",
-    "islak-havlu-mendil.json",
-    "kagit-havlu.json",
-    "kahve.json",
-    "kamp-cadiri.json",
-    "kamp-masasi.json",
-    "kamp-ocagi.json",
-    "kamp-sandalyesi.json",
-    "kedi-kumu.json",
-    "kedi-mamasi.json",
-    "klima.json",
-    "kolonya.json",
-    "kombi-fiyatlari.json",
-    "kopek-mamasi.json",
-    "kurutma-makinesi.json",
-    "mama-kabi.json",
-    "mama-sandalyesi.json",
-    "mangal-komuru.json",
-    "mangal.json",
-    "mat.json",
-    "mikrodalga-firin.json",
-    "mini-firin.json",
-    "nem-alma-cihazi.json",
-    "ocak.json",
-    "oyun kolu.json",
-    "oyun-konsolu.json",
-    "oyun.json",
-    "oyuncu-koltugu.json",
-    "ozon-jeneratoru.json",
-    "pil.json",
-    "powerbank.json",
-    "sabun.json",
-    "sisme-yatak.json",
-    "su-sebili.json",
-    "sıvı-yağ.json",
-    "tahin-pekmez.json",
-    "termos.json",
-    "tuvalet-kagidi.json",
-    "uyku-tulumu.json",
-    "vantilator.json",
-    "şampuan.json"
+  "bundles": [
+    {
+      "id": "akilli-saat",
+      "label": "Akıllı Saat Datası",
+      "files": [
+        "akilli-saat.part001.json",
+        "akilli-saat.part002.json",
+        "akilli-saat.part003.json",
+        "akilli-saat.part004.json"
+      ]
+    },
+    {
+      "id": "akilli-telefonlar",
+      "label": "Akıllı Telefonlar Datası",
+      "files": [
+        "akilli-telefonlar.part001.json",
+        "akilli-telefonlar.part002.json",
+        "akilli-telefonlar.part003.json",
+        "akilli-telefonlar.part004.json"
+      ]
+    },
+    {
+      "id": "ankastre-set",
+      "label": "Ankastre Set Datası",
+      "files": [
+        "ankastre-set.part001.json",
+        "ankastre-set.part002.json",
+        "ankastre-set.part003.json"
+      ]
+    },
+    {
+      "id": "ates-olcer",
+      "label": "Ateş Ölçer Datası",
+      "files": [
+        "ates-olcer.json"
+      ]
+    },
+    {
+      "id": "bakliyat",
+      "label": "Bakliyat Datası",
+      "files": [
+        "bakliyat.json"
+      ]
+    },
+    {
+      "id": "bal",
+      "label": "Bal Datası",
+      "files": [
+        "bal.json"
+      ]
+    },
+    {
+      "id": "bebek-mamasi",
+      "label": "Bebek Maması Datası",
+      "files": [
+        "bebek-mamasi.json"
+      ]
+    },
+    {
+      "id": "biberon",
+      "label": "Biberon Datası",
+      "files": [
+        "biberon.json"
+      ]
+    },
+    {
+      "id": "biberon-isitici-ve-sterilizator",
+      "label": "Biberon Isıtıcı ve Sterilizatör Datası",
+      "files": [
+        "biberon-isitici-ve-sterilizator.json"
+      ]
+    },
+    {
+      "id": "bulasik-makinesi",
+      "label": "Bulaşık Makinesi Datası",
+      "files": [
+        "bulasik-makinesi.part001.json",
+        "bulasik-makinesi.part002.json"
+      ]
+    },
+    {
+      "id": "buzdolabi",
+      "label": "Buzdolabı Datası",
+      "files": [
+        "buzdolabi.part001.json",
+        "buzdolabi.part002.json"
+      ]
+    },
+    {
+      "id": "damacana-pompasi",
+      "label": "Damacana Pompası Datası",
+      "files": [
+        "damacana-pompasi.json"
+      ]
+    },
+    {
+      "id": "davlumbaz",
+      "label": "Davlumbaz Datası",
+      "files": [
+        "davlumbaz.part001.json",
+        "davlumbaz.part002.json"
+      ]
+    },
+    {
+      "id": "derin-dondurucu",
+      "label": "Derin Dondurucu Datası",
+      "files": [
+        "derin-dondurucu.json"
+      ]
+    },
+    {
+      "id": "deterjan",
+      "label": "Deterjan Datası",
+      "files": [
+        "deterjan.part001.json"
+      ]
+    },
+    {
+      "id": "diş macunu",
+      "label": "Diş Macunu Datası",
+      "files": [
+        "diş macunu.json"
+      ]
+    },
+    {
+      "id": "duş jeli",
+      "label": "Duş Jeli Datası",
+      "files": [
+        "duş jeli.json"
+      ]
+    },
+    {
+      "id": "fotokopi kağıdı",
+      "label": "Fotokopi Kağıdı Datası",
+      "files": [
+        "fotokopi kağıdı.json"
+      ]
+    },
+    {
+      "id": "gogus-pompasi",
+      "label": "Göğüs Pompası Datası",
+      "files": [
+        "gogus-pompasi.json"
+      ]
+    },
+    {
+      "id": "hava-nemlendirici",
+      "label": "Hava Nemlendirici Datası",
+      "files": [
+        "hava-nemlendirici.json"
+      ]
+    },
+    {
+      "id": "hasere-ilaci",
+      "label": "Haşere İlacı Datası",
+      "files": [
+        "hasere-ilaci.json"
+      ]
+    },
+    {
+      "id": "islak-havlu-mendil",
+      "label": "Islak Havlu Mendil Datası",
+      "files": [
+        "islak-havlu-mendil.json"
+      ]
+    },
+    {
+      "id": "interkom",
+      "label": "İnterkom Datası",
+      "files": [
+        "interkom.json"
+      ]
+    },
+    {
+      "id": "kahve",
+      "label": "Kahve Datası",
+      "files": [
+        "kahve.part001.json"
+      ]
+    },
+    {
+      "id": "kamp-masasi",
+      "label": "Kamp Masası Datası",
+      "files": [
+        "kamp-masasi.json"
+      ]
+    },
+    {
+      "id": "kamp-ocagi",
+      "label": "Kamp Ocağı Datası",
+      "files": [
+        "kamp-ocagi.json"
+      ]
+    },
+    {
+      "id": "kamp-sandalyesi",
+      "label": "Kamp Sandalyesi Datası",
+      "files": [
+        "kamp-sandalyesi.json"
+      ]
+    },
+    {
+      "id": "kamp-cadiri",
+      "label": "Kamp Çadırı Datası",
+      "files": [
+        "kamp-cadiri.json"
+      ]
+    },
+    {
+      "id": "kagit-havlu",
+      "label": "Kağıt Havlu Datası",
+      "files": [
+        "kagit-havlu.json"
+      ]
+    },
+    {
+      "id": "kedi-kumu",
+      "label": "Kedi Kumu Datası",
+      "files": [
+        "kedi-kumu.json"
+      ]
+    },
+    {
+      "id": "kedi-mamasi",
+      "label": "Kedi Maması Datası",
+      "files": [
+        "kedi-mamasi.part001.json"
+      ]
+    },
+    {
+      "id": "klima",
+      "label": "Klima Datası",
+      "files": [
+        "klima.part001.json",
+        "klima.part002.json",
+        "klima.part003.json"
+      ]
+    },
+    {
+      "id": "kolonya",
+      "label": "Kolonya Datası",
+      "files": [
+        "kolonya.json"
+      ]
+    },
+    {
+      "id": "kombi-fiyatlari",
+      "label": "Kombi Fiyatları Datası",
+      "files": [
+        "kombi-fiyatlari.json"
+      ]
+    },
+    {
+      "id": "kurutma-makinesi",
+      "label": "Kurutma Makinesi Datası",
+      "files": [
+        "kurutma-makinesi.json"
+      ]
+    },
+    {
+      "id": "kopek-mamasi",
+      "label": "Köpek Maması Datası",
+      "files": [
+        "kopek-mamasi.part001.json"
+      ]
+    },
+    {
+      "id": "mama-kabi",
+      "label": "Mama Kabı Datası",
+      "files": [
+        "mama-kabi.json"
+      ]
+    },
+    {
+      "id": "mama-sandalyesi",
+      "label": "Mama Sandalyesi Datası",
+      "files": [
+        "mama-sandalyesi.json"
+      ]
+    },
+    {
+      "id": "mangal",
+      "label": "Mangal Datası",
+      "files": [
+        "mangal.json"
+      ]
+    },
+    {
+      "id": "mangal-komuru",
+      "label": "Mangal Kömürü Datası",
+      "files": [
+        "mangal-komuru.json"
+      ]
+    },
+    {
+      "id": "mat",
+      "label": "Mat Datası",
+      "files": [
+        "mat.json"
+      ]
+    },
+    {
+      "id": "mikrodalga-firin",
+      "label": "Mikrodalga Fırın Datası",
+      "files": [
+        "mikrodalga-firin.json"
+      ]
+    },
+    {
+      "id": "mini-firin",
+      "label": "Mini Fırın Datası",
+      "files": [
+        "mini-firin.json"
+      ]
+    },
+    {
+      "id": "nem-alma-cihazi",
+      "label": "Nem Alma Cihazı Datası",
+      "files": [
+        "nem-alma-cihazi.json"
+      ]
+    },
+    {
+      "id": "ocak",
+      "label": "Ocak Datası",
+      "files": [
+        "ocak.part001.json"
+      ]
+    },
+    {
+      "id": "oyun",
+      "label": "Oyun Datası",
+      "files": [
+        "oyun.json"
+      ]
+    },
+    {
+      "id": "oyun kolu",
+      "label": "Oyun Kolu Datası",
+      "files": [
+        "oyun kolu.json"
+      ]
+    },
+    {
+      "id": "oyun-konsolu",
+      "label": "Oyun Konsolu Datası",
+      "files": [
+        "oyun-konsolu.json"
+      ]
+    },
+    {
+      "id": "oyuncu-koltugu",
+      "label": "Oyuncu Koltuğu Datası",
+      "files": [
+        "oyuncu-koltugu.json"
+      ]
+    },
+    {
+      "id": "ozon-jeneratoru",
+      "label": "Ozon Jeneratörü Datası",
+      "files": [
+        "ozon-jeneratoru.json"
+      ]
+    },
+    {
+      "id": "pil",
+      "label": "Pil Datası",
+      "files": [
+        "pil.json"
+      ]
+    },
+    {
+      "id": "powerbank",
+      "label": "Powerbank Datası",
+      "files": [
+        "powerbank.part001.json"
+      ]
+    },
+    {
+      "id": "sabun",
+      "label": "Sabun Datası",
+      "files": [
+        "sabun.json"
+      ]
+    },
+    {
+      "id": "su-sebili",
+      "label": "Su Sebili Datası",
+      "files": [
+        "su-sebili.json"
+      ]
+    },
+    {
+      "id": "sıvı-yağ",
+      "label": "Sıvı Yağ Datası",
+      "files": [
+        "sıvı-yağ.json"
+      ]
+    },
+    {
+      "id": "tahin-pekmez",
+      "label": "Tahin Pekmez Datası",
+      "files": [
+        "tahin-pekmez.json"
+      ]
+    },
+    {
+      "id": "termos",
+      "label": "Termos Datası",
+      "files": [
+        "termos.json"
+      ]
+    },
+    {
+      "id": "tuvalet-kagidi",
+      "label": "Tuvalet Kağıdı Datası",
+      "files": [
+        "tuvalet-kagidi.json"
+      ]
+    },
+    {
+      "id": "uyku-tulumu",
+      "label": "Uyku Tulumu Datası",
+      "files": [
+        "uyku-tulumu.json"
+      ]
+    },
+    {
+      "id": "vantilator",
+      "label": "Vantilatör Datası",
+      "files": [
+        "vantilator.part001.json"
+      ]
+    },
+    {
+      "id": "camasir-makinesi",
+      "label": "Çamaşır Makinesi Datası",
+      "files": [
+        "camasir-makinesi.part001.json",
+        "camasir-makinesi.part002.json"
+      ]
+    },
+    {
+      "id": "şampuan",
+      "label": "Şampuan Datası",
+      "files": [
+        "şampuan.part001.json"
+      ]
+    },
+    {
+      "id": "sisme-yatak",
+      "label": "Şişme Yatak Datası",
+      "files": [
+        "sisme-yatak.json"
+      ]
+    }
   ]
 }

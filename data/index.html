@@ -50,30 +50,10 @@
       text-underline-offset: 3px;
     }
 
-    .kicker {
-      display: inline-block;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: #ededf1;
-      color: #4e4e56;
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0.2px;
-      margin-bottom: 10px;
-    }
-
     h1 {
       margin: 0 0 8px;
       font-size: clamp(16px, 3vw, 24px);
       letter-spacing: -0.02em;
-    }
-
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-      max-width: 60ch;
     }
 
     .panel {
@@ -133,12 +113,6 @@
       transform: translateY(0);
     }
 
-    .footer-note {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
     @media (max-width: 640px) {
       .panel {
         grid-template-columns: 1fr;
@@ -163,27 +137,83 @@
       <p class="header-browse"><a href="./browse.html">Gözat ve ara →</a></p>
     </header>
 
-            <section class="panel" aria-label="Dataset listesi">
+    <section class="panel" aria-label="Dataset listesi">
       <article class="row">
         <div>
-          <h2 class="dataset-name">Akıllı Saat Datası</h2>
+          <h2 class="dataset-name">Akıllı Saat — parça 1/4</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./akilli-saat.json" download>Download</a>
+        <a class="download-btn" href="./akilli-saat.part001.json" download>Download</a>
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Akıllı Telefonlar Datası</h2>
+          <h2 class="dataset-name">Akıllı Saat — parça 2/4</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./akilli-telefonlar.json" download>Download</a>
+        <a class="download-btn" href="./akilli-saat.part002.json" download>Download</a>
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Ankastre Set Datası</h2>
+          <h2 class="dataset-name">Akıllı Saat — parça 3/4</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./ankastre-set.json" download>Download</a>
+        <a class="download-btn" href="./akilli-saat.part003.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Akıllı Saat — parça 4/4</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./akilli-saat.part004.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Akıllı Telefonlar — parça 1/4</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./akilli-telefonlar.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Akıllı Telefonlar — parça 2/4</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./akilli-telefonlar.part002.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Akıllı Telefonlar — parça 3/4</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./akilli-telefonlar.part003.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Akıllı Telefonlar — parça 4/4</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./akilli-telefonlar.part004.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Ankastre Set — parça 1/3</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./ankastre-set.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Ankastre Set — parça 2/3</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./ankastre-set.part002.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Ankastre Set — parça 3/3</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./ankastre-set.part003.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -215,13 +245,6 @@
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Biberon Isıtıcı ve Sterilizatör Datası</h2>
-          <p class="dataset-meta">Format: JSON</p>
-        </div>
-        <a class="download-btn" href="./biberon-isitici-ve-sterilizator.json" download>Download</a>
-      </article>
-      <article class="row">
-        <div>
           <h2 class="dataset-name">Biberon Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
@@ -229,24 +252,38 @@
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Bulaşık Makinesi Datası</h2>
+          <h2 class="dataset-name">Biberon Isıtıcı ve Sterilizatör Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./bulasik-makinesi.json" download>Download</a>
+        <a class="download-btn" href="./biberon-isitici-ve-sterilizator.json" download>Download</a>
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Buzdolabı Datası</h2>
+          <h2 class="dataset-name">Bulaşık Makinesi — parça 1/2</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./buzdolabi.json" download>Download</a>
+        <a class="download-btn" href="./bulasik-makinesi.part001.json" download>Download</a>
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Çamaşır Makinesi Datası</h2>
+          <h2 class="dataset-name">Bulaşık Makinesi — parça 2/2</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./camasir-makinesi.json" download>Download</a>
+        <a class="download-btn" href="./bulasik-makinesi.part002.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Buzdolabı — parça 1/2</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./buzdolabi.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Buzdolabı — parça 2/2</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./buzdolabi.part002.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -257,10 +294,17 @@
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Davlumbaz Datası</h2>
+          <h2 class="dataset-name">Davlumbaz — parça 1/2</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./davlumbaz.json" download>Download</a>
+        <a class="download-btn" href="./davlumbaz.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Davlumbaz — parça 2/2</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./davlumbaz.part002.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -274,7 +318,7 @@
           <h2 class="dataset-name">Deterjan Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./deterjan.json" download>Download</a>
+        <a class="download-btn" href="./deterjan.part001.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -306,13 +350,6 @@
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Haşere İlacı Datası</h2>
-          <p class="dataset-meta">Format: JSON</p>
-        </div>
-        <a class="download-btn" href="./hasere-ilaci.json" download>Download</a>
-      </article>
-      <article class="row">
-        <div>
           <h2 class="dataset-name">Hava Nemlendirici Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
@@ -320,10 +357,10 @@
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">İnterkom Datası</h2>
+          <h2 class="dataset-name">Haşere İlacı Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./interkom.json" download>Download</a>
+        <a class="download-btn" href="./hasere-ilaci.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -334,24 +371,17 @@
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Kağıt Havlu Datası</h2>
+          <h2 class="dataset-name">İnterkom Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./kagit-havlu.json" download>Download</a>
+        <a class="download-btn" href="./interkom.json" download>Download</a>
       </article>
       <article class="row">
         <div>
           <h2 class="dataset-name">Kahve Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./kahve.json" download>Download</a>
-      </article>
-      <article class="row">
-        <div>
-          <h2 class="dataset-name">Kamp Çadırı Datası</h2>
-          <p class="dataset-meta">Format: JSON</p>
-        </div>
-        <a class="download-btn" href="./kamp-cadiri.json" download>Download</a>
+        <a class="download-btn" href="./kahve.part001.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -376,6 +406,20 @@
       </article>
       <article class="row">
         <div>
+          <h2 class="dataset-name">Kamp Çadırı Datası</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./kamp-cadiri.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Kağıt Havlu Datası</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./kagit-havlu.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
           <h2 class="dataset-name">Kedi Kumu Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
@@ -386,14 +430,28 @@
           <h2 class="dataset-name">Kedi Maması Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./kedi-mamasi.json" download>Download</a>
+        <a class="download-btn" href="./kedi-mamasi.part001.json" download>Download</a>
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Klima Datası</h2>
+          <h2 class="dataset-name">Klima — parça 1/3</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./klima.json" download>Download</a>
+        <a class="download-btn" href="./klima.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Klima — parça 2/3</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./klima.part002.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Klima — parça 3/3</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./klima.part003.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -411,17 +469,17 @@
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Köpek Maması Datası</h2>
-          <p class="dataset-meta">Format: JSON</p>
-        </div>
-        <a class="download-btn" href="./kopek-mamasi.json" download>Download</a>
-      </article>
-      <article class="row">
-        <div>
           <h2 class="dataset-name">Kurutma Makinesi Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
         <a class="download-btn" href="./kurutma-makinesi.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Köpek Maması Datası</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./kopek-mamasi.part001.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -439,17 +497,17 @@
       </article>
       <article class="row">
         <div>
-          <h2 class="dataset-name">Mangal Kömürü Datası</h2>
-          <p class="dataset-meta">Format: JSON</p>
-        </div>
-        <a class="download-btn" href="./mangal-komuru.json" download>Download</a>
-      </article>
-      <article class="row">
-        <div>
           <h2 class="dataset-name">Mangal Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
         <a class="download-btn" href="./mangal.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Mangal Kömürü Datası</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./mangal-komuru.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -484,7 +542,14 @@
           <h2 class="dataset-name">Ocak Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./ocak.json" download>Download</a>
+        <a class="download-btn" href="./ocak.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Oyun Datası</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./oyun.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -499,13 +564,6 @@
           <p class="dataset-meta">Format: JSON</p>
         </div>
         <a class="download-btn" href="./oyun-konsolu.json" download>Download</a>
-      </article>
-      <article class="row">
-        <div>
-          <h2 class="dataset-name">Oyun Datası</h2>
-          <p class="dataset-meta">Format: JSON</p>
-        </div>
-        <a class="download-btn" href="./oyun.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -533,7 +591,7 @@
           <h2 class="dataset-name">Powerbank Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./powerbank.json" download>Download</a>
+        <a class="download-btn" href="./powerbank.part001.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -541,13 +599,6 @@
           <p class="dataset-meta">Format: JSON</p>
         </div>
         <a class="download-btn" href="./sabun.json" download>Download</a>
-      </article>
-      <article class="row">
-        <div>
-          <h2 class="dataset-name">Şişme Yatak Datası</h2>
-          <p class="dataset-meta">Format: JSON</p>
-        </div>
-        <a class="download-btn" href="./sisme-yatak.json" download>Download</a>
       </article>
       <article class="row">
         <div>
@@ -596,14 +647,35 @@
           <h2 class="dataset-name">Vantilatör Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./vantilator.json" download>Download</a>
+        <a class="download-btn" href="./vantilator.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Çamaşır Makinesi — parça 1/2</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./camasir-makinesi.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Çamaşır Makinesi — parça 2/2</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./camasir-makinesi.part002.json" download>Download</a>
       </article>
       <article class="row">
         <div>
           <h2 class="dataset-name">Şampuan Datası</h2>
           <p class="dataset-meta">Format: JSON</p>
         </div>
-        <a class="download-btn" href="./s%CC%A7ampuan.json" download>Download</a>
+        <a class="download-btn" href="./s%CC%A7ampuan.part001.json" download>Download</a>
+      </article>
+      <article class="row">
+        <div>
+          <h2 class="dataset-name">Şişme Yatak Datası</h2>
+          <p class="dataset-meta">Format: JSON</p>
+        </div>
+        <a class="download-btn" href="./sisme-yatak.json" download>Download</a>
       </article>
     </section>
 
