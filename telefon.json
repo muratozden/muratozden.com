@@ -1,0 +1,371 @@
+{
+  "schemaVersion": "1.0", // Şema sürümü
+  "category": "elektronik", // Ürün kategorisi (kod)
+  "categoryL1": "telefon-aksesuarlari", // not: slug yerine ID eklenebilir, Ekin daha iyi bilir.
+  "categoryL2": "cep-telefonu",
+  "categoryL3": null,
+
+  // Hedef kitle etiketleri (schema.org PeopleAudience ile uyumlu; sonra doldurulur)
+  "audience": {
+    "@type": "PeopleAudience",
+    "suggestedGender": null // örn. unisex, male, female
+  },
+
+  // Ürün geneli yorum özeti (pazaryeri / birleşik ortalama)
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": null, // Ortalama puan (örn. "4.8" veya 4.8)
+    "reviewCount": null // Yorum adedi (örn. "124" veya 124)
+  },
+
+  // Ürün geneli stok (tek kaynak / birleşik görünüm; platformdan gelmeyebilir)
+  "stock": {
+    "inStock": null, // Stokta mı
+    "quantity": null, // Bilinen adet; yoksa null
+    "statusLabelTr": null, // Ham metin: «Stokta», «Tükendi», «Ön sipariş» vb.
+    "lastCheckedAt": null // ISO-8601
+  },
+
+  // İlişkili ürünler (schema.org Product.isRelatedTo): tam PDP URL dizisi (Trendyol, HB, n11 … karışık olabilir)
+  "isRelatedTo": [],
+
+  "identity": {
+    "brand": null, // Marka
+    "brandNormalized": null, // Normalize edilmiş marka adı
+    "modelName": null, // Model adı
+    "modelCode": null, // Model kodu
+    "commercialName": null, // Ticari / pazarlama ürün adı
+    "series": null, // Seri (ör. Galaxy S, iPhone)
+    "generation": null, // Nesil
+    "colorName": null, // Renk adı
+    "colorCode": null, // Renk kodu
+    "sku": null, // Satıcı stok kodu (SKU)
+    "mpn": null, // Üretici parça numarası (MPN)
+    "ean": null, // EAN barkod
+    "gtin": null, // GTIN (küresel ticari ürün numarası)
+    "countryOfOrigin": null, // Menşe ülke
+    "countryOfOriginCode": null, // Menşe ülke kodu (ISO vb.)
+    "releaseYear": null, // Piyasaya çıkış yılı
+    "discontinued": null // Üretimden kalktı mı
+  },
+
+  "media": { // Kapak / liste görseli: dolu değilse uygulama gallery[0].url kullanabilir
+    "primaryImageUrl": null, // gallery: tüm ürün fotoğrafları — birden çok öğe; sıra sortOrder (veya dizi sırası)
+    "gallery": [
+      {
+        "url": null, // Görsel adresi (https)
+        "kind": null, // Örn. hero, front, back, angle, detail, inBox, lifestyle
+        "sortOrder": 0,
+        "widthPx": null,
+        "heightPx": null,
+        "altTr": null // brand + commercialName + sortOrder
+      },
+      {
+        "url": null,
+        "kind": null,
+        "sortOrder": 1,
+        "widthPx": null,
+        "heightPx": null,
+        "altTr": null
+      },
+      {
+        "url": null,
+        "kind": null,
+        "sortOrder": 2,
+        "widthPx": null,
+        "heightPx": null,
+        "altTr": null
+      }
+    ]
+  },
+
+  "physical": {
+    "heightMm": null, // Yükseklik (mm)
+    "widthMm": null, // Genişlik (mm)
+    "depthMm": null, // Derinlik / kalınlık (mm)
+    "weightG": null, // Ağırlık (g)
+    "bodyMaterial": null, // Arka kapak / gövde malzemesi
+    "frameMaterial": null, // Çerçeve malzemesi
+    "ipRating": null, // IP sınıfı (toz ve su koruması)
+    "waterResistance": null, // Su dayanımı (metin / etiket)
+    "dustResistance": null, // Toz dayanımı
+    "militaryStandard": null, // Askeri dayanıklılık standardı (MIL-STD vb.)
+    "simSlotCount": null, // SIM yuvası sayısı
+    "simTypes": null, // SIM türleri (nano, micro vb.)
+    "esimSupported": null, // eSIM desteği
+    "hybridSimSlot": null, // Hibrit yuva (ör. SIM + microSD)
+    "memoryCardSlot": null, // Hafıza kartı yuvası
+    "memoryCardType": null, // Kart türü (microSD vb.)
+    "expandableStorageMaxGb": null, // Maks. genişletilebilir depolama (GB)
+    "headphoneJack": null, // Kulaklık jakı (var/yok veya mm)
+    "usbPortType": null, // USB fiziksel tip (Type-C, micro vb.)
+    "usbVersion": null, // USB sürümü (ör. 3.2)
+    "notificationLed": null, // Bildirim LED’i
+    "stereoSpeakers": null, // Stereo hoparlör
+    "irBlaster": null // Kızılötesi verici (uzaktan kumanda)
+  },
+
+  "display": {
+    "sizeInch": null, // Ekran boyutu (inç)
+    "sizeInchRangeLabel": null, // İnç aralığı etiketi (örn. Trendyol «Ekran Boyut Aralığı» 6'' - 6.5'')
+    "sizeInchMarketingLabelTr": null, // Pazaryeri kova etiketi (örn. Trendyol «Ekran Boyutu» 6 - 8 inç)
+    "resolutionWidth": null, // Yatay çözünürlük (piksel)
+    "resolutionHeight": null, // Dikey çözünürlük (piksel)
+    "resolutionLabel": null, // Çözünürlük metin etiketi (ör. FHD+)
+    "aspectRatio": null, // En-boy oranı
+    "pixelDensityPpi": null, // Piksel yoğunluğu (PPI)
+    "panelType": null, // Panel tipi (AMOLED, IPS LCD vb.)
+    "displayTechnology": null, // Ekran teknolojisi
+    "refreshRateHz": null, // Yenileme hızı (Hz)
+    "touchSamplingRateHz": null, // Dokunma örnekleme hızı (Hz)
+    "hdrFormats": null, // HDR formatları (HDR10, Dolby Vision vb.)
+    "brightnessTypicalNits": null, // Tipik parlaklık (nit)
+    "brightnessPeakNits": null, // Tepe parlaklığı (nit)
+    "alwaysOnDisplay": null, // Her zaman açık ekran (AOD)
+    "curvedScreen": null, // Kavisli ekran
+    "notchType": null, // Çentik tipi
+    "punchHole": null, // Delik kameralı (punch-hole) tasarım
+    "underDisplayCamera": null, // Ekran altı ön kamera
+    "screenToBodyPercent": null, // Ekran / gövde oranı (%)
+    "protectionGlass": null, // Koruyucu cam markası
+    "protectionGlassVersion": null, // Cam sürümü (ör. Gorilla Glass Victus 2)
+    "touchscreen": null // Dokunmatik ekran
+  },
+
+  "performance": {
+    "chipsetManufacturer": null, // İşlemci seti üreticisi
+    "chipsetModel": null, // Chipset / SoC modeli
+    "cpuArchitecture": null, // CPU mimarisi
+    "cpuCores": null, // CPU çekirdek sayısı
+    "cpuClockGhz": null, // CPU saat hızı (GHz)
+    "cpuClockRangeLabel": null, // Trendyol «CPU Aralık» ham metin (örn. 2.5-3.2 GHz)
+    "gpuModel": null, // GPU modeli
+    "ramGb": null, // RAM (GB)
+    "ramType": null, // RAM tipi (LPDDR5X vb.)
+    "storageGb": null, // Dahili depolama (GB)
+    "storageType": null, // Depolama tipi (UFS 4.0 vb.)
+    "storageConfigurableOptions": null, // Yapılandırılabilir depolama seçenekleri
+    "antutuScore": null, // AnTuTu skoru
+    "geekbenchSingle": null, // Geekbench tek çekirdek
+    "geekbenchMulti": null, // Geekbench çok çekirdek
+    "aiAccelerator": null, // Yapay zeka / NPU hızlandırıcı
+    "aiFeaturesLabel": null, // AI özellikleri metin etiketi
+    "gamingMode": null, // Oyun modu
+    "vaporChamber": null, // Buhar odası soğutma
+    "activeCoolingFan": null // Aktif soğutma fanı
+  },
+
+  "camerasRear": {
+    "cameraCount": null, // Arka kamera modülü sayısı
+    "mainMp": null, // Ana kamera megapiksel
+    "mainAperture": null, // Ana kamera diyafram (f/)
+    "mainSensorSize": null, // Ana sensör boyutu
+    "mainOis": null, // Ana kamera optik görüntü sabitleme (OIS)
+    "ultraWideMp": null, // Ultra geniş açı MP
+    "ultraWideAperture": null, // Ultra geniş diyafram
+    "telephotoMp": null, // Telefoto MP
+    "telephotoPeriscope": null, // Periskop telefoto
+    "telephotoOpticalZoomX": null, // Optik zoom katı
+    "macroMp": null, // Makro kamera MP
+    "depthMp": null, // Derinlik sensörü MP
+    "flashType": null, // Flaş tipi
+    "rearFlashPresent": null, // Arka flaş var mı
+    "rearCameraResolutionLabel": null, // Arka kamera çözünürlük etiketi
+    "rearCameraResolutionRangeLabel": null, // Arka çözünürlük aralığı etiketi
+    "rearVideoMaxResolution": null, // Arka maks. video çözünürlüğü
+    "rearVideoMaxFps": null, // Arka maks. video kare hızı (fps)
+    "rearSlowMotion": null, // Arka ağır çekim özellikleri
+    "rearHdrVideo": null, // Arka HDR video
+    "rearNightMode": null, // Arka gece modu
+    "rearProRaw": null, // Arka Pro / RAW çekim
+    "laserAutofocus": null, // Lazer otomatik netleme
+    "tofSensor": null // ToF (Time-of-Flight) sensörü
+  },
+
+  "camerasFront": {
+    "cameraCount": null, // Ön kamera sayısı
+    "mainMp": null, // Ön ana kamera MP
+    "mainAperture": null, // Ön kamera diyafram
+    "frontCameraResolutionLabel": null, // Ön kamera çözünürlük etiketi
+    "frontCameraResolutionRangeLabel": null, // Ön çözünürlük aralığı etiketi
+    "frontFlashPresent": null, // Ön flaş / ekran flaşı
+    "frontVideoMaxResolution": null, // Ön maks. video çözünürlüğü
+    "faceUnlock3d": null, // 3D yüz kilidi
+    "underDisplay": null // Ekran altı ön kamera (boolean / açıklama)
+  },
+
+  "battery": {
+    "capacityMah": null, // Batarya kapasitesi (mAh)
+    "capacityRangeLabel": null, // Kapasite aralığı etiketi
+    "removable": null, // Çıkarılabilir batarya
+    "wiredChargingWatt": null, // Kablolu şarj gücü (W)
+    "wirelessChargingWatt": null, // Kablosuz şarj gücü (W)
+    "wirelessChargingSupported": null, // Kablosuz şarj (Trendyol «Kablosuz Şarj» Var/Yok)
+    "reverseWirelessCharging": null, // Ters kablosuz şarj (power share)
+    "chargingSpeedLabel": null, // Şarj hızı metin etiketi
+    "fastChargeTechnology": null, // Hızlı şarj teknolojisi (marka/protokol)
+    "fullChargeTimeMinutesEstimate": null, // Tam dolma süresi tahmini (dakika)
+    "batteryType": null // Batarya kimyası / tipi (Li-Po vb.)
+  },
+
+  "connectivity": {
+    "cellularGeneration": null, // Mobil şebeke nesli (4G / 5G vb.)
+    "cellularBandsSummary": null, // Frekans bantları özeti
+    "volte": null, // VoLTE
+    "vowifi": null, // VoWiFi (Wi-Fi üzerinden ses)
+    "videoCallSupported": null, // Görüntülü konuşma (Trendyol «Görüntülü Konuşma» Var/Yok)
+    "dualSimStandby": null, // Çift SIM bekleme (DSS)
+    "dualActive": null, // Çift hat aynı anda aktif (DSDA)
+    "nfc": null, // NFC
+    "wifiStandard": null, // Wi-Fi standardı (Wi-Fi 6 vb.)
+    "wifi6e": null, // Wi-Fi 6E desteği
+    "wifi7": null, // Wi-Fi 7 desteği
+    "hotspot": null, // İnternet paylaşımı (hotspot)
+    "wifiDirect": null, // Wi-Fi Direct
+    "bluetoothVersion": null, // Bluetooth sürümü
+    "bluetoothCodecs": null, // Bluetooth ses codec’leri
+    "gps": null, // GPS
+    "glonass": null, // GLONASS
+    "galileo": null, // Galileo
+    "beidou": null, // BeiDou
+    "usbOtG": null, // USB OTG (telefondan çevre birim)
+    "desktopMode": null, // Masaüstü modu (DeX, Ready For vb.)
+    "hdmiOut": null, // HDMI çıkışı
+    "fmRadio": null, // FM radyo
+    "antPlus": null, // ANT+
+    "uwb": null // Ultra Wideband (UWB)
+  },
+
+  "software": {
+    "osFamily": null, // İşletim sistemi ailesi (Android / iOS)
+    "osName": null, // OS adı
+    "osVersionShipped": null, // Kutudan çıkan OS sürümü
+    "uiSkin": null, // Üretici arayüzü (One UI, MIUI vb.)
+    "updatePolicyLabel": null, // Güncelleme politikası etiketi
+    "securityPatchMonths": null, // Güvenlik yaması desteği (ay cinsinden veya etiket)
+    "bootloaderUnlockable": null, // Önyükleyici (bootloader) açılabilir mi
+    "knoxSamsung": null, // Samsung Knox (veya eşdeğeri)
+    "enterpriseFeatures": null // Kurumsal / MDM özellikleri
+  },
+
+  "sensorsSecurity": {
+    "fingerprintReader": null, // Parmak izi okuyucu
+    "fingerprintLocation": null, // Parmak izi konumu (ekran içi, yan, arkada)
+    "faceRecognition2d": null, // 2D yüz tanıma
+    "faceRecognitionSecure": null, // Güvenli yüz tanıma (3D / IR vb.)
+    "accelerometer": null, // İvmeölçer
+    "gyroscope": null, // Jiroskop
+    "proximitySensor": null, // Yakınlık sensörü
+    "ambientLightSensor": null, // Ortam ışığı sensörü
+    "compass": null, // Pusula / manyetometre
+    "barometer": null, // Barometre (yükseklik / basınç)
+    "hallSensor": null // Hall sensörü (kapak / mıknatıs)
+  },
+
+  "audio": {
+    "speakerCount": null, // Hoparlör sayısı
+    "dolbyAtmos": null, // Dolby Atmos
+    "hiResAudio": null, // Yüksek çözünürlüklü ses (Hi-Res)
+    "audioJackMm": null, // Kulaklık jak çapı (mm); yoksa null
+    "bluetoothAudioCodecs": null, // Bluetooth ses codec’leri
+    "noiseCancellationCalls": null, // Aramalarda gürültü engelleme
+    "dedicatedAudioChip": null // Ayrı ses işlemcisi / DAC
+  },
+
+  "sustainabilityRepair": {
+    "repairabilityScore": null, // Onarılabilirlik puanı
+    "repairabilityNotesTr": null, // Onarılabilirlik notları (Türkçe)
+    "recycledMaterialsPercent": null, // Geri dönüştürülmüş malzeme oranı (%)
+    "packagingPlasticReduced": null // Ambalajda plastik azaltma
+  },
+
+  "warrantyCompliance": {
+    "warrantyType": null, // Garanti sınıfı (örn. üretici, resmi distribütör, ithalatçı) — kısa kod veya serbest etiket
+    "warrantyMonths": null, // Garanti süresi (ay)
+    // Pazaryeri / ürün sayfasındaki ham ifade (örn. «Distribütör garantili», «İthalatçı firma garantili»)
+    "warrantyCoverageLabelTr": null,
+    // Kim garanti veriyor: distributor | importer | manufacturer | seller | unknown (veya serbest metin)
+    "warrantyProviderKind": null,
+    "importerWarranty": null, // İthalatçı garantisi geçerli mi (true/false); ayrıntı importerCompanyNameTr / notes’ta
+    "importerCompanyNameTr": null, // İthalatçı firma ticari unvanı (önemli: garanti sorumlusu tespiti)
+    "officialDistributor": null, // Resmi distribütör: unvan, kısa metin veya resmi bilgi URL’si
+    "distributorCompanyNameTr": null, // Distribütör firma unvanı (Türkiye resmi dağıtıcı)
+    "warrantyNotesTr": null, // Ek açıklama: kapsam, istisnalar, yetkili servis notu
+    "safetyInfoUrl": null, // Güvenlik / kullanım bilgisi URL’si
+    "ceMarking": null, // CE uygunluk işareti
+    "energyLabelClass": null // Enerji etiketi sınıfı
+  },
+
+  "regulatoryHealth": {
+    "sarHeadWkg": null, // SAR baş (W/kg)
+    "sarBodyWkg": null, // SAR gövde (W/kg)
+    "sarLimbWkg": null, // SAR uzuv (W/kg)
+    "rohs": null, // RoHS (zararlı madde kısıtlaması)
+    "reach": null // REACH / kimyasal düzenlemesi uyumu
+  },
+
+  "marketplaceMeta": {
+    "platformIds": {
+      "epey": {
+        "canonical": null, // Ürünün canonical URL’si (tercihen sellerID'li ürün url)
+        "productId": null, // İçerik / ürün kimliği (contentId vb.)
+        "title": null, // Listede görünen ürün başlığı (isteğe bağlı)
+        "shipment": null, // kargo durumu
+        "ratingValue": null, // Ortalama puan (örn. "4.8" veya 4.8)
+        "reviewCount": null, // Yorum adedi (örn. "124" veya 124)
+        "offers": [ // offers: aynı ürünü satan her mağaza için bir nesne; gerçek veride satıcı yoksa [] bırak
+          {
+            "sellerName": null, // Satıcı / mağaza adı
+            "storeUrl": null, // Mağaza vitrin linki
+            "listingUrl": null, // Bu satıcıya özel ürün (teklif) sayfası; fiyat bu teklife aittir
+            "price": {
+              "amount": null, // Sayısal tutar (ör. 12999.99)
+              "currency": "TRY", // ISO 4217 para birimi
+              "displayTr": null // Sitedeki ham fiyat metni (ör. 12.999,99 TL)
+            },
+            // Satıcı / teklif bazlı stok (aynı ürün farklı mağazada farklı olabilir)
+            "stock": {
+              "inStock": null,
+              "quantity": null,
+              "statusLabelTr": null, // «Son 2 ürün», «Stokta yok» vb.
+              "lastCheckedAt": null // ISO-8601
+            },
+            "collectedAt": null // Bu teklifin alındığı an (ISO-8601, ör. 2026-04-02T12:00:00+03:00)
+          }
+        ]
+      },
+      "trendyol": {
+        "canonical": null,
+        "productId": null,
+        "title": null,
+        "shipment": null,
+        "ratingValue": null,
+        "reviewCount": null,
+        "offers": [
+          {
+            "sellerName": null,
+            "storeUrl": null,
+            "listingUrl": null,
+            "price": {
+              "amount": null,
+              "currency": "TRY",
+              "displayTr": null
+            },
+            "stock": {
+              "inStock": null,
+              "quantity": null,
+              "statusLabelTr": null,
+              "lastCheckedAt": null
+            },
+            "collectedAt": null
+          }
+        ]
+      }
+    },
+    "lastSyncedAt": null, // Son senkron zamanı (ISO-8601 önerilir)
+    "sourceLocale": null // Kaynak dil / bölge (ör. tr-TR)
+  },
+
+  // Trendyol additionalProperty ham listesi: { "source": "trendyol"|"…", "key": "Özellik adı", "value": "…" }
+  "rawPlatformAttributes": []
+}
