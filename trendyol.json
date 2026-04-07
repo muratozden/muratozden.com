@@ -1,0 +1,540 @@
+{
+  "schemaVersion": "dc-telefon-batch-1",
+  "generatedAt": "2026-04-04T14:54:39.432Z",
+  "source": "trendyol-product-crawler",
+  "items": [
+    {
+      "sourceUrl": "https://www.trendyol.com/apple/iphone-17-256gb-ada-cayi-p-985256863",
+      "telefon": {
+        "schemaVersion": "1.0",
+        "category": "elektronik",
+        "categoryL1": "telefon-aksesuarlari",
+        "categoryL2": "cep-telefonu",
+        "categoryL3": null,
+        "audience": {
+          "@type": "PeopleAudience",
+          "suggestedGender": null
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.7,
+          "reviewCount": 53
+        },
+        "stock": {
+          "inStock": true,
+          "quantity": null,
+          "statusLabelTr": null,
+          "lastCheckedAt": null
+        },
+        "isRelatedTo": [
+          "https://www.trendyol.com/apple/iphone-17-256gb-lavanta-p-985256856",
+          "https://www.trendyol.com/apple/iphone-17-256gb-sis-mavisi-p-985256848",
+          "https://www.trendyol.com/apple/iphone-17-256gb-siyah-p-985256842",
+          "https://www.trendyol.com/apple/iphone-17-256gb-beyaz-p-985256845",
+          "https://www.trendyol.com/apple/iphone-16-128gb-pembe-p-857296122",
+          "https://www.trendyol.com/apple/iphone-16-128gb-laciverttas-p-857296121",
+          "https://www.trendyol.com/apple/iphone-15-128-gb-mavi-p-762254881",
+          "https://www.trendyol.com/apple/iphone-16-128gb-deniz-mavisi-p-857296127"
+        ],
+        "identity": {
+          "brand": "Apple",
+          "brandNormalized": "apple",
+          "modelName": "iPhone 17",
+          "modelCode": null,
+          "commercialName": "Apple iPhone 17 256GB Ada Çayı",
+          "series": null,
+          "generation": null,
+          "colorName": "Ada Çayı",
+          "colorCode": null,
+          "sku": "985256863",
+          "mpn": null,
+          "ean": null,
+          "gtin": null,
+          "countryOfOrigin": null,
+          "countryOfOriginCode": null,
+          "releaseYear": null,
+          "discontinued": null
+        },
+        "media": {
+          "primaryImageUrl": "https://cdn.dsmcdn.com/ty1743/product/media/images/prod/PIM/20250911/08/73d2dd0f-7738-4e58-9523-02596eddb400/1_org_zoom.jpg",
+          "gallery": [
+            {
+              "url": "https://cdn.dsmcdn.com/ty1743/product/media/images/prod/PIM/20250911/08/73d2dd0f-7738-4e58-9523-02596eddb400/1_org_zoom.jpg",
+              "kind": "hero",
+              "sortOrder": 0,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1744/product/media/images/prod/PIM/20250911/08/cf493af0-9a79-46e6-82ef-86570bf2c189/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 1,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1743/product/media/images/prod/PIM/20250911/08/6caa368d-d7f6-4337-a178-a661c1a00f29/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 2,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1744/product/media/images/prod/PIM/20250911/08/4779ed13-7cbb-4ce1-933b-2fef0e4fb5a8/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 3,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1744/product/media/images/prod/PIM/20250911/08/093f69bb-65fd-4452-8093-2e5683618b73/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 4,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1745/product/media/images/prod/PIM/20250911/08/3c622c76-9412-485c-a224-cec220e755f7/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 5,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1745/product/media/images/prod/PIM/20250911/08/80d9f36c-4d88-4943-a066-594550216a5e/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 6,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1744/product/media/images/prod/PIM/20250911/08/824a0e21-06da-4935-9497-2526ee0c8856/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 7,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1745/product/media/images/prod/PIM/20250911/08/f9a4c047-b766-42b6-9fc3-a256da9c03f5/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 8,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            },
+            {
+              "url": "https://cdn.dsmcdn.com/ty1744/product/media/images/prod/PIM/20250911/08/a1e78e2e-d97b-4d97-a140-44b9d975ecef/1_org_zoom.jpg",
+              "kind": "gallery",
+              "sortOrder": 9,
+              "widthPx": null,
+              "heightPx": null,
+              "altTr": null
+            }
+          ]
+        },
+        "physical": {
+          "heightMm": null,
+          "widthMm": null,
+          "depthMm": null,
+          "weightG": null,
+          "bodyMaterial": null,
+          "frameMaterial": null,
+          "ipRating": null,
+          "waterResistance": "Var",
+          "dustResistance": null,
+          "militaryStandard": null,
+          "simSlotCount": null,
+          "simTypes": null,
+          "esimSupported": null,
+          "hybridSimSlot": null,
+          "memoryCardSlot": null,
+          "memoryCardType": null,
+          "expandableStorageMaxGb": null,
+          "headphoneJack": null,
+          "usbPortType": null,
+          "usbVersion": null,
+          "notificationLed": null,
+          "stereoSpeakers": null,
+          "irBlaster": null
+        },
+        "display": {
+          "sizeInch": null,
+          "sizeInchRangeLabel": "6'' - 6.5''",
+          "resolutionWidth": null,
+          "resolutionHeight": null,
+          "resolutionLabel": "FHD+",
+          "aspectRatio": null,
+          "pixelDensityPpi": null,
+          "panelType": "OLED",
+          "displayTechnology": "FHD+",
+          "refreshRateHz": null,
+          "touchSamplingRateHz": null,
+          "hdrFormats": null,
+          "brightnessTypicalNits": null,
+          "brightnessPeakNits": null,
+          "alwaysOnDisplay": null,
+          "curvedScreen": null,
+          "notchType": null,
+          "punchHole": null,
+          "underDisplayCamera": null,
+          "screenToBodyPercent": null,
+          "protectionGlass": null,
+          "protectionGlassVersion": null,
+          "touchscreen": null
+        },
+        "performance": {
+          "chipsetManufacturer": null,
+          "chipsetModel": null,
+          "cpuArchitecture": null,
+          "cpuCores": null,
+          "cpuClockGhz": null,
+          "gpuModel": null,
+          "ramGb": 8,
+          "ramType": null,
+          "storageGb": 256,
+          "storageType": null,
+          "storageConfigurableOptions": null,
+          "antutuScore": null,
+          "geekbenchSingle": null,
+          "geekbenchMulti": null,
+          "aiAccelerator": null,
+          "aiFeaturesLabel": null,
+          "gamingMode": null,
+          "vaporChamber": null,
+          "activeCoolingFan": null
+        },
+        "camerasRear": {
+          "cameraCount": 2,
+          "mainMp": null,
+          "mainAperture": null,
+          "mainSensorSize": null,
+          "mainOis": null,
+          "ultraWideMp": null,
+          "ultraWideAperture": null,
+          "telephotoMp": null,
+          "telephotoPeriscope": null,
+          "telephotoOpticalZoomX": null,
+          "macroMp": null,
+          "depthMp": null,
+          "flashType": null,
+          "rearFlashPresent": null,
+          "rearCameraResolutionLabel": "20 MP ve üstü",
+          "rearCameraResolutionRangeLabel": "40 - 60 MP",
+          "rearVideoMaxResolution": null,
+          "rearVideoMaxFps": null,
+          "rearSlowMotion": null,
+          "rearHdrVideo": null,
+          "rearNightMode": null,
+          "rearProRaw": null,
+          "laserAutofocus": null,
+          "tofSensor": null
+        },
+        "camerasFront": {
+          "cameraCount": 1,
+          "mainMp": null,
+          "mainAperture": null,
+          "frontCameraResolutionLabel": "14 - 20 MP",
+          "frontCameraResolutionRangeLabel": "15 - 20 MP",
+          "frontFlashPresent": null,
+          "frontVideoMaxResolution": null,
+          "faceUnlock3d": null,
+          "underDisplay": null
+        },
+        "battery": {
+          "capacityMah": null,
+          "capacityRangeLabel": "3000 - 4000",
+          "removable": null,
+          "wiredChargingWatt": null,
+          "wirelessChargingWatt": null,
+          "reverseWirelessCharging": null,
+          "chargingSpeedLabel": "Kablosuz şarj: Var",
+          "fastChargeTechnology": null,
+          "fullChargeTimeMinutesEstimate": null,
+          "batteryType": null
+        },
+        "connectivity": {
+          "cellularGeneration": "5G",
+          "cellularBandsSummary": null,
+          "volte": null,
+          "vowifi": null,
+          "dualSimStandby": null,
+          "dualActive": null,
+          "nfc": null,
+          "wifiStandard": null,
+          "wifi6e": null,
+          "wifi7": null,
+          "hotspot": null,
+          "wifiDirect": null,
+          "bluetoothVersion": null,
+          "bluetoothCodecs": null,
+          "gps": null,
+          "glonass": null,
+          "galileo": null,
+          "beidou": null,
+          "usbOtG": null,
+          "desktopMode": null,
+          "hdmiOut": null,
+          "fmRadio": null,
+          "antPlus": null,
+          "uwb": null
+        },
+        "software": {
+          "osFamily": "iOS",
+          "osName": "iOS",
+          "osVersionShipped": null,
+          "uiSkin": null,
+          "updatePolicyLabel": null,
+          "securityPatchMonths": null,
+          "bootloaderUnlockable": null,
+          "knoxSamsung": null,
+          "enterpriseFeatures": null
+        },
+        "sensorsSecurity": {
+          "fingerprintReader": true,
+          "fingerprintLocation": null,
+          "faceRecognition2d": null,
+          "faceRecognitionSecure": true,
+          "accelerometer": null,
+          "gyroscope": null,
+          "proximitySensor": null,
+          "ambientLightSensor": null,
+          "compass": null,
+          "barometer": null,
+          "hallSensor": null
+        },
+        "audio": {
+          "speakerCount": null,
+          "dolbyAtmos": null,
+          "hiResAudio": null,
+          "audioJackMm": null,
+          "bluetoothAudioCodecs": null,
+          "noiseCancellationCalls": null,
+          "dedicatedAudioChip": null
+        },
+        "sustainabilityRepair": {
+          "repairabilityScore": null,
+          "repairabilityNotesTr": null,
+          "recycledMaterialsPercent": null,
+          "packagingPlasticReduced": null
+        },
+        "warrantyCompliance": {
+          "warrantyType": null,
+          "warrantyMonths": 24,
+          "warrantyCoverageLabelTr": "Apple Türkiye Garantili",
+          "warrantyProviderKind": null,
+          "importerWarranty": null,
+          "importerCompanyNameTr": null,
+          "officialDistributor": null,
+          "distributorCompanyNameTr": null,
+          "warrantyNotesTr": null,
+          "safetyInfoUrl": null,
+          "ceMarking": null,
+          "energyLabelClass": null
+        },
+        "regulatoryHealth": {
+          "sarHeadWkg": null,
+          "sarBodyWkg": null,
+          "sarLimbWkg": null,
+          "rohs": null,
+          "reach": null
+        },
+        "marketplaceMeta": {
+          "platformIds": {
+            "epey": {
+              "canonical": null,
+              "productId": null,
+              "title": null,
+              "shipment": null,
+              "ratingValue": null,
+              "reviewCount": null,
+              "offers": [
+                {
+                  "sellerName": null,
+                  "storeUrl": null,
+                  "listingUrl": null,
+                  "price": {
+                    "amount": null,
+                    "currency": "TRY",
+                    "displayTr": null
+                  },
+                  "stock": {
+                    "inStock": null,
+                    "quantity": null,
+                    "statusLabelTr": null,
+                    "lastCheckedAt": null
+                  },
+                  "collectedAt": null
+                }
+              ]
+            },
+            "trendyol": {
+              "canonical": "https://www.trendyol.com/apple/iphone-17-256gb-ada-cayi-p-985256863",
+              "productId": "985256863",
+              "title": "Apple iPhone 17 256GB Ada Çayı",
+              "shipment": null,
+              "ratingValue": 4.7,
+              "reviewCount": 53,
+              "offers": [
+                {
+                  "sellerName": "Trendyol",
+                  "storeUrl": null,
+                  "listingUrl": "https://www.trendyol.com/apple/iphone-17-256gb-ada-cayi-p-985256863",
+                  "price": {
+                    "amount": 75144.05,
+                    "currency": "TRY",
+                    "displayTr": "75144,05 TRY"
+                  },
+                  "stock": {
+                    "inStock": true,
+                    "quantity": null,
+                    "statusLabelTr": null,
+                    "lastCheckedAt": null
+                  },
+                  "collectedAt": "2026-04-04T14:54:39.431Z"
+                }
+              ]
+            }
+          },
+          "lastSyncedAt": "2026-04-04T14:54:39.431Z",
+          "sourceLocale": "tr-TR"
+        },
+        "rawPlatformAttributes": [
+          {
+            "source": "trendyol",
+            "key": "Garanti Tipi",
+            "value": "Apple Türkiye Garantili"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ekran Çözünürlüğü",
+            "value": "FHD+"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ana Kamera Çözünürlük Aralığı",
+            "value": "40 - 60 MP"
+          },
+          {
+            "source": "trendyol",
+            "key": "CPU Aralık",
+            "value": "2.5-3.2 GHz"
+          },
+          {
+            "source": "trendyol",
+            "key": "Parmak İzi Okuyucu",
+            "value": "Var"
+          },
+          {
+            "source": "trendyol",
+            "key": "Suya/Toza Dayanıklılık",
+            "value": "Var"
+          },
+          {
+            "source": "trendyol",
+            "key": "Dahili Hafıza",
+            "value": "256 GB"
+          },
+          {
+            "source": "trendyol",
+            "key": "Kamera Çözünürlüğü",
+            "value": "20 MP ve üstü"
+          },
+          {
+            "source": "trendyol",
+            "key": "RAM Kapasitesi",
+            "value": "8 GB"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ekran Boyutu",
+            "value": "6 - 8 inç"
+          },
+          {
+            "source": "trendyol",
+            "key": "Pil Gücü (mAh)",
+            "value": "3000 - 4000"
+          },
+          {
+            "source": "trendyol",
+            "key": "Cep Telefonu Modeli",
+            "value": "iPhone 17"
+          },
+          {
+            "source": "trendyol",
+            "key": "Mobil Bağlantı Hızı",
+            "value": "5G"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ön Kamera Çözünürlüğü",
+            "value": "14 - 20 MP"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ön Kamera Çözünürlük Aralığı",
+            "value": "15 - 20 MP"
+          },
+          {
+            "source": "trendyol",
+            "key": "Arka Kamera Sayısı",
+            "value": "2"
+          },
+          {
+            "source": "trendyol",
+            "key": "Kablosuz Şarj",
+            "value": "Var"
+          },
+          {
+            "source": "trendyol",
+            "key": "İşletim Sistemi",
+            "value": "iOS"
+          },
+          {
+            "source": "trendyol",
+            "key": "Garanti Süresi",
+            "value": "2 Yıl"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ekran Boyut Aralığı",
+            "value": "6'' - 6.5''"
+          },
+          {
+            "source": "trendyol",
+            "key": "Yüz Tanıma",
+            "value": "Var"
+          },
+          {
+            "source": "trendyol",
+            "key": "Görüntü Teknolojisi",
+            "value": "OLED"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ekran Teknolojisi",
+            "value": "FHD+"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ekran Cinsi",
+            "value": "OLED"
+          },
+          {
+            "source": "trendyol",
+            "key": "Ön Kamera Sayısı",
+            "value": "1"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
