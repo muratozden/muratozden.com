@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ProjectFlow — Proje Dökümantasyonu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            /* ── M · Magenta (Primary) ── */
+            --m-05: #ffeefe;
+            --m-10: #fed9fb;
+            --m-20: #ffb4f7;
+            --m-30: #fe8ef4;
+            --m-40: #ff68f1;
+            --m-50: #ff44ed;
+            --m-60: #cc35be;
+            --m-70: #98288e;
+            --m-80: #661b5e;
+
+            /* ── L · Lime ── */
+            --l-05: #fdffe9;
+            --l-10: #faffde;
+            --l-20: #f5febb;
+            --l-30: #f0ff9d;
+            --l-50: #e5ff54;
+            --l-60: #cde64d;
+            --l-70: #acbf41;
+
+            /* ── B · Blue ── */
+            --b-05: #eaf4fd;
+            --b-10: #d3e8f9;
+            --b-20: #a9d6f5;
+            --b-30: #85c4ef;
+            --b-50: #4fa4e4;
+            --b-60: #2c86d2;
+            --b-70: #1b5fa0;
+
+            /* ── Y · Yellow ── */
+            --y-05: #fefbea;
+            --y-10: #fff6cf;
+            --y-20: #feed9d;
+            --y-30: #fce16c;
+            --y-50: #ffd10c;
+            --y-60: #a48712;
+            --y-70: #463e17;
+
+            /* ── A · Aqua ── */
+            --a-05: #e4feff;
+            --a-10: #cbfbff;
+            --a-20: #99f7ff;
+            --a-30: #72f4ff;
+            --a-50: #32e6f5;
+            --a-60: #15cfe4;
+            --a-70: #009fb5;
+
+            /* ── Error ── */
+            --error-05: #feeeef;
+            --error-10: #ffd8d6;
+            --error-20: #ffb1b1;
+            --error-30: #fe8888;
+            --error-50: #ff3734;
+            --error-60: #d03531;
+            --error-70: #752526;
+
+            /* ── Success ── */
+            --success-05: #edf8f0;
+            --success-10: #d6f3d4;
+            --success-20: #b5e6ae;
+            --success-30: #97db8e;
+            --success-50: #5cba59;
+            --success-60: #3c9d3c;
+            --success-70: #227a23;
+
+            /* ── Purple ── */
+            --purple-10: #f2d3fc;
+            --purple-20: #e4a6f9;
+            --purple-30: #d67af6;
+            --purple-40: #c74df0;
+            --purple-50: #aa1ed7;
+            --purple-60: #8c1bb3;
+            --purple-70: #701490;
+            --purple-80: #551070;
+
+            /* ── Beige ── */
+            --beige-10: #faf9f7;
+            --beige-20: #f4f3ef;
+            --beige-30: #f2ede7;
+            --beige-40: #ede9e0;
+            --beige-50: #cfcbc0;
+            --beige-60: #aba79e;
+            --beige-70: #8b8881;
+            --beige-80: #6e6b65;
+
+            /* ── N · Neutral ── */
+            --n-00: #ffffff;
+            --n-05: #f5f5f5;
+            --n-10: #ececec;
+            --n-20: #d9d9d9;
+            --n-30: #b4b4b4;
+            --n-50: #5b5b5b;
+            --n-60: #4f4f4f;
+            --n-80: #1c1c1e;
+
+            /* ── D · Dark Blue-Grey ── */
+            --d-05: #f6f7f9;
+            --d-10: #eeeff3;
+            --d-20: #d3d6df;
+            --d-30: #b4bac8;
+            --d-50: #4e5c77;
+            --d-60: #3b475f;
+            --d-70: #252d40;
+
+            /* ── Semantic aliases ── */
+            --primary: var(--m-50);
+            --primary-dark: var(--m-60);
+            --primary-light: var(--m-10);
+            --accent: var(--primary);
+            --accent-dark: var(--m-60);
+            --accent-glow: rgba(255, 68, 237, 0.15);
+            --gradient: linear-gradient(135deg, var(--m-50) 0%, var(--m-40) 45%, var(--m-30) 100%);
+            --gradient-soft: linear-gradient(135deg, rgba(255, 68, 237, 0.08) 0%, rgba(255, 104, 241, 0.05) 100%);
+
+            --sidebar-width: 280px;
+            --bg: var(--beige-10);
+            --surface: var(--n-00);
+            --text: var(--n-80);
+            --text-secondary: var(--n-60);
+            --text-muted: var(--n-50);
+            --border: rgba(28, 28, 30, 0.06);
+            --border-strong: rgba(28, 28, 30, 0.1);
+            --sidebar-bg: var(--d-70);
+            --sidebar-surface: rgba(255, 255, 255, 0.04);
+            --sidebar-border: rgba(255, 255, 255, 0.07);
+            --radius: 14px;
+            --radius-sm: 10px;
+            --shadow-sm: 0 1px 2px rgba(28, 28, 30, 0.04);
+            --shadow: 0 4px 24px rgba(28, 28, 30, 0.06), 0 1px 2px rgba(28, 28, 30, 0.04);
+            --shadow-lg: 0 20px 60px rgba(28, 28, 30, 0.08), 0 4px 12px rgba(28, 28, 30, 0.04);
+            --font: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Google Sans', var(--font);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 3rem;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+            display: flex;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Ambient background ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 68, 237, 0.1), transparent),
+            radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 104, 241, 0.06), transparent),
+            radial-gradient(ellipse 50% 30% at 0% 100%, rgba(255, 68, 237, 0.04), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+            border-right: 1px solid var(--sidebar-border);
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, rgba(255, 68, 237, 0.14) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .sidebar-header {
+            position: relative;
+            padding: 2rem 1.5rem 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(255, 68, 237, 0.35);
+        }
+
+        .logo-icon svg {
+            width: 18px;
+            height: 18px;
+            color: #fff;
+        }
+
+        .sidebar-header h1 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.03em;
+        }
+
+        .sidebar-header p {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.15rem;
+            padding-left: 2.85rem;
+        }
+
+        .sidebar nav {
+            position: relative;
+            padding: 0.5rem 1rem 2rem;
+            flex: 1;
+        }
+
+        .nav-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .nav-group-title {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.3);
+            padding: 0 0.75rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .sidebar nav a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 0.85rem;
+            border-radius: var(--radius-sm);
+            color: rgba(255, 255, 255, 0.55);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-bottom: 2px;
+        }
+
+        .sidebar nav a::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar nav a:hover {
+            background: var(--sidebar-surface);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .sidebar nav a.active {
+            background: rgba(255, 68, 237, 0.16);
+            color: var(--m-20);
+        }
+
+        .sidebar nav a.active::before {
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+            width: 6px;
+            height: 6px;
+        }
+
+        .sidebar-footer {
+            position: relative;
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--sidebar-border);
+        }
+
+        .sidebar-footer span {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ── Main ── */
+        .main {
+            position: relative;
+            z-index: 1;
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 3rem 4rem 5rem;
+            max-width: 1024px;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            margin-bottom: 3.5rem;
+            padding: 2.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: calc(var(--radius) + 4px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient);
+            opacity: 0.06;
+            border-radius: 50%;
+            transform: translate(30%, -40%);
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--gradient-soft);
+            border: 1px solid rgba(255, 68, 237, 0.18);
+            color: var(--accent-dark);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success-50);
+            box-shadow: 0 0 6px rgba(92, 186, 89, 0.55);
+        }
+
+        .hero h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            line-height: 1.65;
+        }
+
+        /* ── Sections ── */
+        section {
+            margin-bottom: 3.5rem;
+            scroll-margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.05s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.1s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.15s;
+        }
+
+        section:nth-child(5) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(6) {
+            animation-delay: 0.25s;
+        }
+
+        section:nth-child(7) {
+            animation-delay: 0.3s;
+        }
+
+        section:nth-child(8) {
+            animation-delay: 0.35s;
+        }
+
+        section:nth-child(9) {
+            animation-delay: 0.4s;
+        }
+
+        section:nth-child(10) {
+            animation-delay: 0.45s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 16px;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        section h3 {
+            font-family: var(--font-display);
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+            color: var(--text);
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.975rem;
+        }
+
+        section ul, section ol {
+            margin: 0 0 1.25rem 0;
+            padding: 0;
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        section li {
+            position: relative;
+            padding: 0.65rem 0 0.65rem 1.75rem;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section li:last-child {
+            border-bottom: none;
+        }
+
+        section li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.05rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gradient);
+        }
+
+        section li strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ── Placeholder ── */
+        .placeholder {
+            background: var(--gradient-soft);
+            border: 1px dashed rgba(255, 68, 237, 0.28);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* ── Cards ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 68, 237, 0.22);
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--gradient-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .card h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.65;
+        }
+
+        /* ── Scope tags ── */
+        .scope-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .scope-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .scope-tag.included {
+            background: var(--success-05);
+            border: 1px solid var(--success-20);
+            color: var(--success-70);
+        }
+
+        .scope-tag.excluded {
+            background: var(--error-05);
+            border: 1px solid var(--error-20);
+            color: var(--error-70);
+        }
+
+        /* ── Architecture flow ── */
+        .flow {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .flow-node {
+            padding: 0.55rem 1rem;
+            background: var(--gradient-soft);
+            border: 1px solid rgba(255, 68, 237, 0.18);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-dark);
+            white-space: nowrap;
+        }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ── Tech badges ── */
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.75rem;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: var(--surface);
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .tech-badge:hover {
+            border-color: rgba(255, 68, 237, 0.32);
+            color: var(--accent-dark);
+            background: var(--gradient-soft);
+        }
+
+        /* ── Code block ── */
+        .code-block {
+            background: var(--d-70);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+        }
+
+        .code-block code {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            color: var(--d-10);
+            line-height: 1.8;
+        }
+
+        .code-block .comment {
+            color: var(--d-30);
+        }
+
+        .code-block .cmd {
+            color: var(--m-30);
+        }
+
+        section ol {
+            counter-reset: steps;
+        }
+
+        section ol li {
+            counter-increment: steps;
+            padding-left: 2.5rem;
+        }
+
+        section ol li::before {
+            content: counter(steps);
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: var(--gradient);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 0.75rem;
+            box-shadow: 0 2px 8px var(--accent-glow);
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), rgba(255, 68, 237, 0.1));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 1.75rem 1.5rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.45rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .timeline-item .period {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-item .title {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .text-muted {
+            margin-top: 1rem;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Mobile ── */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 200;
+            width: 44px;
+            height: 44px;
+            background: var(--sidebar-bg);
+            color: #fff;
+            border: 1px solid var(--sidebar-border);
+            border-radius: 12px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.2s ease;
+        }
+
+        .menu-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 90;
+        }
+
+        .overlay.visible {
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .main {
+                padding: 2.5rem 2rem 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 5rem 1.25rem 3rem;
+            }
+
+            .hero {
+                padding: 1.75rem;
+            }
+
+            .flow {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .flow-arrow {
+                text-align: center;
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat">☰</button>
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1>ProjectFlow</h1>
+        </div>
+        <p>Ahtapot · Proje Dökümantasyonu</p>
+    </div>
+
+    <nav id="nav">
+        <div class="nav-group">
+            <div class="nav-group-title">Portal</div>
+            <a href="../index.html">← Tüm Projeler</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-title">Genel</div>
+            <a href="#proje-tanitimi">Proje Tanıtımı</a>
+            <a href="#amac">Amaç &amp; Hedefler</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-title">Proje Akışı</div>
+            <a href="#baslangic-kriterleri">Başlangıç Kriterleri</a>
+            <a href="#aksiyonlar">Onay Sonrası Aksiyonlar</a>
+            <a href="#ciktilar">Çıktılar</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-title">Proje Detayları</div>
+            <a href="#mimari">Mimari</a>
+        </div>
+    </nav>
+
+    <div class="sidebar-footer">
+        <span>© 2026 ProjectFlow</span>
+    </div>
+</aside>
+
+<main class="main">
+
+    <section id="proje-tanitimi">
+        <div class="hero">
+            <div class="hero-meta">
+                <span class="badge"><span class="badge-dot"></span> Aktif Geliştirme</span>
+                <span class="badge">v1.0</span>
+                <span class="badge">Öncelikli Proje</span>
+            </div>
+            <h2>Ahtapot</h2>
+            <p class="subtitle"><b>Ahtapot</b>, e-ticaret dünyasındaki verileri bizim için toplayan, düzenleyen ve tek bir merkezde birleştiren akıllı bir veri toplama ve yönetim sistemidir.</p>
+        </div>
+    </section>
+
+    <section id="amac">
+        <div class="section-label">Proje Detayları</div>
+        <h3>Amaç &amp; Hedefler</h3>
+        <p>Günümüz e-ticaret ekosisteminde rekabetin şartlarını <b>hız, doğru fiyatlandırma ve pazar trendlerini anlık yakalayabilmek</b> belirlemektedir. Milyonlarca ürünün, değişen fiyatların ve kullanıcı reflekslerinin insan gücüyle, manuel olarak takip edilmesi artık imkansız hale gelmiştir.</p>
+        <p><b>Ahtapot</b>, tam da bu noktada operasyonel körlüğü ortadan kaldırmak ve şirketimizi pazarın öncüsü yapmak için tasarlandı. Farklı e-ticaret platformlarına uzanan dijital kollarıyla Ahtapot; manuel veri toplama süreçlerini tamamen otomatize eder.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h4>Ana Amaç</h4>
+                <ul>
+                    <li><b>Operasyonel Hız ve Verimlilik:</b> Farklı e-ticaret platformlarındaki verilerin toplanma sürecini otonom hale getirmek; manuel operasyonları ortadan kaldırarak hata payını minimize etmek.</li>
+                    <li><b>Tek Merkezden Yönetim:</b> Dağınık pazar verilerini anlamlı, işlenebilir ve güvenli bir merkezi platformda birleştirmek.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h4>Hedefler</h4>
+                <ul>
+                    <li><b>Kısa vade:</b> Manuel veri toplama sürecini sonlandırarak merkezi veri akışını başlatmak.</li>
+                    <li><b>Orta vade:</b> İzlenen platform sayısını artırıp anlık alarm sistemlerini devreye almak.</li>
+                    <li><b>Uzun vade:</b> Geçmiş pazar verileriyle geleceğin trendlerini öngören akıllı bir liderlik yapısı oluşturmak.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="baslangic-kriterleri">
+        <div class="section-label">Proje Akışı</div>
+        <h3>Başlangıç Kriterleri &amp; Dokümantasyon</h3>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h4>Başlangıç Kriterleri</h4>
+                <ul>
+                    <li><b>İş ihtiyacı netliği:</b> Manuel veri toplama sürecinin operasyonel yükü ve rekabet dezavantajını ortadan kaldırmak için pazar verilerini anlık olarak tek merkezde toplayan ve şirketimize veriye dayalı hız kazandıran akıllı bir otomasyon platformu kurmak.</li>
+                    <li><b>Kapsam sınırları:</b> Dahil edilecek platformlar, veri türleri ve departman ve & paydaşlarla yapılacak toplantı ile belirlenecek.</li>
+                    <li><b>Kaynak ve zaman planı:</b> Toplanan talepler; ekip kapasitesi, teknik bağımlılıklar ve hedef teslim tarihleri netleştirilecek.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📁</div>
+                <h4>Gerekli Bilgi &amp; Dokümantasyon</h4>
+                <ul>
+                    <li><b>Paydaş haritası:</b> Category Groups, Marketplace Operations, Data & Analytics</li>
+                    <li><b>Paydaş haritası:</b> Departmanlar, sorumlular ve iletişim odakları belirlenecek.</li>
+                    <li><b>Metrik tabanı:</b> Proje öncesi mevcut durum ölçümleri hazırlanacak</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="aksiyonlar">
+        <div class="section-label">Proje Akışı</div>
+        <h3>Onay Sonrası Aksiyonlar</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="period">Öncelik 1</div>
+                <div class="title">Crawler mimarisi hazırlama</div>
+                <span class="text-muted">Ahtapot'un dijital kolları (crawler), hedef platformların koruma duvarlarına takılmadan, ürün ve kullanıcı etkileşim verilerini kesintisiz ve eş zamanlı olarak çeken; değişen site tasarımlarına hızla adapte olabilecek esnek bir altyapı hazırlanması.</span>
+            </div>
+            <div class="timeline-item">
+                <div class="period">Öncelik 2</div>
+                <div class="title">Akakce Crawler yazılımının geliştirilmesi</div>
+                <span class="text-muted">Farklı sitelerden veri çekmeden önce Akakçe'yi tarayarak tüm ürünleri birbiriyle eşleştireceğiz; böylece farklı isimlerle satılan aynı ürünlerin verisini "elma ile elmayı kıyaslayacak şekilde" hatasız takip edilmesini sağlayacağız.</span>
+            </div>
+            <div class="timeline-item">
+                <div class="period">Öncelik 3</div>
+                <div class="title">Scraping mimarisi hazırlama</div>
+                <span class="text-muted">Akakçe'den alınan linkleri referans alarak, hedef platformlardaki fiyat, attribute, kullanıcı etkileşimi vb. verileri anlık olarak çekip merkezi sisteme aktaran esnek bir veri toplama motoru hazırlama.</span>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="mimari">
+        <div class="section-label">Proje Detayları</div>
+        <h3>Mimari</h3>
+        <p>Ahtapot'un sistem mimarisi ve veri akışı aşağıda özetlenmiştir.</p>
+        <div class="flow">
+            <span class="flow-node">Veri Kaynakları (E-ticaret Platformları)</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Scraper / Collector</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">API Gateway</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Backend Servisleri</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Merkezi Veritabanı</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Dashboard &amp; Alarmlar</span>
+        </div>
+    </section>
+
+    <section id="ciktilar">
+        <div class="section-label">Proje Akışı</div>
+        <h3>Çıktıların Paydaşlara Aktarımı</h3>
+        <p>Proje çıktıları ilgili paydaşlara ve departman yöneticilerine aşağıdaki kanallar üzerinden ileteceğiz.</p>
+        <ul>
+            <li><b>Haftalık review:</b> Proje ilerleme, blokajlar ve sonraki adımlar paylaşılması.</li>
+            <li><b>Proje sunumları:</b> Milestone tamamlandığında ilgili departmanlara demo ve bilgi aktarımı yapılması.</li>
+            <li><b>Talepler:</b> İhtiyaçlara göre yeni taleplerin toplanması, planlama ve süreç toplantıları yapılması.</li>
+        </ul>
+    </section>
+</main>
+
+<script>
+    (function () {
+        const navLinks = document.querySelectorAll('#nav a');
+        const sections = document.querySelectorAll('section[id]');
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const overlay = document.getElementById('overlay');
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('visible');
+        }
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('visible');
+        }
+
+        menuToggle.addEventListener('click', function () {
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                if (window.innerWidth <= 768) closeSidebar();
+            });
+        });
+
+        function setActiveLink() {
+            let current = '';
+            sections.forEach(function (section) {
+                if (window.scrollY >= section.offsetTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(function (link) {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+
+        window.addEventListener('scroll', setActiveLink, {passive: true});
+        setActiveLink();
+    })();
+</script>
+
+</body>
+</html>

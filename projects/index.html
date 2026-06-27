@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services Design Development - ProjectFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --m-50: #ff44ed;
+      --m-60: #cc35be;
+      --m-10: #fed9fb;
+      --m-20: #ffb4f7;
+      --success-05: #edf8f0;
+      --success-20: #b5e6ae;
+      --success-50: #5cba59;
+      --success-70: #227a23;
+      --error-05: #feeeef;
+      --error-20: #ffb1b1;
+      --error-70: #752526;
+      --y-05: #fefbea;
+      --y-20: #feed9d;
+      --y-70: #463e17;
+      --b-05: #eaf4fd;
+      --b-20: #a9d6f5;
+      --b-70: #1b5fa0;
+      --beige-10: #faf9f7;
+      --n-00: #ffffff;
+      --n-10: #ececec;
+      --n-50: #5b5b5b;
+      --n-60: #4f4f4f;
+      --n-80: #1c1c1e;
+      --d-70: #252d40;
+      --primary: var(--m-50);
+      --accent-dark: var(--m-60);
+      --gradient: linear-gradient(135deg, var(--m-50) 0%, #ff68f1 45%, #fe8ef4 100%);
+      --gradient-soft: linear-gradient(135deg, rgba(255, 68, 237, 0.08) 0%, rgba(255, 104, 241, 0.05) 100%);
+      --bg: var(--beige-10);
+      --surface: var(--n-00);
+      --text: var(--n-80);
+      --text-secondary: var(--n-60);
+      --text-muted: var(--n-50);
+      --border: rgba(28, 28, 30, 0.06);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(28, 28, 30, 0.06), 0 1px 2px rgba(28, 28, 30, 0.04);
+      --shadow-lg: 0 20px 60px rgba(28, 28, 30, 0.08);
+      --font: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 68, 237, 0.1), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 104, 241, 0.06), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(255, 68, 237, 0.35);
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      color: #fff;
+    }
+
+    .brand h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 2rem 2.25rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 280px;
+      background: var(--gradient);
+      opacity: 0.06;
+      border-radius: 50%;
+      transform: translate(30%, -40%);
+    }
+
+    .hero h2 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero > p {
+      color: var(--text-muted);
+      max-width: 560px;
+      font-size: 1rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .toolbar h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      font-family: var(--font);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: rgba(255, 68, 237, 0.25);
+      color: var(--accent-dark);
+    }
+
+    .filter-btn.active {
+      background: var(--gradient-soft);
+      border-color: rgba(255, 68, 237, 0.28);
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .project-card:hover {
+      border-color: rgba(255, 68, 237, 0.22);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card.is-disabled {
+      opacity: 0.85;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .card-head h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .status {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .status-active {
+      background: var(--success-05);
+      color: var(--success-70);
+      border: 1px solid var(--success-20);
+    }
+
+    .status-planning {
+      background: var(--y-05);
+      color: var(--y-70);
+      border: 1px solid var(--y-20);
+    }
+
+    .status-completed {
+      background: var(--b-05);
+      color: var(--b-70);
+      border: 1px solid var(--b-20);
+    }
+
+    .status-paused {
+      background: var(--error-05);
+      color: var(--error-70);
+      border: 1px solid var(--error-20);
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      flex: 1;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: var(--gradient-soft);
+      color: var(--accent-dark);
+      border: 1px solid rgba(255, 68, 237, 0.15);
+    }
+
+    .progress-block label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .progress-block label strong {
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: var(--n-10);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--gradient);
+      transition: width 0.6s ease;
+    }
+
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding-top: 0.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta span strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      margin-top: auto;
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--gradient-soft);
+      border: 1px solid rgba(255, 68, 237, 0.2);
+      color: var(--accent-dark);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .card-link:hover {
+      background: rgba(255, 68, 237, 0.12);
+      border-color: rgba(255, 68, 237, 0.35);
+    }
+
+    .card-link.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      background: var(--surface);
+      border: 1px dashed rgba(255, 68, 237, 0.25);
+      border-radius: var(--radius);
+    }
+
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 1.5rem 1rem 3rem; }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div>
+          <h1>n11 Services Design Development</h1>
+          <p>Proje Dökümantasyon Platformu</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h2>Tüm Projeler</h2>
+      <p><b>Product &amp; Service Design Development</b> ekibinin yürüttüğü projelerin dokümantasyonu ve ilerleme durumu</p>
+    </section>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="toolbar">
+      <h3>Projeler</h3>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">Tümü</button>
+        <button class="filter-btn" data-filter="active">Aktif</button>
+        <button class="filter-btn" data-filter="planning">Planlama</button>
+        <button class="filter-btn" data-filter="completed">Tamamlandı</button>
+        <button class="filter-btn" data-filter="paused">Duraklatıldı</button>
+      </div>
+    </div>
+
+    <div class="project-grid" id="projectGrid"></div>
+
+    <footer class="footer">© <b>2012</b> - <b>∞</b> 🩷 <b>Services Design Development</b> - ProjectFlow</footer>
+  </div>
+
+  <script src="projects.js"></script>
+  <script>
+    (function () {
+      const projects = window.PROJECTS || [];
+      const statusLabels = {
+        active: 'Aktif',
+        planning: 'Planlama',
+        completed: 'Tamamlandı',
+        paused: 'Duraklatıldı'
+      };
+
+      function renderStats(list) {
+        const active = list.filter(function (p) { return p.status === 'active'; }).length;
+        const avgProgress = list.length
+          ? Math.round(list.reduce(function (sum, p) { return sum + p.progress; }, 0) / list.length)
+          : 0;
+        const withDocs = list.filter(function (p) { return p.url; }).length;
+
+        document.getElementById('stats').innerHTML =
+          '<div class="stat"><div class="stat-value">' + list.length + '</div><div class="stat-label">Toplam proje</div></div>' +
+          '<div class="stat"><div class="stat-value">' + active + '</div><div class="stat-label">Aktif proje</div></div>' +
+          '<div class="stat"><div class="stat-value">' + avgProgress + '%</div><div class="stat-label">Ortalama ilerleme</div></div>' +
+          '<div class="stat"><div class="stat-value">' + withDocs + '</div><div class="stat-label">Dokümantasyonlu</div></div>';
+      }
+
+      function renderProjects(filter) {
+        const filtered = filter === 'all'
+          ? projects
+          : projects.filter(function (p) { return p.status === filter; });
+
+        const grid = document.getElementById('projectGrid');
+
+        if (!filtered.length) {
+          grid.innerHTML = '<div class="empty">Bu filtreye uygun proje bulunamadı.</div>';
+          return;
+        }
+
+        grid.innerHTML = filtered.map(function (project) {
+          const hasUrl = Boolean(project.url);
+          const milestones = project.milestones
+            ? project.milestones.completed + ' / ' + project.milestones.total + ' milestone'
+            : '—';
+
+          return (
+            '<article class="project-card' + (hasUrl ? '' : ' is-disabled') + '">' +
+              '<div class="card-head">' +
+                '<h4>' + project.name + '</h4>' +
+                '<span class="status status-' + project.status + '">' + statusLabels[project.status] + '</span>' +
+              '</div>' +
+              '<p class="card-desc">' + project.description + '</p>' +
+              (project.tags && project.tags.length
+                ? '<div class="tags">' + project.tags.map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div>'
+                : '') +
+              '<div class="progress-block">' +
+                '<label><span>İlerleme</span><strong>' + project.progress + '%</strong></label>' +
+                '<div class="progress-track"><div class="progress-fill" style="width:' + project.progress + '%"></div></div>' +
+              '</div>' +
+              '<div class="meta">' +
+                '<span><strong>Sahip:</strong> ' + project.owner + '</span>' +
+                '<span><strong>Milestone:</strong> ' + milestones + '</span>' +
+                '<span><strong>Güncelleme:</strong> ' + formatDate(project.updated) + '</span>' +
+              '</div>' +
+              (hasUrl
+                ? '<a class="card-link" href="' + project.url + '">Dokümantasyonu görüntüle →</a>'
+                : '<span class="card-link disabled">Dokümantasyon henüz yok</span>') +
+            '</article>'
+          );
+        }).join('');
+      }
+
+      function formatDate(iso) {
+        if (!iso) return '—';
+        var parts = iso.split('-');
+        return parts[2] + '.' + parts[1] + '.' + parts[0];
+      }
+
+      document.getElementById('filters').addEventListener('click', function (e) {
+        var btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderProjects(btn.dataset.filter);
+      });
+
+      renderStats(projects);
+      renderProjects('all');
+    })();
+  </script>
+</body>
+</html>

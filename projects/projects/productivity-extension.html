@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ProjectFlow — Productivity Extension</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --m-05: #ffeefe; --m-10: #fed9fb; --m-20: #ffb4f7; --m-30: #fe8ef4;
+            --m-40: #ff68f1; --m-50: #ff44ed; --m-60: #cc35be; --m-70: #98288e; --m-80: #661b5e;
+            --b-05: #eaf4fd; --b-20: #a9d6f5; --b-70: #1b5fa0;
+            --y-05: #fefbea; --y-20: #feed9d; --y-70: #463e17;
+            --success-05: #edf8f0; --success-20: #b5e6ae; --success-50: #5cba59; --success-70: #227a23;
+            --beige-10: #faf9f7;
+            --n-00: #ffffff; --n-10: #ececec; --n-50: #5b5b5b; --n-60: #4f4f4f; --n-80: #1c1c1e;
+            --d-10: #eeeff3; --d-30: #b4bac8; --d-70: #252d40;
+            --primary: var(--m-50); --accent: var(--primary); --accent-dark: var(--m-60);
+            --accent-glow: rgba(255, 68, 237, 0.15);
+            --gradient: linear-gradient(135deg, var(--m-50) 0%, var(--m-40) 45%, var(--m-30) 100%);
+            --gradient-soft: linear-gradient(135deg, rgba(255, 68, 237, 0.08) 0%, rgba(255, 104, 241, 0.05) 100%);
+            --sidebar-width: 280px;
+            --bg: var(--beige-10); --surface: var(--n-00);
+            --text: var(--n-80); --text-secondary: var(--n-60); --text-muted: var(--n-50);
+            --border: rgba(28, 28, 30, 0.06); --border-strong: rgba(28, 28, 30, 0.1);
+            --sidebar-bg: var(--d-70); --sidebar-surface: rgba(255, 255, 255, 0.04);
+            --sidebar-border: rgba(255, 255, 255, 0.07);
+            --radius: 14px; --radius-sm: 10px;
+            --shadow-sm: 0 1px 2px rgba(28, 28, 30, 0.04);
+            --shadow: 0 4px 24px rgba(28, 28, 30, 0.06), 0 1px 2px rgba(28, 28, 30, 0.04);
+            --font: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Google Sans', var(--font);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 3rem; }
+        body {
+            font-family: var(--font); background: var(--bg); color: var(--text);
+            line-height: 1.75; display: flex; min-height: 100vh; -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 68, 237, 0.1), transparent),
+                radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 104, 241, 0.06), transparent);
+            pointer-events: none; z-index: 0;
+        }
+
+        .sidebar {
+            position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
+            background: var(--sidebar-bg); display: flex; flex-direction: column;
+            overflow-y: auto; z-index: 100; border-right: 1px solid var(--sidebar-border);
+        }
+        .sidebar::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 200px;
+            background: linear-gradient(180deg, rgba(255, 68, 237, 0.14) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .sidebar-header { position: relative; padding: 2rem 1.5rem 1.5rem; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem; }
+        .logo-icon {
+            width: 36px; height: 36px; border-radius: 10px; background: var(--gradient);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(255, 68, 237, 0.35);
+        }
+        .logo-icon svg { width: 18px; height: 18px; color: #fff; }
+        .sidebar-header h1 {
+            font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+            color: #fff; letter-spacing: -0.03em;
+        }
+        .sidebar-header p {
+            font-size: 0.78rem; color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.15rem; padding-left: 2.85rem;
+        }
+        .sidebar nav { position: relative; padding: 0.5rem 1rem 2rem; flex: 1; }
+        .nav-group { margin-bottom: 1.75rem; }
+        .nav-group-title {
+            font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.3);
+            padding: 0 0.75rem; margin-bottom: 0.6rem;
+        }
+        .sidebar nav a {
+            position: relative; display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.6rem 0.85rem; border-radius: var(--radius-sm);
+            color: rgba(255, 255, 255, 0.55); text-decoration: none;
+            font-size: 0.875rem; font-weight: 500; transition: all 0.2s ease; margin-bottom: 2px;
+        }
+        .sidebar nav a::before {
+            content: ''; width: 4px; height: 4px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2); flex-shrink: 0;
+        }
+        .sidebar nav a:hover { background: var(--sidebar-surface); color: rgba(255, 255, 255, 0.9); }
+        .sidebar nav a.active { background: rgba(255, 68, 237, 0.16); color: var(--m-20); }
+        .sidebar nav a.active::before {
+            background: var(--accent); box-shadow: 0 0 8px var(--accent); width: 6px; height: 6px;
+        }
+        .sidebar-footer {
+            position: relative; padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--sidebar-border);
+        }
+        .sidebar-footer span { font-size: 0.72rem; color: rgba(255, 255, 255, 0.25); }
+
+        .main {
+            position: relative; z-index: 1; margin-left: var(--sidebar-width);
+            flex: 1; padding: 3rem 4rem 5rem; max-width: 1024px;
+        }
+
+        .hero {
+            margin-bottom: 3.5rem; padding: 2.5rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px);
+            box-shadow: var(--shadow); position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px;
+            background: var(--gradient); opacity: 0.06; border-radius: 50%;
+            transform: translate(30%, -40%);
+        }
+        .hero-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            background: var(--gradient-soft); border: 1px solid rgba(255, 68, 237, 0.18);
+            color: var(--accent-dark); font-size: 0.72rem; font-weight: 600;
+            padding: 0.3rem 0.75rem; border-radius: 999px;
+        }
+        .badge-dot {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--success-50);
+            box-shadow: 0 0 6px rgba(92, 186, 89, 0.55);
+        }
+        .badge-completed { background: var(--b-05); border-color: var(--b-20); color: var(--b-70); }
+        .hero h2 {
+            font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700; letter-spacing: -0.04em; line-height: 1.15; margin-bottom: 0.75rem;
+            background: var(--gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 640px; line-height: 1.65; }
+
+        section { margin-bottom: 3.5rem; scroll-margin-top: 3rem; }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.6rem;
+        }
+        .section-label::before {
+            content: ''; width: 16px; height: 2px; background: var(--gradient); border-radius: 2px;
+        }
+        section h3 {
+            font-family: var(--font-display); font-size: 1.65rem; font-weight: 700;
+            letter-spacing: -0.03em; margin-bottom: 1.25rem; color: var(--text);
+        }
+        section > p { margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.975rem; }
+
+        .card-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem; margin-top: 0.5rem;
+        }
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem;
+            transition: all 0.25s ease; position: relative; overflow: hidden;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: var(--gradient); opacity: 0; transition: opacity 0.25s ease;
+        }
+        .card:hover { border-color: rgba(255, 68, 237, 0.22); box-shadow: var(--shadow); transform: translateY(-2px); }
+        .card:hover::before { opacity: 1; }
+        .card-icon {
+            width: 40px; height: 40px; border-radius: 10px; background: var(--gradient-soft);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1rem; font-size: 1.1rem;
+        }
+        .card h4 {
+            font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+            margin-bottom: 0.5rem; letter-spacing: -0.02em;
+        }
+        .card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.65; }
+        .feature-note {
+            display: inline-block; margin-top: 0.65rem; font-size: 0.78rem;
+            color: var(--y-70); background: var(--y-05); border: 1px solid var(--y-20);
+            border-radius: 6px; padding: 0.25rem 0.55rem;
+        }
+
+        .scope-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scope-tag {
+            display: inline-flex; align-items: center; padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm); font-size: 0.875rem; font-weight: 500;
+            background: var(--success-05); border: 1px solid var(--success-20); color: var(--success-70);
+        }
+
+        .flow {
+            display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+            margin-top: 1rem; padding: 1.5rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+        }
+        .flow-node {
+            padding: 0.55rem 1rem; background: var(--gradient-soft);
+            border: 1px solid rgba(255, 68, 237, 0.18); border-radius: 8px;
+            font-size: 0.85rem; font-weight: 600; color: var(--accent-dark);
+        }
+        .flow-arrow { color: var(--text-muted); font-size: 0.85rem; }
+
+        .kbd {
+            display: inline-flex; padding: 0.15rem 0.5rem; background: var(--n-10);
+            border: 1px solid var(--border-strong); border-radius: 6px;
+            font-family: ui-monospace, monospace; font-size: 0.82rem; color: var(--text-secondary);
+        }
+
+        .info-box {
+            background: var(--gradient-soft); border: 1px solid rgba(255, 68, 237, 0.18);
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1rem;
+        }
+        .info-box p { margin-bottom: 0; font-size: 0.925rem; color: var(--text-secondary); }
+
+        .menu-toggle {
+            display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200;
+            width: 44px; height: 44px; background: var(--sidebar-bg); color: #fff;
+            border: 1px solid var(--sidebar-border); border-radius: 12px;
+            font-size: 1.2rem; cursor: pointer; box-shadow: var(--shadow);
+        }
+        .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90; }
+        .overlay.visible { display: block; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; align-items: center; justify-content: center; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat">☰</button>
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1>ProjectFlow</h1>
+        </div>
+        <p>Productivity Extension</p>
+    </div>
+
+    <nav id="nav">
+        <div class="nav-group">
+            <div class="nav-group-title">Portal</div>
+            <a href="../index.html">← Tüm Projeler</a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-group-title">Genel</div>
+            <a href="#proje-tanitimi">Proje Tanıtımı</a>
+            <a href="#amac">Amaç &amp; Hedef Kitle</a>
+            <a href="#kullanim">Nasıl Kullanılır?</a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-group-title">Özellikler</div>
+            <a href="#genel-ozellikler">Genel</a>
+            <a href="#id-link">Kimlik &amp; Link</a>
+            <a href="#kalite-kontrol">Kalite Kontrol</a>
+            <a href="#fiyat">Fiyat &amp; Takip</a>
+            <a href="#veri-toplama">Veri Toplama</a>
+            <a href="#back-office">Back Office</a>
+            <a href="#rakip-siteler">Rakip Siteler</a>
+            <a href="#marketing">Marketing &amp; Growth</a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-group-title">Diğer</div>
+            <a href="#kapsam">Çalışma Kapsamı</a>
+            <a href="#destek">Destek</a>
+        </div>
+    </nav>
+
+    <div class="sidebar-footer">
+        <span>© 2026 ProjectFlow</span>
+    </div>
+</aside>
+
+<main class="main">
+
+    <section id="proje-tanitimi">
+        <div class="hero">
+            <div class="hero-meta">
+                <span class="badge badge-completed">Tamamlandı</span>
+                <span class="badge">v1.1.8</span>
+                <span class="badge">Chrome Extension</span>
+            </div>
+            <h2>Productivity Extension</h2>
+            <p class="subtitle">n11.com ve Back Office üzerinde çalışan ekiplerin günlük işlerini hızlandırmak, tekrarlayan görevleri otomatikleştirmek ve hata riskini azaltmak için geliştirilmiş Chrome tarayıcı eklentisi.</p>
+        </div>
+    </section>
+
+    <section id="amac">
+        <div class="section-label">Proje Detayları</div>
+        <h3>Amaç &amp; Hedef Kitle</h3>
+        <p>Eklenti, farklı departmanların sık yaptığı manuel işleri tek bir yerden yapılabilir hale getirir. Ürün numarası kopyalamaktan fiyat karşılaştırmaya, kampanya kontrolünden e-posta şablonu oluşturmaya kadar onlarca aracı barındırır.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h4>Ana Amaç</h4>
+                <p>Operasyonel iş yükünü azaltmak, veri toplama sürelerini kısaltmak ve insan kaynaklı hataları en aza indirmek.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h4>Kimler Kullanır?</h4>
+                <p>Kategori yönetimi, kampanya operasyonları, fiyat takibi, marketing/growth ve Back Office ekipleri.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h4>Ne Sağlar?</h4>
+                <p>Tek tıkla kopyalama, otomatik veri toplama, Excel/CSV indirme, kampanya doğrulama ve rakip fiyat karşılaştırması.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kullanim">
+        <div class="section-label">Başlangıç</div>
+        <h3>Nasıl Kullanılır?</h3>
+        <p>Eklenti kurulduktan sonra n11.com veya ilgili sitelerde gezinirken ekranın kenarında küçük araç kutuları görünür. Her kutu bir özelliği temsil eder; tıkladığınızda ilgili pencere açılır.</p>
+        <div class="flow">
+            <span class="flow-node">Chrome'a kur</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">n11.com'a git</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Araç kutusuna tıkla</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Sonucu kopyala veya indir</span>
+        </div>
+        <div class="info-box">
+            <p>Araç kutularını gizlemek veya tekrar göstermek için klavyeden <span class="kbd">Alt+G</span> tuşlarına basabilirsiniz.</p>
+        </div>
+    </section>
+
+    <section id="genel-ozellikler">
+        <div class="section-label">Özellikler</div>
+        <h3>Genel</h3>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">⌨️</div>
+                <h4>Kutuları Gizle / Göster</h4>
+                <p><span class="kbd">Alt+G</span> ile ekrandaki tüm eklenti kutularını gizleyebilir veya tekrar görünür yapabilirsiniz.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🆔</div>
+                <h4>Sayfa ID Kopyala</h4>
+                <p>Bulunduğunuz sayfanın kimlik numarasını (sayfa, ürün, mağaza veya kategori) tek tıkla panoya kopyalar.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h4>Deeplink Kopyala</h4>
+                <p>Mobil uygulamada açılacak özel linki kopyalar; uygulama içi yönlendirme için kullanılır.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔗</div>
+                <h4>Sekme Linkleri</h4>
+                <p>Açık n11 sekmelerindeki tüm linkleri toplar. İsterseniz yalnızca ürün linklerini alabilirsiniz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="id-link">
+        <div class="section-label">Özellikler</div>
+        <h3>Kimlik &amp; Link Dönüştürme</h3>
+        <p>Ürün linkleri, numaraları ve başlıkları arasında hızlı dönüşüm yapmanızı sağlar. Sonuçları Excel olarak indirebilirsiniz.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <h4>URL → Product ID</h4>
+                <p>n11 ürün linklerinden ürün numaralarını çıkarır.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <h4>Product ID → URL</h4>
+                <p>Ürün numaralarından n11 ürün linklerini bulur.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h4>Title → Listing</h4>
+                <p>Ürün adlarını yazarsınız; eklenti arama sayfası linklerini otomatik oluşturur.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏷️</div>
+                <h4>ID → SKU</h4>
+                <p>Ürün numaralarından stok kodu (SKU) bilgilerini toplar.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h4>Product ID Scanner</h4>
+                <p>Bir ürün linkinden Pims ID, Product ID, Sku ID ve Group ID gibi tüm kimlik bilgilerini çıkarır.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kalite-kontrol">
+        <div class="section-label">Özellikler</div>
+        <h3>Kalite Kontrol &amp; Kampanya</h3>
+        <p>Sayfa ve kampanya içeriklerinin doğru çalışıp çalışmadığını kontrol eder; hataları erken tespit etmenizi sağlar.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🖼️</div>
+                <h4>Banner Checker</h4>
+                <p>Sayfadaki banner'ların yönlendirdiği kampanyaları kontrol eder. Kapalı veya bozuk promosyonları listeler.</p>
+                <span class="feature-note">Kampanyalar sayfasında görünmez</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">✅</div>
+                <h4>Promotion Checker</h4>
+                <p>Verdiğiniz kampanya linklerinin çalışıp çalışmadığını toplu olarak kontrol eder.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛒</div>
+                <h4>Offer Controller</h4>
+                <p>"Sepette İndirim" kampanyasına dahil olmayan ürünleri tespit eder.</p>
+                <span class="feature-note">Promosyonlu arama sayfalarında görünür</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">✏️</div>
+                <h4>Editorial Controller</h4>
+                <p>Editöryal metinlerdeki yazım hatalarını ve uygun olmayan kelimeleri vurgular.</p>
+                <span class="feature-note">Editöryal bölümü olan sayfalarda görünür</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h4>Product Deal Controller</h4>
+                <p>Product Deal Excel dosyalarını analiz eder; tekrarlayan kayıtları ve fiyat sıralama hatalarını bulup düzeltir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🗑️</div>
+                <h4>Clear Cache</h4>
+                <p>Dynamic Page ekranlarında sayfa önbelleğini temizler; güncel içeriğin yüklenmesini sağlar.</p>
+                <span class="feature-note">Yalnızca Dynamic Page sayfalarında</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="fiyat">
+        <div class="section-label">Özellikler</div>
+        <h3>Fiyat Karşılaştırma &amp; Takip</h3>
+        <p>n11 ürünlerinin rakip sitelerdeki fiyatlarını karşılaştırır ve takip etmenizi sağlar.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h4>Akakce Product Crawler</h4>
+                <p>n11 linkleri veya Akakçe numaralarıyla n11, Trendyol, Hepsiburada, Amazon vb. sitelerdeki fiyatları yan yana gösterir. Yapay zeka destekli detaylı analiz de yapılabilir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <h4>Price Protector</h4>
+                <p>n11 ürünlerinin rakip sitelerdeki fiyatlarını Akakçe üzerinden karşılaştırır; en uygun fiyatı gösterir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📉</div>
+                <h4>Product Price Tracking</h4>
+                <p>Seçtiğiniz markalar için ürün bazlı fiyat takibi yapar. En düşük fiyat yeşil, n11 en ucuz değilse kırmızı gösterilir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔗</div>
+                <h4>Akakce ID → n11 Product</h4>
+                <p>Akakçe ürün numarasından n11'deki karşılık gelen ürün linkini ve bilgilerini bulur.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏷️</div>
+                <h4>Akakce Custom Deal</h4>
+                <p>Akakçe kategori sayfasındaki ürünlerin farklı sitelerdeki fiyatlarını toplar ve Excel olarak indirir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔢</div>
+                <h4>Seller Product Count</h4>
+                <p>Bir markanın n11, Trendyol ve Hepsiburada'daki toplam ürün sayısını karşılaştırır.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h4>Barcode Products</h4>
+                <p>Barkod numaralarını Hepsiburada ve Amazon'da arar; eşleşen ürünleri listeler.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="veri-toplama">
+        <div class="section-label">Özellikler</div>
+        <h3>Veri Toplama (Crawler)</h3>
+        <p>Liste, kategori ve mağaza sayfalarındaki ürün bilgilerini otomatik toplar; Excel veya JSON olarak indirmenizi sağlar.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h4>Listing Product Crawler</h4>
+                <p>Arama veya kategori listesindeki ürünleri tarar; link, fiyat ve kimlik bilgilerini toplar.</p>
+                <span class="feature-note">Belirli liste sayfalarında görünür</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">📁</div>
+                <h4>Akakce Cat Products</h4>
+                <p>Akakçe kategori sayfasındaki tüm ürün bilgilerini toplar ve dosya olarak indirir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h4>Product Match Score</h4>
+                <p>Mağaza sayfasındaki ürünleri tarar; benzer veya tekrarlayan ürünleri tespit eder.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h4>Seller Product Match</h4>
+                <p>n11 mağaza ürünlerini Trendyol/Hepsiburada listeleriyle eşleştirir; fiyat ve benzerlik yüzdesini gösterir.</p>
+                <span class="feature-note">n11 mağaza sayfalarında görünür</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="back-office">
+        <div class="section-label">Özellikler</div>
+        <h3>Back Office (BO)</h3>
+        <p>Back Office ekranlarında tekrarlayan işleri hızlandıran ve hata riskini azaltan araçlar.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h4>BO Ürün Yönetimi</h4>
+                <p>Ürün sayfasından Back Office'teki ilgili ürün yönetim ekranına tek tıkla gider.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h4>BO Promosyon Ürün ID Toplayıcı</h4>
+                <p>Promosyon ekranındaki tüm ürün numaralarını otomatik toplar; kopyalayabilir veya CSV indirebilirsiniz.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">✅</div>
+                <h4>Page Checker</h4>
+                <p>Kampanya sayfalarının tam yüklenip yüklenmediğini kontrol eder; gerekirse sayfayı otomatik kaydırır.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <h4>Alan Senkronizasyonu</h4>
+                <p>BO envanter ekranında banner adı, link gibi alanları birbirine otomatik kopyalar; elle yazma hatasını azaltır.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="rakip-siteler">
+        <div class="section-label">Özellikler</div>
+        <h3>Rakip Siteler (Trendyol &amp; Hepsiburada)</h3>
+        <p>Trendyol ve Hepsiburada sayfalarında çalışan veri toplama araçları.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h4>Seller Products Crawler (Trendyol)</h4>
+                <p>Trendyol mağaza sayfasındaki tüm ürünleri listeler; Excel veya JSON olarak indirebilirsiniz.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔗</div>
+                <h4>Product URL Crawler (Trendyol)</h4>
+                <p>Trendyol'daki belirli ürün linklerinden bilgi toplar.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏆</div>
+                <h4>Çok Satanlar (Trendyol)</h4>
+                <p>Trendyol çok satanlar sayfasındaki ürünleri tarar; n11'de karşılık arar ve fiyat karşılaştırması yapar.</p>
+                <span class="feature-note">trendyol.com/cok-satanlar sayfasında</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h4>Seller Products Crawler (Hepsiburada)</h4>
+                <p>Hepsiburada mağaza sayfasındaki ürünleri toplar; Excel veya JSON olarak indirebilirsiniz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="marketing">
+        <div class="section-label">Özellikler</div>
+        <h3>Marketing &amp; Growth</h3>
+        <p>Kampanya görselleri, e-posta şablonları ve SEO kontrolü için marketing ekibine yönelik araçlar.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📌</div>
+                <h4>Promotion Theme Pin</h4>
+                <p>Kampanya görseline tıklayarak tıklanabilir noktaların (pin) koordinatlarını belirler.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📢</div>
+                <h4>SO Duyuru &amp; Popup</h4>
+                <p>Mailing HTML dosyasından uygulama içi duyuru ve popup metni oluşturur.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">✉️</div>
+                <h4>Banner Mailing</h4>
+                <p>Banner görseli ve link bilgilerinden e-posta şablonu (HTML) üretir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛍️</div>
+                <h4>Product Mailing</h4>
+                <p>Banner ve ürün bilgilerinden ürün odaklı e-posta şablonu oluşturur.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🖼️</div>
+                <h4>Logo Resizer</h4>
+                <p>Marka logolarını istenen boyuta getirip kaydetmenizi sağlar.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📂</div>
+                <h4>Logo Listesi</h4>
+                <p>Hazır marka logolarını arayıp tek tıkla kopyalamanızı sağlar.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔎</div>
+                <h4>SEO Analysis</h4>
+                <p>n11 sayfasının SEO kurallarına uyup uymadığını adım adım kontrol eder ve sonuçları listeler.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kapsam">
+        <div class="section-label">Proje Detayları</div>
+        <h3>Çalışma Kapsamı</h3>
+        <p>Eklenti farklı sitelerde farklı araç setleri sunar. Her araç, yalnızca ilgili olduğu sayfada görünür.</p>
+        <div class="scope-row">
+            <span class="scope-tag">n11.com</span>
+            <span class="scope-tag">Back Office (bo.n11.com)</span>
+            <span class="scope-tag">Trendyol</span>
+            <span class="scope-tag">Hepsiburada</span>
+            <span class="scope-tag">Akakçe</span>
+        </div>
+    </section>
+
+    <section id="destek">
+        <div class="section-label">İletişim</div>
+        <h3>Destek</h3>
+        <p>Sorularınız veya önerileriniz için proje sahibi <strong>Murat Özden</strong> ile iletişime geçebilirsiniz.</p>
+        <p>Yeni sürüm çıktığında eklenti güncelleme uyarısı gösterir. Güncel sürüm için Murat Özden ile iletişime geçmeniz önerilir.</p>
+    </section>
+
+</main>
+
+<script>
+    (function () {
+        const navLinks = document.querySelectorAll('#nav a');
+        const sections = document.querySelectorAll('section[id]');
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const overlay = document.getElementById('overlay');
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('visible');
+        }
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('visible');
+        }
+
+        menuToggle.addEventListener('click', function () {
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                if (window.innerWidth <= 768) closeSidebar();
+            });
+        });
+
+        function setActiveLink() {
+            let current = '';
+            sections.forEach(function (section) {
+                if (window.scrollY >= section.offsetTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(function (link) {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+
+        window.addEventListener('scroll', setActiveLink, { passive: true });
+        setActiveLink();
+    })();
+</script>
+
+</body>
+</html>

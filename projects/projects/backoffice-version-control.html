@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ProjectFlow — Backoffice Version Kontrol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --m-50: #ff44ed; --m-60: #cc35be; --m-20: #ffb4f7;
+            --error-05: #feeeef; --error-20: #ffb1b1; --error-70: #752526;
+            --success-05: #edf8f0; --success-20: #b5e6ae; --success-70: #227a23;
+            --y-05: #fefbea; --y-20: #feed9d; --y-70: #463e17;
+            --beige-10: #faf9f7;
+            --n-00: #ffffff; --n-10: #ececec; --n-50: #5b5b5b; --n-60: #4f4f4f; --n-80: #1c1c1e;
+            --d-70: #252d40;
+            --accent: var(--m-50); --accent-dark: var(--m-60);
+            --gradient: linear-gradient(135deg, var(--m-50) 0%, #ff68f1 45%, #fe8ef4 100%);
+            --gradient-soft: linear-gradient(135deg, rgba(255, 68, 237, 0.08) 0%, rgba(255, 104, 241, 0.05) 100%);
+            --sidebar-width: 280px; --bg: var(--beige-10); --surface: var(--n-00);
+            --text: var(--n-80); --text-secondary: var(--n-60); --text-muted: var(--n-50);
+            --border: rgba(28, 28, 30, 0.06);
+            --sidebar-bg: var(--d-70); --sidebar-surface: rgba(255, 255, 255, 0.04);
+            --sidebar-border: rgba(255, 255, 255, 0.07);
+            --radius: 14px; --radius-sm: 10px;
+            --shadow: 0 4px 24px rgba(28, 28, 30, 0.06), 0 1px 2px rgba(28, 28, 30, 0.04);
+            --font: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 3rem; }
+        body {
+            font-family: var(--font); background: var(--bg); color: var(--text);
+            line-height: 1.75; display: flex; min-height: 100vh; -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 68, 237, 0.1), transparent),
+                radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 104, 241, 0.06), transparent);
+            pointer-events: none; z-index: 0;
+        }
+        .sidebar {
+            position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
+            background: var(--sidebar-bg); display: flex; flex-direction: column;
+            overflow-y: auto; z-index: 100; border-right: 1px solid var(--sidebar-border);
+        }
+        .sidebar::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 200px;
+            background: linear-gradient(180deg, rgba(255, 68, 237, 0.14) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .sidebar-header { position: relative; padding: 2rem 1.5rem 1.5rem; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem; }
+        .logo-icon {
+            width: 36px; height: 36px; border-radius: 10px; background: var(--gradient);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(255, 68, 237, 0.35);
+        }
+        .logo-icon svg { width: 18px; height: 18px; color: #fff; }
+        .sidebar-header h1 { font-size: 1.2rem; font-weight: 700; color: #fff; letter-spacing: -0.03em; }
+        .sidebar-header p { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.15rem; padding-left: 2.85rem; }
+        .sidebar nav { position: relative; padding: 0.5rem 1rem 2rem; flex: 1; }
+        .nav-group { margin-bottom: 1.75rem; }
+        .nav-group-title {
+            font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.12em; color: rgba(255,255,255,0.3);
+            padding: 0 0.75rem; margin-bottom: 0.6rem;
+        }
+        .sidebar nav a {
+            display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.85rem;
+            border-radius: var(--radius-sm); color: rgba(255,255,255,0.55);
+            text-decoration: none; font-size: 0.875rem; font-weight: 500;
+            transition: all 0.2s ease; margin-bottom: 2px;
+        }
+        .sidebar nav a::before {
+            content: ''; width: 4px; height: 4px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); flex-shrink: 0;
+        }
+        .sidebar nav a:hover { background: var(--sidebar-surface); color: rgba(255,255,255,0.9); }
+        .sidebar nav a.active { background: rgba(255, 68, 237, 0.16); color: var(--m-20); }
+        .sidebar nav a.active::before { background: var(--accent); box-shadow: 0 0 8px var(--accent); width: 6px; height: 6px; }
+        .sidebar-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--sidebar-border); }
+        .sidebar-footer span { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+        .main {
+            position: relative; z-index: 1; margin-left: var(--sidebar-width);
+            flex: 1; padding: 3rem 4rem 5rem; max-width: 1024px;
+        }
+        .hero {
+            margin-bottom: 3.5rem; padding: 2.5rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px);
+            box-shadow: var(--shadow); position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px;
+            background: var(--gradient); opacity: 0.06; border-radius: 50%; transform: translate(30%, -40%);
+        }
+        .hero-meta { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            background: var(--gradient-soft); border: 1px solid rgba(255, 68, 237, 0.18);
+            color: var(--accent-dark); font-size: 0.72rem; font-weight: 600;
+            padding: 0.3rem 0.75rem; border-radius: 999px;
+        }
+        .badge-active { background: var(--success-05); border-color: var(--success-20); color: var(--success-70); }
+        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success-50); }
+        .hero h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -0.04em;
+            line-height: 1.15; margin-bottom: 0.75rem;
+            background: var(--gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 640px; line-height: 1.65; }
+        section { margin-bottom: 3.5rem; scroll-margin-top: 3rem; }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.6rem;
+        }
+        .section-label::before { content: ''; width: 16px; height: 2px; background: var(--gradient); border-radius: 2px; }
+        section h3 { font-size: 1.65rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+        section > p { margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.975rem; }
+        .card-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem; margin-top: 0.5rem;
+        }
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem; transition: all 0.25s ease;
+        }
+        .card:hover { border-color: rgba(255, 68, 237, 0.22); box-shadow: var(--shadow); transform: translateY(-2px); }
+        .card-problem { border-color: rgba(255, 55, 52, 0.15); }
+        .card-problem .card-icon { background: var(--error-05); }
+        .card-solution { border-color: rgba(92, 186, 89, 0.2); }
+        .card-solution .card-icon { background: var(--success-05); }
+        .card-icon {
+            width: 40px; height: 40px; border-radius: 10px; background: var(--gradient-soft);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.1rem;
+        }
+        .card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+        .compare {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;
+        }
+        .compare-col {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem;
+        }
+        .compare-col.before { border-color: rgba(255, 55, 52, 0.2); }
+        .compare-col.after { border-color: rgba(92, 186, 89, 0.25); }
+        .compare-col h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .compare-col.before h4 { color: var(--error-70); }
+        .compare-col.after h4 { color: var(--success-70); }
+        .compare-col ul { list-style: none; padding: 0; }
+        .compare-col li {
+            font-size: 0.875rem; color: var(--text-muted); padding: 0.4rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .compare-col li:last-child { border-bottom: none; }
+        .flow {
+            display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+            margin: 1rem 0; padding: 1.5rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: var(--radius);
+        }
+        .flow-node {
+            padding: 0.55rem 1rem; background: var(--gradient-soft);
+            border: 1px solid rgba(255, 68, 237, 0.18); border-radius: 8px;
+            font-size: 0.85rem; font-weight: 600; color: var(--accent-dark);
+        }
+        .flow-arrow { color: var(--text-muted); font-size: 0.85rem; }
+        .info-box {
+            background: var(--gradient-soft); border: 1px solid rgba(255, 68, 237, 0.18);
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1rem;
+        }
+        .info-box p { margin-bottom: 0; font-size: 0.925rem; color: var(--text-secondary); }
+        .info-box.warn { background: var(--error-05); border-color: var(--error-20); }
+        .info-box.warn p { color: var(--error-70); }
+        .field-table {
+            width: 100%; border-collapse: collapse; margin-top: 1rem;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden; font-size: 0.875rem;
+        }
+        .field-table th, .field-table td {
+            padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border);
+        }
+        .field-table th {
+            background: var(--gradient-soft); font-weight: 600; color: var(--accent-dark);
+            font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .field-table tr:last-child td { border-bottom: none; }
+        .dev-credit {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            margin-top: 1rem; padding: 0.6rem 1rem;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); font-size: 0.875rem; color: var(--text-secondary);
+        }
+        .dev-credit strong { color: var(--text); }
+        .menu-toggle {
+            display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200;
+            width: 44px; height: 44px; background: var(--sidebar-bg); color: #fff;
+            border: 1px solid var(--sidebar-border); border-radius: 12px; cursor: pointer;
+        }
+        .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90; }
+        .overlay.visible { display: block; }
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; align-items: center; justify-content: center; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
+            .compare { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat">☰</button>
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1>ProjectFlow</h1>
+        </div>
+        <p>Backoffice Version Kontrol</p>
+    </div>
+    <nav id="nav">
+        <div class="nav-group">
+            <div class="nav-group-title">Portal</div>
+            <a href="../index.html">← Tüm Projeler</a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-group-title">Genel</div>
+            <a href="#proje-tanitimi">Proje Tanıtımı</a>
+            <a href="#baglam">Backoffice CMS</a>
+            <a href="#problem">Problem</a>
+            <a href="#cozum">Çözüm</a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-group-title">Sistem</div>
+            <a href="#ozellikler">Temel Özellikler</a>
+            <a href="#surec">Çalışma Akışı</a>
+            <a href="#faydalar">Faydalar</a>
+        </div>
+    </nav>
+    <div class="sidebar-footer"><span>© 2026 ProjectFlow</span></div>
+</aside>
+
+<main class="main">
+
+    <section id="proje-tanitimi">
+        <div class="hero">
+            <div class="hero-meta">
+                <span class="badge badge-active"><span class="badge-dot"></span> Aktif</span>
+                <span class="badge">Backoffice CMS</span>
+                <span class="badge">Version Control</span>
+            </div>
+            <h2>Backoffice Version Kontrol</h2>
+            <p class="subtitle">n11 Backoffice CMS üzerinde yönetilen statik sayfa ve kampanyalar için geçmişe dönük versiyon kontrolü. Farklı ekiplerin aynı anda yaptığı düzenlemelerin birbirini ezmesini önler; istenen tarih ve versiyona güvenle geri dönülmesini sağlar.</p>
+            <div class="dev-credit">Geliştirici: <strong>Tuğba Özbek</strong></div>
+        </div>
+    </section>
+
+    <section id="baglam">
+        <div class="section-label">Bağlam</div>
+        <h3>Backoffice CMS Nedir?</h3>
+        <p>n11.com'da <strong>Backoffice</strong>, içerik yönetim platformu (CMS) olarak çalışır. Statik sayfalar, kampanyalar ve benzeri içerikler bu panel üzerinden oluşturulur, düzenlenir ve yayına alınır.</p>
+        <p>Frontend ekibi, kategori ve growth ekiplerinden gelen revize taleplerini Backoffice üzerindeki sayfa kodlarına uygular. Yoğun dönemlerde aynı sayfa için birden fazla ekip paralel çalışabiliyor.</p>
+        <div class="info-box">
+            <p>Version kontrol öncesi Backoffice'te <strong>geçmişe dönük versiyon kaydı yoktu</strong> — yapılan her değişiklik doğrudan mevcut sürümün üzerine yazılıyordu.</p>
+        </div>
+    </section>
+
+    <section id="problem">
+        <div class="section-label">Problem Analizi</div>
+        <h3>Problem: Versiyonsuz Düzenleme &amp; Kod Çakışması</h3>
+        <p>Microsoft Teams üzerinden aynı sayfa için farklı ekiplerden (kategori, growth vb.) eş zamanlı revize talepleri gelebiliyor. Frontend ekibi her iki talebi de mevcut kod üzerinde uyguladığında, <strong>son yapan kazanır</strong> — önceki değişiklikler kaybolur.</p>
+
+        <div class="card-grid">
+            <div class="card card-problem">
+                <div class="card-icon">💬</div>
+                <h4>Paralel revize talepleri</h4>
+                <p>Kategori ve growth ekipleri aynı kampanya veya statik sayfa için Teams'ten bağımsız revize isteyebiliyor.</p>
+            </div>
+            <div class="card card-problem">
+                <div class="card-icon">⚔️</div>
+                <h4>Kodların birbirini ezmesi</h4>
+                <p>İki ekip aynı anda mevcut kodu düzenleyince birbirlerinin yaptığı değişiklikler kayboluyor.</p>
+            </div>
+            <div class="card card-problem">
+                <div class="card-icon">🕳️</div>
+                <h4>Geçmişe dönüş yok</h4>
+                <p>Version kontrol olmadığı için "dünkü haline dön" veya "şu revize öncesine git" mümkün değildi.</p>
+            </div>
+            <div class="card card-problem">
+                <div class="card-icon">😰</div>
+                <h4>Operasyonel stres</h4>
+                <p>Kaybolan değişiklikler yeniden yapılmak zorunda kalınıyor; zaman kaybı ve hata riski artıyor.</p>
+            </div>
+        </div>
+
+        <div class="info-box warn">
+            <p><strong>Özet:</strong> Versiyonsuz Backoffice yapısı, çok ekipli revize ortamında veri kaybına ve koordinasyon sorunlarına yol açıyordu.</p>
+        </div>
+    </section>
+
+    <section id="cozum">
+        <div class="section-label">Proje Detayları</div>
+        <h3>Çözüm: Version Kontrol Sistemi</h3>
+        <p>Backoffice Version Kontrol, her kayıt için değişiklik geçmişi tutar. Mevcut çalışmayı kaybetmeden istediğiniz <strong>tarih</strong> veya <strong>versiyon</strong> numarasına geri dönebilirsiniz.</p>
+
+        <div class="compare">
+            <div class="compare-col before">
+                <h4>❌ Önce</h4>
+                <ul>
+                    <li>Tek güncel kopya; geçmiş yok</li>
+                    <li>Paralel düzenlemeler birbirini ezer</li>
+                    <li>Kaybolan kod geri getirilemez</li>
+                    <li>Teams talepleri koordine edilemez</li>
+                </ul>
+            </div>
+            <div class="compare-col after">
+                <h4>✅ Sonra</h4>
+                <ul>
+                    <li>Her değişiklik versiyon olarak saklanır</li>
+                    <li>Önceki sürümler korunur</li>
+                    <li>Tarih/versiyona geri dönülebilir</li>
+                    <li>Mevcut değişiklik kaybolmadan rollback</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="ozellikler">
+        <div class="section-label">Sistem</div>
+        <h3>Temel Özellikler</h3>
+        <div class="card-grid">
+            <div class="card card-solution">
+                <div class="card-icon">📚</div>
+                <h4>Versiyon geçmişi</h4>
+                <p>Statik sayfa ve kampanya düzenlemelerinin her kaydı saklanır; kim, ne zaman, ne değiştirdi görülebilir.</p>
+            </div>
+            <div class="card card-solution">
+                <div class="card-icon">⏪</div>
+                <h4>Tarih &amp; versiyona geri dönüş</h4>
+                <p>Belirli bir tarihteki veya versiyon numarasındaki içeriğe güvenle dönülebilir.</p>
+            </div>
+            <div class="card card-solution">
+                <div class="card-icon">🛡️</div>
+                <h4>Değişiklik koruma</h4>
+                <p>Geri dönüş yapılırken mevcut çalışma kaybolmaz; yanlışlıkla silinen kod geri kazanılabilir.</p>
+            </div>
+            <div class="card card-solution">
+                <div class="card-icon">👥</div>
+                <h4>Çok ekipli çalışma desteği</h4>
+                <p>Kategori ve growth ekiplerinin paralel revize talepleri sonucunda oluşan çakışmalar telafi edilebilir.</p>
+            </div>
+            <div class="card card-solution">
+                <div class="card-icon">📄</div>
+                <h4>Statik sayfa &amp; kampanya kapsamı</h4>
+                <p>Backoffice'te yönetilen tüm ilgili içerik türleri version kontrol altına alınır.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="surec">
+        <div class="section-label">Sistem</div>
+        <h3>Çalışma Akışı</h3>
+        <div class="flow">
+            <span class="flow-node">Teams'ten revize talebi</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Backoffice'te düzenle</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Versiyon otomatik kaydedilir</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Gerekirse eski versiyona dön</span>
+        </div>
+        <table class="field-table">
+            <thead>
+                <tr><th>Senaryo</th><th>Önceki durum</th><th>Version kontrol ile</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>İki ekip aynı sayfayı düzenledi</td>
+                    <td>Son düzenleme kalır, diğeri kaybolur</td>
+                    <td>Her iki versiyon da geçmişte durur; doğru olan seçilir</td>
+                </tr>
+                <tr>
+                    <td>Yanlışlıkla bozulan kod</td>
+                    <td>Manuel yeniden yazım gerekir</td>
+                    <td>Önceki versiyona tek adımda dönülür</td>
+                </tr>
+                <tr>
+                    <td>"Dünkü haline getir" talebi</td>
+                    <td>Mümkün değil</td>
+                    <td>Tarih bazlı geri dönüş yapılır</td>
+                </tr>
+                <tr>
+                    <td>Kampanya revizesi geri alınacak</td>
+                    <td>Ekip hafızasına bağlı</td>
+                    <td>Versiyon listesinden seçilir</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="faydalar">
+        <div class="section-label">Sistem</div>
+        <h3>Faydalar</h3>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h4>Veri kaybı önleme</h4>
+                <p>Paralel düzenlemelerde bir ekibin çalışması diğerinin üzerine yazılmaz; geçmiş korunur.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h4>Hızlı kurtarma</h4>
+                <p>Hatalı veya istenmeyen değişiklikler saniyeler içinde önceki versiyona alınabilir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h4>Ekip koordinasyonu</h4>
+                <p>Frontend, kategori ve growth ekipleri aynı sayfa üzerinde daha güvenli çalışır.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h4>Denetlenebilirlik</h4>
+                <p>Değişiklik geçmişi sayesinde ne zaman ne değişti takip edilebilir.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    (function () {
+        const navLinks = document.querySelectorAll('#nav a');
+        const sections = document.querySelectorAll('section[id]');
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const overlay = document.getElementById('overlay');
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('visible');
+        }
+        menuToggle.addEventListener('click', function () {
+            sidebar.classList.contains('open') ? closeSidebar() : (sidebar.classList.add('open'), overlay.classList.add('visible'));
+        });
+        overlay.addEventListener('click', closeSidebar);
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                if (window.innerWidth <= 768) closeSidebar();
+            });
+        });
+        function setActiveLink() {
+            let current = '';
+            sections.forEach(function (section) {
+                if (window.scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+            });
+            navLinks.forEach(function (link) {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', setActiveLink, { passive: true });
+        setActiveLink();
+    })();
+</script>
+
+</body>
+</html>
