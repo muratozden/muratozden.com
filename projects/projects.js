@@ -17,11 +17,23 @@ window.PROJECTS = [
     tags: ['Veri', 'Otomasyon', 'E-ticaret']
   },
   {
+    id: 'satici-kazanim',
+    name: 'Satıcı Kazanım Projesi',
+    description: 'Trendyol\'da olup n11\'de üye olmayan, yüksek satış potansiyeline sahip satıcıları tespit eden ve puan, ürün adedi, iletişim bilgileri gibi kazanım verilerini toplayan proje.',
+    status: 'active',
+    progress: 10,
+    owner: 'Murat Özden',
+    updated: '2026-06-27',
+    url: 'projects/satici-kazanim.html',
+    milestones: { completed: 1, total: 5 },
+    tags: ['Satıcı Kazanım', 'Trendyol', 'Veri']
+  },
+  {
     id: 'abtest',
     name: 'A/B Test Tool',
     description: 'n11.com A/B optimizasyon testlerini planlamak, önizlemek ve takip etmek için tamamen in-house geliştirilmiş platform. 1,5+ yıldır canlıda; kendi database yapısı ve uçtan uca test süreci yönetimi.',
     status: 'completed',
-    progress: 85,
+    progress: 100,
     owner: 'Doğan Yılmaz',
     updated: '2026-06-27',
     url: 'projects/ab-test-tool.html',
@@ -32,13 +44,25 @@ window.PROJECTS = [
     id: 'bo-version-control',
     name: 'Backoffice Version Kontrol',
     description: 'Backoffice CMS\'te statik sayfa ve kampanyalar için versiyon geçmişi; paralel revize taleplerinde kod çakışmasını önler ve istenen tarih/versiyona geri dönüş sağlar.',
-    status: 'active',
-    progress: 80,
+    status: 'completed',
+    progress: 100,
     owner: 'Tuğba Özbek',
     updated: '2026-06-27',
     url: 'projects/backoffice-version-control.html',
-    milestones: { completed: 3, total: 4 },
+    milestones: { completed: 2, total: 2 },
     tags: ['Backoffice', 'CMS', 'Version Control']
+  },
+  {
+    id: 'otomatik-kampanya',
+    name: 'Otomatik Kampanya Sayfa Oluşturma',
+    description: 'Growth ve kategori ekiplerinin Excel ile ilettiği kampanya verilerinden kampanya sayfası HTML\'ini otomatik üreten sistem. Saatler süren manuel süreç saniyelere indi.',
+    status: 'completed',
+    progress: 100,
+    owner: 'Tuğba Özbek',
+    updated: '2026-06-27',
+    url: 'projects/otomatik-kampanya-sayfa.html',
+    milestones: { completed: 3, total: 3 },
+    tags: ['Kampanya', 'Excel', 'Otomasyon']
   },
   {
     id: 'extension',
