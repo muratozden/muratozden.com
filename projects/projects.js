@@ -65,6 +65,18 @@ window.PROJECTS = [
     tags: ['Kampanya', 'Excel', 'Otomasyon']
   },
   {
+    id: 'html-campaign-orderer',
+    name: 'HTML Campaign Orderer',
+    description: '500 markalı kampanya sayfalarında günlük sıralama değişikliklerini HTML içinde manuel taşımak yerine otomatik düzenleyen araç.',
+    status: 'completed',
+    progress: 100,
+    owner: 'Tuğba Özbek',
+    updated: '2026-06-27',
+    url: 'projects/html-campaign-orderer.html',
+    milestones: { completed: 2, total: 2 },
+    tags: ['Kampanya', 'Sıralama', 'Otomasyon']
+  },
+  {
     id: 'extension',
     name: 'Productivity Extension',
     description: 'Şirket içi departmanlarımızı hızlandırmak, rutin görevleri otomatize etmek ve operasyonel verimliliği maksimuma çıkarmak için geliştirilmiş tarayıcı/sistem eklenti projesi.',
