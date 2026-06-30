@@ -229,6 +229,70 @@
             .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
             .card-grid { grid-template-columns: 1fr; }
         }
+    
+        /* Proje aşaması özeti */
+        .asama-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .asama-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .asama-meta-item .meta-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+        .asama-meta-item .meta-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .meta-value.status-active { color: var(--success-70, #227a23); }
+        .meta-value.status-completed { color: var(--success-70, #227a23); }
+        .meta-value.status-planning { color: var(--y-70, #463e17); }
+        .meta-value.status-paused { color: var(--text-muted); }
+        .asama-progress { margin-bottom: 1.25rem; }
+        .asama-progress label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.45rem;
+        }
+        .asama-progress label strong { color: var(--text); }
+        .asama-progress .progress-track {
+            height: 8px;
+            background: var(--n-10, #ececec);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .asama-progress .progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: var(--gradient);
+        }
+        .asama-ozet {
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+        .asama-ozet p {
+            margin: 0 0 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .asama-ozet p:last-child { margin-bottom: 0; }
+
     </style>
 </head>
 <body>
@@ -259,6 +323,7 @@
         <div class="nav-group">
             <div class="nav-group-title">Genel</div>
             <a href="#proje-tanitimi">Proje Tanıtımı</a>
+            <a href="#proje-asama">Proje Aşaması</a>
             <a href="#amac">Amaç &amp; Hedef Kitle</a>
             <a href="#kullanim">Nasıl Kullanılır?</a>
         </div>
@@ -298,6 +363,43 @@
             <p class="subtitle">n11.com ve Back Office üzerinde çalışan ekiplerin günlük işlerini hızlandırmak, tekrarlayan görevleri otomatikleştirmek ve hata riskini azaltmak için geliştirilmiş Chrome tarayıcı eklentisi.</p>
         </div>
     </section>
+    <section id="proje-asama">
+        <div class="section-label">Durum Özeti</div>
+        <h3>Proje Aşaması</h3>
+        <div class="asama-panel">
+            <div class="asama-meta">
+                <div class="asama-meta-item">
+                    <span class="meta-label">Durum</span>
+                    <span class="meta-value status-completed">Tamamlandı</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">İlerleme</span>
+                    <span class="meta-value">%100</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Milestone</span>
+                    <span class="meta-value">41 / 41</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Sorumlu</span>
+                    <span class="meta-value">Murat Özden</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Son güncelleme</span>
+                    <span class="meta-value">27 Haziran 2026</span>
+                </div>
+            </div>
+            <div class="asama-progress">
+                <label><span>Genel ilerleme</span><strong>%100</strong></label>
+                <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+            </div>
+            <div class="asama-ozet">
+            <p>Chrome eklentisi v1.1.8 ile canlıda; 41 modül tamamlandı.</p>
+            <p>n11.com ve Back Office ekiplerinin günlük operasyonlarında aktif kullanılıyor.</p>
+            </div>
+        </div>
+    </section>
+
 
     <section id="amac">
         <div class="section-label">Proje Detayları</div>

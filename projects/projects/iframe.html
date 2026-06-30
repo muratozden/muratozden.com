@@ -223,6 +223,70 @@
             .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
             .compare { grid-template-columns: 1fr; }
         }
+    
+        /* Proje aşaması özeti */
+        .asama-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .asama-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .asama-meta-item .meta-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+        .asama-meta-item .meta-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .meta-value.status-active { color: var(--success-70, #227a23); }
+        .meta-value.status-completed { color: var(--success-70, #227a23); }
+        .meta-value.status-planning { color: var(--y-70, #463e17); }
+        .meta-value.status-paused { color: var(--text-muted); }
+        .asama-progress { margin-bottom: 1.25rem; }
+        .asama-progress label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.45rem;
+        }
+        .asama-progress label strong { color: var(--text); }
+        .asama-progress .progress-track {
+            height: 8px;
+            background: var(--n-10, #ececec);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .asama-progress .progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: var(--gradient);
+        }
+        .asama-ozet {
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+        .asama-ozet p {
+            margin: 0 0 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .asama-ozet p:last-child { margin-bottom: 0; }
+
     </style>
 </head>
 <body>
@@ -252,6 +316,7 @@
         <div class="nav-group">
             <div class="nav-group-title">Genel</div>
             <a href="#proje-tanitimi">Proje Tanıtımı</a>
+            <a href="#proje-asama">Proje Aşaması</a>
             <a href="#problem">Mevcut Durum &amp; Problem</a>
             <a href="#cozum">Çözüm</a>
             <a href="#kapsam">Sayfa Kapsamı</a>
@@ -285,6 +350,43 @@
             <p class="subtitle">n11.com'daki kullanıcı sözleşmeleri, iptal-iade koşulları ve güven sayfalarını iframe'den çıkarıp doğrudan sayfa içinde göstereceğiz — böylece Google bu içerikleri tarayabilecek ve E-E-A-T sinyallerimiz güçlenecek. Aynı native render altyapısı üzerinde, forumlarda aranan bilgi odaklı sorgulara ("anneler için telefon önerisi", "kışlık çadır" gibi) yönelik, ürünlerle beslenmiş içerik sayfaları oluşturarak organik trafik ve search journey hedefleyeceğiz.</p>
         </div>
     </section>
+    <section id="proje-asama">
+        <div class="section-label">Durum Özeti</div>
+        <h3>Proje Aşaması</h3>
+        <div class="asama-panel">
+            <div class="asama-meta">
+                <div class="asama-meta-item">
+                    <span class="meta-label">Durum</span>
+                    <span class="meta-value status-active">Aktif</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">İlerleme</span>
+                    <span class="meta-value">%5</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Milestone</span>
+                    <span class="meta-value">0 / 5</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Sorumlu</span>
+                    <span class="meta-value">Service Design Development</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Son güncelleme</span>
+                    <span class="meta-value">27 Haziran 2026</span>
+                </div>
+            </div>
+            <div class="asama-progress">
+                <label><span>Genel ilerleme</span><strong>%5</strong></label>
+                <div class="progress-track"><div class="progress-fill" style="width: 5%"></div></div>
+            </div>
+            <div class="asama-ozet">
+            <p>Legal sayfalardan iframe kaldırılıp native render'a geçiş planlanıyor; organik trafik hedefli içerik sayfaları aynı altyapıda değerlendiriliyor.</p>
+            <p>Şu an: Kapsam analizi ve teknik planlama aşamasında.</p>
+            </div>
+        </div>
+    </section>
+
 
     <section id="problem">
         <div class="section-label">Problem Analizi</div>

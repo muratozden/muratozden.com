@@ -212,6 +212,70 @@
             .sidebar.open { transform: translateX(0); }
             .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
         }
+    
+        /* Proje aşaması özeti */
+        .asama-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .asama-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .asama-meta-item .meta-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+        .asama-meta-item .meta-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .meta-value.status-active { color: var(--success-70, #227a23); }
+        .meta-value.status-completed { color: var(--success-70, #227a23); }
+        .meta-value.status-planning { color: var(--y-70, #463e17); }
+        .meta-value.status-paused { color: var(--text-muted); }
+        .asama-progress { margin-bottom: 1.25rem; }
+        .asama-progress label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.45rem;
+        }
+        .asama-progress label strong { color: var(--text); }
+        .asama-progress .progress-track {
+            height: 8px;
+            background: var(--n-10, #ececec);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .asama-progress .progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: var(--gradient);
+        }
+        .asama-ozet {
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+        .asama-ozet p {
+            margin: 0 0 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .asama-ozet p:last-child { margin-bottom: 0; }
+
     </style>
 </head>
 <body>
@@ -242,7 +306,7 @@
             <div class="nav-group-title">Genel</div>
             <a href="#proje-tanitimi">Proje Tanıtımı</a>
             <a href="#amac">Amaç</a>
-            <a href="#durum">Mevcut Durum</a>
+            <a href="#proje-asama">Proje Aşaması</a>
         </div>
         <div class="nav-group">
             <div class="nav-group-title">Sistem</div>
@@ -274,6 +338,43 @@
             <div class="dev-credit">Geliştirici: <strong>Murat Özden</strong></div>
         </div>
     </section>
+    <section id="proje-asama">
+        <div class="section-label">Durum Özeti</div>
+        <h3>Proje Aşaması</h3>
+        <div class="asama-panel">
+            <div class="asama-meta">
+                <div class="asama-meta-item">
+                    <span class="meta-label">Durum</span>
+                    <span class="meta-value status-active">Aktif</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">İlerleme</span>
+                    <span class="meta-value">%10</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Milestone</span>
+                    <span class="meta-value">1 / 5</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Sorumlu</span>
+                    <span class="meta-value">Murat Özden</span>
+                </div>
+                <div class="asama-meta-item">
+                    <span class="meta-label">Son güncelleme</span>
+                    <span class="meta-value">27 Haziran 2026</span>
+                </div>
+            </div>
+            <div class="asama-progress">
+                <label><span>Genel ilerleme</span><strong>%10</strong></label>
+                <div class="progress-track"><div class="progress-fill" style="width: 10%"></div></div>
+            </div>
+            <div class="asama-ozet">
+            <p>Proje şu an <strong>%10</strong> aşamasında. Temel sistem hazır ve aktif olarak veri toplamaya devam ediliyor.</p>
+            <p><strong>Şu an:</strong> Altyapı kuruldu, satıcı verileri toplanıyor. Sonraki aşamalarda filtreleme, skorlama ve kazanım ekibine aktarım süreçleri genişletilecek.</p>
+            </div>
+        </div>
+    </section>
+
 
     <section id="amac">
         <div class="section-label">Proje Detayları</div>
@@ -299,15 +400,7 @@
         </div>
     </section>
 
-    <section id="durum">
-        <div class="section-label">Proje Detayları</div>
-        <h3>Mevcut Durum</h3>
-        <p>Proje şu an <strong>%10 aşamasında</strong>. Temel sistem hazır ve aktif olarak veri toplamaya devam ediliyor.</p>
-        <div class="info-box">
-            <p><strong>Şu an:</strong> Altyapı kuruldu, satıcı verileri toplanıyor. Sonraki aşamalarda filtreleme, skorlama ve kazanım ekibine aktarım süreçleri genişletilecek.</p>
-        </div>
-    </section>
-
+    
     <section id="veri">
         <div class="section-label">Sistem</div>
         <h3>Toplanan Veriler</h3>
