@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>n11 Productivity Extension — İndir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --m-50: #ff44ed;
+      --m-60: #cc35be;
+      --beige-10: #faf9f7;
+      --n-00: #ffffff;
+      --n-50: #5b5b5b;
+      --n-60: #4f4f4f;
+      --n-80: #1c1c1e;
+      --gradient: linear-gradient(135deg, #ff44ed 0%, #ff68f1 45%, #fe8ef4 100%);
+      --font: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--beige-10);
+      color: var(--n-80);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 68, 237, 0.1), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 104, 241, 0.06), transparent);
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      max-width: 480px;
+    }
+
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.5rem;
+      border-radius: 16px;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(255, 68, 237, 0.25);
+    }
+
+    .icon svg {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 1.875rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      color: var(--n-60);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--gradient);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255, 68, 237, 0.3);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(255, 68, 237, 0.35);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
+    }
+
+    .download-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .hint {
+      margin-top: 1.25rem;
+      font-size: 0.8125rem;
+      color: var(--n-50);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Productivity Extension</h1>
+    <p>n11.com ve Back Office üzerinde çalışan ekipler için Chrome tarayıcı eklentisi.</p>
+    <a class="download-btn" href="n11-ProductivityExtension.zip" download="n11-ProductivityExtension.zip">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+      </svg>
+      Eklentiyi İndir
+    </a>
+  </main>
+</body>
+</html>
