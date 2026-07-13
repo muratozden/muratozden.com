@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ProjectFlow — Otomatik Kampanya Sayfa Oluşturma</title>
+    <title>ProjectFlow — Programmatic Search Listing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
@@ -12,6 +12,7 @@
             --m-50: #ff44ed; --m-60: #cc35be;
             --error-05: #feeeef; --error-20: #ffb1b1; --error-70: #752526;
             --success-05: #edf8f0; --success-20: #b5e6ae; --success-70: #227a23;
+            --y-05: #fefbea; --y-20: #feed9d; --y-70: #463e17;
             --beige-10: #faf9f7;
             --n-00: #ffffff; --n-10: #ececec; --n-50: #5b5b5b; --n-60: #4f4f4f; --n-80: #1c1c1e;
             --d-70: #252d40;
@@ -102,6 +103,8 @@
             padding: 0.3rem 0.75rem; border-radius: 999px;
         }
         .badge-completed { background: var(--success-05); border-color: var(--success-20); color: var(--success-70); }
+        .badge-planning { background: var(--y-05); border-color: var(--y-20); color: var(--y-70); }
+        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--y-20); }
         .hero h2 {
             font-size: clamp(1.85rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.04em;
             line-height: 1.15; margin-bottom: 0.75rem;
@@ -202,6 +205,19 @@
             font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
         }
         .field-table tr:last-child td { border-bottom: none; }
+        .stat-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;
+        }
+        .stat-card {
+            text-align: center; padding: 1.25rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: var(--radius);
+        }
+        .stat-card .num {
+            font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em;
+            background: var(--gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-card .desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.35rem; }
         .menu-toggle {
             display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200;
             width: 44px; height: 44px; background: var(--sidebar-bg); color: #fff;
@@ -214,7 +230,7 @@
             .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
             .sidebar.open { transform: translateX(0); }
             .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
-            .compare, .impact-row { grid-template-columns: 1fr; }
+            .compare, .impact-row, .stat-row { grid-template-columns: 1fr; }
             .impact-arrow { text-align: center; transform: rotate(90deg); }
         }
     
@@ -300,7 +316,7 @@
             </div>
             <h1>ProjectFlow</h1>
         </div>
-        <p>Otomatik Kampanya Sayfa</p>
+        <p>Programmatic Search Listing</p>
     </div>
     <nav id="nav">
         <div class="nav-group">
@@ -311,15 +327,15 @@
             <div class="nav-group-title">Genel</div>
             <a href="#proje-tanitimi">Proje Tanıtımı</a>
             <a href="#proje-asama">Proje Aşaması</a>
-            <a href="#problem">Eski Süreç</a>
-            <a href="#cozum">Yeni Süreç</a>
+            <a href="#amac">Amaç</a>
+            <a href="#etiketleme">LLM Etiketleme</a>
         </div>
         <div class="nav-group">
             <div class="nav-group-title">Sistem</div>
-            <a href="#excel">Excel Verileri</a>
-            <a href="#surec">Çalışma Akışı</a>
-            <a href="#kimler">Kimler Kullanır?</a>
-            <a href="#faydalar">Faydalar</a>
+            <a href="#listing">Listing &amp; Arama</a>
+            <a href="#url">URL Yapısı</a>
+            <a href="#serp">SERP &amp; Crawl</a>
+            <a href="#faydalar">Beklenen Faydalar</a>
         </div>
     </nav>
     <div class="sidebar-footer"><span>© 2026 ProjectFlow</span></div>
@@ -330,27 +346,16 @@
     <section id="proje-tanitimi">
         <div class="hero">
             <div class="hero-meta">
-                <span class="badge badge-completed">Tamamlandı</span>
-                <span class="badge">Excel → HTML</span>
-                <span class="badge">Kampanya</span>
-                <span class="badge">Otomasyon</span>
+                <span class="badge badge-planning"><span class="badge-dot"></span> Planlama</span>
+                <span class="badge">LLM</span>
+                <span class="badge">SERP</span>
+                <span class="badge">Sitemap</span>
             </div>
-            <h2>Otomatik Kampanya Sayfa Oluşturma</h2>
-            <p class="subtitle">Growth ve kategori ekiplerinin Excel ile ilettiği kampanya verilerini okuyup kampanya sayfasına ait HTML kodunu otomatik üreten sistem. Geçmişte saatler süren manuel HTML hazırlığı artık saniyeler içinde tamamlanıyor.</p>
-            <div class="impact-row">
-                <div class="impact-box before">
-                    <div class="value">Saatler</div>
-                    <div class="label">Eski süreç</div>
-                </div>
-                <div class="impact-arrow">→</div>
-                <div class="impact-box after">
-                    <div class="value">Saniyeler</div>
-                    <div class="label">Yeni süreç</div>
-                </div>
-            </div>
-            <div class="dev-credit">Geliştirici: <strong>Tuğba Özbek</strong></div>
+            <h2>Programmatic Search Listing</h2>
+            <p class="subtitle">LLM ile ürün teknik özelliklerini analiz edip anlamlı intent etiketleriyle ürünleri etiketleyen; bu etiketlerden parametrik olmayan listing sayfaları ve arama deneyimi üreten SEO projesi.</p>
         </div>
     </section>
+
     <section id="proje-asama">
         <div class="section-label">Durum Özeti</div>
         <h3>Proje Aşaması</h3>
@@ -358,190 +363,194 @@
             <div class="asama-meta">
                 <div class="asama-meta-item">
                     <span class="meta-label">Durum</span>
-                    <span class="meta-value status-completed">Tamamlandı</span>
+                    <span class="meta-value status-planning">Planlama</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">İlerleme</span>
-                    <span class="meta-value">%100</span>
+                    <span class="meta-value">%0</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Milestone</span>
-                    <span class="meta-value">3 / 3</span>
+                    <span class="meta-value">0 / 4</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Sorumlu</span>
-                    <span class="meta-value">Tuğba Özbek</span>
+                    <span class="meta-value">Service Design Development</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Son güncelleme</span>
-                    <span class="meta-value">27 Haziran 2026</span>
+                    <span class="meta-value">13 Temmuz 2026</span>
                 </div>
             </div>
             <div class="asama-progress">
-                <label><span>Genel ilerleme</span><strong>%100</strong></label>
-                <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                <label><span>Genel ilerleme</span><strong>%0</strong></label>
+                <div class="progress-track"><div class="progress-fill" style="width: 0%"></div></div>
             </div>
             <div class="asama-ozet">
-            <p>Excel'den kampanya HTML üretimi canlı kullanımda; growth ve kategori ekipleri günlük operasyonda.</p>
-            <p>Saatler süren manuel HTML hazırlığı saniyelere indi.</p>
+            <p>Proje planlama aşamasında. LLM ile ürün etiketleme → sitemap → clean URL listing sayfaları → organik + site içi arama.</p>
+            <p>Hedef: rakiplerde olmayan SERP sayfaları ve crawl budget açısından değerli, anlamlı URL’ler.</p>
             </div>
         </div>
     </section>
 
+    <section id="amac">
+        <div class="section-label">Proje Detayları</div>
+        <h3>Amaç</h3>
+        <p>Ürünlerin teknik özelliklerini LLM desteğiyle analiz edip kullanıcı dilindeki intent etiketleriyle işaretlemek; bu etiketlerden Google ve site içi aramada indekslenebilir, anlamlı listing sayfaları üretmek.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🏷️</div>
+                <h4>Anlamlı etiketler</h4>
+                <p>“Oyun telefonu”, “anneler için akıllı telefon”, “sessiz çalışan bulaşık makinesi” gibi kullanıcı dili.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🗺️</div>
+                <h4>Sitemap besleme</h4>
+                <p>Üretilen listing URL’leri sitemap’e güncel linklerle eklenir; crawl edilir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h4>Organik + searchbar</h4>
+                <p>Google’dan inen kullanıcı ve searchbar’da aynı intent ile akıllı sıralı ürün listesi görür.</p>
+            </div>
+        </div>
+    </section>
 
-    <section id="problem">
-        <div class="section-label">Problem Analizi</div>
-        <h3>Eski Süreç: Manuel HTML</h3>
-        <p>Kampanya dönemlerinde growth ve kategori ekipleri, sayfada yer alacak markaları, indirim tutarlarını, marka logolarını ve diğer metrikleri Excel dosyası olarak frontend ekibine iletiyordu.</p>
-        <p>Frontend ekibi bu bilgileri alıp <strong>her marka ve blok için tek tek HTML kodu</strong> yazıyordu. Çok markalı, sık güncellenen kampanyalarda bu süreç saatler alıyor ve hata riski taşıyordu.</p>
+    <section id="etiketleme">
+        <div class="section-label">Sistem</div>
+        <h3>LLM ile Ürün Etiketleme</h3>
+        <p>LLM, ürün teknik özelliklerini analiz eder ve ürünleri kullanıcı intent’ine uygun etiketlerle işaretler.</p>
+        <table class="field-table">
+            <thead>
+                <tr><th>Örnek etiket</th><th>Ne anlama gelir?</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>oyun telefonu</td>
+                    <td>Yüksek performanslı cep telefonları</td>
+                </tr>
+                <tr>
+                    <td>anneler için akıllı telefon</td>
+                    <td>Belirli kullanım / kitle odaklı telefon seçkisi</td>
+                </tr>
+                <tr>
+                    <td>sessiz çalışan bulaşık makinesi</td>
+                    <td>Gürültü seviyesi düşük modeller</td>
+                </tr>
+                <tr>
+                    <td>şarjı uzun giden telefon</td>
+                    <td>Batarya ömrü güçlü cihazlar</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="listing">
+        <div class="section-label">Sistem</div>
+        <h3>Listing Sayfası &amp; Arama</h3>
+        <div class="flow">
+            <span class="flow-node">LLM etiketleme</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Listing sayfası</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Sitemap</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Organik / searchbar</span>
+        </div>
+        <table class="field-table">
+            <thead>
+                <tr><th>Kanal</th><th>Davranış</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Google / organik</td>
+                    <td>Kullanıcı intent sorgusuyla listing sayfasına iner</td>
+                </tr>
+                <tr>
+                    <td>Searchbar</td>
+                    <td>“oyun telefonu” yazıldığında o etiketlenmiş ürünler <strong>akıllı sıralama</strong> ile listelenir</td>
+                </tr>
+                <tr>
+                    <td>Sayfa içi</td>
+                    <td>Listing içinde filtre uygulanabilir; sayfa anlamsız search-promo URL’si olmamalı</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="url">
+        <div class="section-label">Sistem</div>
+        <h3>URL Yapısı</h3>
+        <p>URL yapısı <strong>dinamik ama parametrik değil</strong> olmalı. Anlamlı, temiz path’ler kullanılır.</p>
         <div class="compare">
             <div class="compare-col before">
-                <h4>❌ Önce</h4>
+                <h4>❌ Olmamalı</h4>
                 <ul>
-                    <li>Excel → manuel HTML yazımı</li>
-                    <li>Her marka/blok ayrı kodlanır</li>
-                    <li>Saatler süren operasyon</li>
-                    <li>Kopyala-yapıştır hataları</li>
-                    <li>Revize = baştan kodlama</li>
+                    <li>Parametrik / anlamsız search promo URL’leri</li>
+                    <li><code>?q=oyun+telefonu&amp;promo=…</code> tarzı yapılar</li>
+                    <li>Crawl budget’ı boşa harcayan kopya sayfalar</li>
                 </ul>
             </div>
             <div class="compare-col after">
-                <h4>✅ Sonra</h4>
+                <h4>✅ Olmalı</h4>
                 <ul>
-                    <li>Excel → otomatik HTML üretimi</li>
-                    <li>Tüm satırlar tek seferde işlenir</li>
-                    <li>Saniyeler içinde tamamlanır</li>
-                    <li>Standart şablon, tutarlı çıktı</li>
-                    <li>Revize = Excel güncelle, yeniden üret</li>
+                    <li>Temiz path: <code>n11.com/s/oyun-telefonu</code></li>
+                    <li>Dinamik üretilebilir, SEO-friendly slug</li>
+                    <li>İçeride filtre mümkün; URL kimliği sabit ve anlamlı</li>
                 </ul>
             </div>
         </div>
-    </section>
-
-    <section id="cozum">
-        <div class="section-label">Proje Detayları</div>
-        <h3>Yeni Süreç: Excel'den Otomatik HTML</h3>
-        <p>Kategori ve growth ekipleri kampanya bilgilerini standart Excel şablonuna doldurur. Sistem dosyayı okur, satır satır verileri işler ve kampanya sayfasının tam HTML kodunu otomatik oluşturur.</p>
         <div class="info-box">
-            <p>Operasyonel yük frontend'den iş birimlerine kaydırılmadı — ekipler zaten Excel kullanıyordu. Değişen, Excel'den sonra HTML'in <strong>insan eli değmeden</strong> üretilmesi.</p>
+            <p>Örnek: <strong>n11.com/s/oyun-telefonu</strong> — parametrik değil; intent’i URL’de taşıyan listing.</p>
         </div>
     </section>
 
-    <section id="excel">
-        <div class="section-label">Sistem</div>
-        <h3>Excel'de Toplanan Veriler</h3>
-        <p>Kampanya sayfasında yer alacak her marka/blok için Excel'de aşağıdaki gibi alanlar doldurulur:</p>
-        <table class="field-table">
-            <thead>
-                <tr><th>Veri alanı</th><th>Açıklama</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Marka adı</td>
-                    <td>Kampanyada yer alacak markanın adı</td>
-                </tr>
-                <tr>
-                    <td>İndirim tutarı / oranı</td>
-                    <td>Markaya özel indirim bilgisi (ör. %30, 500 TL)</td>
-                </tr>
-                <tr>
-                    <td>Marka logosu</td>
-                    <td>Logo görsel URL'si veya referansı</td>
-                </tr>
-                <tr>
-                    <td>Diğer kampanya metrikleri</td>
-                    <td>Sayfa tasarımına göre link, sıra, kategori, kampanya kodu vb.</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="info-box">
-            <p>Excel şablonu kampanya tipine göre genişletilebilir; sistem yeni kolonları okuyup HTML şablonuna yerleştirir.</p>
-        </div>
-    </section>
-
-    <section id="surec">
-        <div class="section-label">Sistem</div>
-        <h3>Çalışma Akışı</h3>
-        <div class="flow">
-            <span class="flow-node">Growth / Kategori Excel doldurur</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-node">Excel sisteme yüklenir</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-node">Veriler okunur</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-node">HTML otomatik üretilir</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-node">Kampanya sayfasına aktarılır</span>
-        </div>
-        <table class="field-table">
-            <thead>
-                <tr><th>Adım</th><th>Kim?</th><th>Ne yapılır?</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1. Veri girişi</td>
-                    <td>Growth &amp; Kategori</td>
-                    <td>Kampanya Excel şablonunu marka, indirim, logo vb. ile doldurur</td>
-                </tr>
-                <tr>
-                    <td>2. Üretim</td>
-                    <td>Sistem</td>
-                    <td>Excel okunur, kampanya HTML kodu otomatik oluşturulur</td>
-                </tr>
-                <tr>
-                    <td>3. Kontrol &amp; yayın</td>
-                    <td>Frontend</td>
-                    <td>Üretilen HTML önizlenir ve Backoffice'e aktarılır</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="kimler">
-        <div class="section-label">Proje Detayları</div>
-        <h3>Kimler Kullanır?</h3>
+    <section id="serp">
+        <div class="section-label">SEO</div>
+        <h3>SERP &amp; Crawl Budget</h3>
+        <p>Bu yapı, rakiplerde olmayan SERP sayfaları üretmeyi sağlar. Anlamlı, indekslenebilir listing’ler <strong>crawl budget</strong> açısından altın değerindedir: botların değerli sayfalara odaklanmasını destekler.</p>
         <div class="card-grid">
             <div class="card">
-                <div class="card-icon">📈</div>
-                <h4>Growth ekibi</h4>
-                <p>Kampanya markalarını, indirimleri ve metrikleri Excel'e girer; HTML ile uğraşmaz.</p>
+                <div class="card-icon">📄</div>
+                <h4>Yeni SERP yüzeyi</h4>
+                <p>Intent etiketlerinden doğan sayfalar organik sonuçlarda yer kaplar.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🏷️</div>
-                <h4>Kategori ekibi</h4>
-                <p>Kategori bazlı kampanya içeriklerini aynı Excel akışıyla iletir.</p>
+                <div class="card-icon">🕷️</div>
+                <h4>Crawl budget</h4>
+                <p>Sitemap + clean URL ile botlara net, değerli sayfa seti sunulur.</p>
             </div>
             <div class="card">
-                <div class="card-icon">💻</div>
-                <h4>Frontend ekibi</h4>
-                <p>Manuel kod yazmak yerine üretilen HTML'i kontrol edip yayına alır; revize taleplerinde Excel güncellenir, HTML yeniden üretilir.</p>
+                <div class="card-icon">🧠</div>
+                <h4>Akıllı sıralama</h4>
+                <p>Searchbar ve listing’de etiketlenmiş ürünler intent’e göre sıralanır.</p>
             </div>
         </div>
     </section>
 
     <section id="faydalar">
         <div class="section-label">Sistem</div>
-        <h3>Faydalar</h3>
+        <h3>Beklenen Faydalar</h3>
         <div class="card-grid">
             <div class="card">
-                <div class="card-icon">⚡</div>
-                <h4>Dramatik hız artışı</h4>
-                <p>Saatler süren kampanya HTML hazırlığı saniyelere indi; yoğun dönemlerde operasyonel darboğaz kalktı.</p>
+                <div class="card-icon">🏆</div>
+                <h4>Rekabet avantajı</h4>
+                <p>Rakiplerde olmayan intent listing / SERP sayfaları.</p>
             </div>
             <div class="card">
-                <div class="card-icon">✅</div>
-                <h4>Hata azaltma</h4>
-                <p>Manuel kopyala-yapıştır ve yazım hataları standart şablonla minimize edildi.</p>
+                <div class="card-icon">🔗</div>
+                <h4>Temiz URL’ler</h4>
+                <p>Parametre çöplüğü yerine <code>/s/oyun-telefonu</code> gibi anlamlı path’ler.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🔄</div>
-                <h4>Kolay revize</h4>
-                <p>Marka veya indirim değişikliği Excel'de güncellenir; HTML tek tıkla yeniden üretilir.</p>
+                <div class="card-icon">🔎</div>
+                <h4>Çift kanal</h4>
+                <p>Hem organik arama hem site içi searchbar aynı etiketi kullanır.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🤝</div>
-                <h4>Ekip uyumu</h4>
-                <p>Growth/kategori veri girer, frontend üretir ve yayınlar — net sorumluluk ayrımı.</p>
+                <div class="card-icon">📈</div>
+                <h4>Crawl verimliliği</h4>
+                <p>Sitemap ile beslenen değerli sayfalar crawl budget’ı boşa harcamaz.</p>
             </div>
         </div>
     </section>

@@ -471,13 +471,6 @@
 
     <div class="toolbar">
       <h3>Projeler</h3>
-      <div class="filters" id="filters">
-        <button class="filter-btn active" data-filter="all">Tümü</button>
-        <button class="filter-btn" data-filter="active">Aktif</button>
-        <button class="filter-btn" data-filter="planning">Planlama</button>
-        <button class="filter-btn" data-filter="completed">Tamamlandı</button>
-        <button class="filter-btn" data-filter="paused">Duraklatıldı</button>
-      </div>
     </div>
 
     <div class="project-grid" id="projectGrid"></div>
@@ -485,16 +478,26 @@
     <footer class="footer">© <b>2012</b> - <b>∞</b> 🩷 <b>Services Design Development</b> - ProjectFlow</footer>
   </div>
 
-  <script src="projects.js"></script>
+  <script src="projects.js?v=20260713-spam-guard"></script>
   <script>
     (function () {
-      const projects = window.PROJECTS || [];
       const statusLabels = {
         active: 'Aktif',
         planning: 'Planlama',
         completed: 'Tamamlandı',
         paused: 'Duraklatıldı'
       };
+      // Aktif → Planlama → Tamamlandı → Duraklatıldı
+      const statusOrder = { active: 0, planning: 1, completed: 2, paused: 3 };
+
+      const projects = (window.PROJECTS || []).slice().sort(function (a, b) {
+        var orderA = Object.prototype.hasOwnProperty.call(statusOrder, a.status) ? statusOrder[a.status] : 99;
+        var orderB = Object.prototype.hasOwnProperty.call(statusOrder, b.status) ? statusOrder[b.status] : 99;
+        if (orderA !== orderB) return orderA - orderB;
+        return String(a.name || '').localeCompare(String(b.name || ''), 'tr');
+      });
+
+      console.log('[ProjectFlow] sıra:', projects.map(function (p) { return p.status + ':' + p.name; }));
 
       function renderStats(list) {
         const active = list.filter(function (p) { return p.status === 'active'; }).length;
@@ -510,19 +513,15 @@
           '<div class="stat"><div class="stat-value">' + withDocs + '</div><div class="stat-label">Dokümantasyonlu</div></div>';
       }
 
-      function renderProjects(filter) {
-        const filtered = filter === 'all'
-          ? projects
-          : projects.filter(function (p) { return p.status === filter; });
-
+      function renderProjects() {
         const grid = document.getElementById('projectGrid');
 
-        if (!filtered.length) {
-          grid.innerHTML = '<div class="empty">Bu filtreye uygun proje bulunamadı.</div>';
+        if (!projects.length) {
+          grid.innerHTML = '<div class="empty">Henüz proje bulunamadı.</div>';
           return;
         }
 
-        grid.innerHTML = filtered.map(function (project) {
+        grid.innerHTML = projects.map(function (project) {
           const hasUrl = Boolean(project.url);
           const milestones = project.milestones
             ? project.milestones.completed + ' / ' + project.milestones.total + ' milestone'
@@ -561,16 +560,8 @@
         return parts[2] + '.' + parts[1] + '.' + parts[0];
       }
 
-      document.getElementById('filters').addEventListener('click', function (e) {
-        var btn = e.target.closest('.filter-btn');
-        if (!btn) return;
-        document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        renderProjects(btn.dataset.filter);
-      });
-
       renderStats(projects);
-      renderProjects('all');
+      renderProjects();
     })();
   </script>
 </body>

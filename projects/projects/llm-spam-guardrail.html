@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ProjectFlow — Otomatik Kampanya Sayfa Oluşturma</title>
+    <title>ProjectFlow — LLM Spam Guardrail (Over-optimization)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
@@ -12,6 +12,7 @@
             --m-50: #ff44ed; --m-60: #cc35be;
             --error-05: #feeeef; --error-20: #ffb1b1; --error-70: #752526;
             --success-05: #edf8f0; --success-20: #b5e6ae; --success-70: #227a23;
+            --y-05: #fefbea; --y-20: #feed9d; --y-70: #463e17;
             --beige-10: #faf9f7;
             --n-00: #ffffff; --n-10: #ececec; --n-50: #5b5b5b; --n-60: #4f4f4f; --n-80: #1c1c1e;
             --d-70: #252d40;
@@ -102,6 +103,8 @@
             padding: 0.3rem 0.75rem; border-radius: 999px;
         }
         .badge-completed { background: var(--success-05); border-color: var(--success-20); color: var(--success-70); }
+        .badge-planning { background: var(--y-05); border-color: var(--y-20); color: var(--y-70); }
+        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--y-20); }
         .hero h2 {
             font-size: clamp(1.85rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.04em;
             line-height: 1.15; margin-bottom: 0.75rem;
@@ -202,6 +205,19 @@
             font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
         }
         .field-table tr:last-child td { border-bottom: none; }
+        .stat-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;
+        }
+        .stat-card {
+            text-align: center; padding: 1.25rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: var(--radius);
+        }
+        .stat-card .num {
+            font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em;
+            background: var(--gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-card .desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.35rem; }
         .menu-toggle {
             display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200;
             width: 44px; height: 44px; background: var(--sidebar-bg); color: #fff;
@@ -214,7 +230,7 @@
             .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
             .sidebar.open { transform: translateX(0); }
             .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
-            .compare, .impact-row { grid-template-columns: 1fr; }
+            .compare, .impact-row, .stat-row { grid-template-columns: 1fr; }
             .impact-arrow { text-align: center; transform: rotate(90deg); }
         }
     
@@ -300,7 +316,7 @@
             </div>
             <h1>ProjectFlow</h1>
         </div>
-        <p>Otomatik Kampanya Sayfa</p>
+        <p>LLM Spam Guardrail</p>
     </div>
     <nav id="nav">
         <div class="nav-group">
@@ -311,15 +327,15 @@
             <div class="nav-group-title">Genel</div>
             <a href="#proje-tanitimi">Proje Tanıtımı</a>
             <a href="#proje-asama">Proje Aşaması</a>
-            <a href="#problem">Eski Süreç</a>
-            <a href="#cozum">Yeni Süreç</a>
+            <a href="#amac">Amaç</a>
+            <a href="#risk">Spam / Clickbait Riskleri</a>
         </div>
         <div class="nav-group">
             <div class="nav-group-title">Sistem</div>
-            <a href="#excel">Excel Verileri</a>
-            <a href="#surec">Çalışma Akışı</a>
-            <a href="#kimler">Kimler Kullanır?</a>
-            <a href="#faydalar">Faydalar</a>
+            <a href="#ornek">Örnek Analiz</a>
+            <a href="#ymyl">YMYL</a>
+            <a href="#oneri">Seller Office Önerisi</a>
+            <a href="#faydalar">Beklenen Faydalar</a>
         </div>
     </nav>
     <div class="sidebar-footer"><span>© 2026 ProjectFlow</span></div>
@@ -330,27 +346,16 @@
     <section id="proje-tanitimi">
         <div class="hero">
             <div class="hero-meta">
-                <span class="badge badge-completed">Tamamlandı</span>
-                <span class="badge">Excel → HTML</span>
-                <span class="badge">Kampanya</span>
-                <span class="badge">Otomasyon</span>
+                <span class="badge badge-planning"><span class="badge-dot"></span> Planlama</span>
+                <span class="badge">LLM</span>
+                <span class="badge">SEO Guardrail</span>
+                <span class="badge">YMYL</span>
             </div>
-            <h2>Otomatik Kampanya Sayfa Oluşturma</h2>
-            <p class="subtitle">Growth ve kategori ekiplerinin Excel ile ilettiği kampanya verilerini okuyup kampanya sayfasına ait HTML kodunu otomatik üreten sistem. Geçmişte saatler süren manuel HTML hazırlığı artık saniyeler içinde tamamlanıyor.</p>
-            <div class="impact-row">
-                <div class="impact-box before">
-                    <div class="value">Saatler</div>
-                    <div class="label">Eski süreç</div>
-                </div>
-                <div class="impact-arrow">→</div>
-                <div class="impact-box after">
-                    <div class="value">Saniyeler</div>
-                    <div class="label">Yeni süreç</div>
-                </div>
-            </div>
-            <div class="dev-credit">Geliştirici: <strong>Tuğba Özbek</strong></div>
+            <h2>LLM Spam Guardrail (Over-optimization)</h2>
+            <p class="subtitle">Title, heading ve link gibi tanıtıcı/yönlendirici alanlarda clickbait, keyword stuffing ve içerikle örtüşmeyen abartılı ifadeleri LLM ile tespit edip satıcıya düzeltilmiş title öneren koruma katmanı.</p>
         </div>
     </section>
+
     <section id="proje-asama">
         <div class="section-label">Durum Özeti</div>
         <h3>Proje Aşaması</h3>
@@ -358,190 +363,161 @@
             <div class="asama-meta">
                 <div class="asama-meta-item">
                     <span class="meta-label">Durum</span>
-                    <span class="meta-value status-completed">Tamamlandı</span>
+                    <span class="meta-value status-planning">Planlama</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">İlerleme</span>
-                    <span class="meta-value">%100</span>
+                    <span class="meta-value">%0</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Milestone</span>
-                    <span class="meta-value">3 / 3</span>
+                    <span class="meta-value">0 / 3</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Sorumlu</span>
-                    <span class="meta-value">Tuğba Özbek</span>
+                    <span class="meta-value">Service Design Development</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Son güncelleme</span>
-                    <span class="meta-value">27 Haziran 2026</span>
+                    <span class="meta-value">13 Temmuz 2026</span>
                 </div>
             </div>
             <div class="asama-progress">
-                <label><span>Genel ilerleme</span><strong>%100</strong></label>
-                <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                <label><span>Genel ilerleme</span><strong>%0</strong></label>
+                <div class="progress-track"><div class="progress-fill" style="width: 0%"></div></div>
             </div>
             <div class="asama-ozet">
-            <p>Excel'den kampanya HTML üretimi canlı kullanımda; growth ve kategori ekipleri günlük operasyonda.</p>
-            <p>Saatler süren manuel HTML hazırlığı saniyelere indi.</p>
+            <p>Planlama aşamasında. Odak: over-optimization / spam sinyallerini LLM ile yakalamak; E-E-A-T’ye negatif etkiyi azaltmak.</p>
+            <p>İlk entegrasyon önerisi: Seller Office ürün ekleme ekranında title önerisi.</p>
             </div>
         </div>
     </section>
 
+    <section id="amac">
+        <div class="section-label">Proje Detayları</div>
+        <h3>Amaç</h3>
+        <p>Link, title, heading gibi sayfada tanıtıcı/yönlendirici alanlarda abartılı veya içerikle örtüşmeyen ifadeler Google tarafından <strong>clickbait</strong> olarak algılanabilir ve E-E-A-T değerine negatif etki eder. Bu proje, LLM ile bu riskleri tespit edip satıcıya daha temiz, doğrulanabilir title önerir.</p>
+        <div class="info-box">
+            <p>Amaç Google bot’unu “kandırmak” değil; tam tersine <strong>over-optimization</strong> ve spam sinyallerini azaltarak güvenilir ürün sayfaları üretmek.</p>
+        </div>
+    </section>
 
-    <section id="problem">
+    <section id="risk">
         <div class="section-label">Problem Analizi</div>
-        <h3>Eski Süreç: Manuel HTML</h3>
-        <p>Kampanya dönemlerinde growth ve kategori ekipleri, sayfada yer alacak markaları, indirim tutarlarını, marka logolarını ve diğer metrikleri Excel dosyası olarak frontend ekibine iletiyordu.</p>
-        <p>Frontend ekibi bu bilgileri alıp <strong>her marka ve blok için tek tek HTML kodu</strong> yazıyordu. Çok markalı, sık güncellenen kampanyalarda bu süreç saatler alıyor ve hata riski taşıyordu.</p>
+        <h3>Spam / Clickbait Riskleri</h3>
+        <p>Aşağıdaki ifadeler title / heading / link metninde kullanılıyorsa ve içerikle örtüşmüyorsa risk oluşturur:</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">⚠️</div>
+                <h4>Abartı / clickbait</h4>
+                <p>en iyi, en ucuz, %100 garantili, kesin çözüm, rakipsiz, tek seçenek, mükemmel, kusursuz, süper fırsat, inanılmaz fırsat, şok indirim…</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔁</div>
+                <h4>Keyword stuffing</h4>
+                <p>Aynı anahtar kelimenin title’da anlamsız tekrarı; bot’u şişirme olarak algılanabilir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">✂️</div>
+                <h4>Aşırı uzun title</h4>
+                <p>SERP’te “…” ile kesilir; anlam bozulur.</p>
+            </div>
+        </div>
+        <div class="info-box">
+            <p>Kelimeler tekrar edebilir — <strong>anlamlı bütünlük</strong> olduğu sürece. Sorun, tekrarın spam / stuffing gibi görünmesidir.</p>
+        </div>
+    </section>
+
+    <section id="ornek">
+        <div class="section-label">Sistem</div>
+        <h3>Örnek Analiz</h3>
+        <p>Örnek URL: <a href="https://www.n11.com/urun/dyo-kusursuz-parlaklik-universal-parlak-cila-1000ml-dyo-cila-35962362" style="color: var(--accent-dark); word-break: break-all;" target="_blank" rel="noopener">n11.com/urun/dyo-kusursuz-parlaklik-…</a></p>
         <div class="compare">
             <div class="compare-col before">
-                <h4>❌ Önce</h4>
+                <h4>❌ Yanlış title</h4>
                 <ul>
-                    <li>Excel → manuel HTML yazımı</li>
-                    <li>Her marka/blok ayrı kodlanır</li>
-                    <li>Saatler süren operasyon</li>
-                    <li>Kopyala-yapıştır hataları</li>
-                    <li>Revize = baştan kodlama</li>
+                    <li>Dyo Kusursuz Parlaklık Üniversal Parlak Cila 1000Ml Dyo Cila</li>
+                    <li>“Dyo” ve “Cila” tekrarı → keyword stuffing riski</li>
+                    <li>“Kusursuz Parlaklık” içerikle doğrulanmalı</li>
+                    <li>Uzunluk → SERP’te kesilme riski</li>
                 </ul>
             </div>
             <div class="compare-col after">
-                <h4>✅ Sonra</h4>
+                <h4>✅ Doğru title</h4>
                 <ul>
-                    <li>Excel → otomatik HTML üretimi</li>
-                    <li>Tüm satırlar tek seferde işlenir</li>
-                    <li>Saniyeler içinde tamamlanır</li>
-                    <li>Standart şablon, tutarlı çıktı</li>
-                    <li>Revize = Excel güncelle, yeniden üret</li>
+                    <li>Dyo Üniversal Parlak Cila 1 Litre</li>
+                    <li>Kısa, net, tekrarsız</li>
+                    <li>Abartısız; doğrulanabilir özellikler</li>
+                    <li>SERP’te okunabilir</li>
                 </ul>
             </div>
         </div>
-    </section>
-
-    <section id="cozum">
-        <div class="section-label">Proje Detayları</div>
-        <h3>Yeni Süreç: Excel'den Otomatik HTML</h3>
-        <p>Kategori ve growth ekipleri kampanya bilgilerini standart Excel şablonuna doldurur. Sistem dosyayı okur, satır satır verileri işler ve kampanya sayfasının tam HTML kodunu otomatik oluşturur.</p>
         <div class="info-box">
-            <p>Operasyonel yük frontend'den iş birimlerine kaydırılmadı — ekipler zaten Excel kullanıyordu. Değişen, Excel'den sonra HTML'in <strong>insan eli değmeden</strong> üretilmesi.</p>
+            <p>Title’daki “Kusursuz Parlaklık” ürün açıklaması veya kullanıcı yorumlarında geçmiyorsa Google bunu <strong>YMYL ihlali</strong> / doğrulanmamış iddia olarak değerlendirebilir.</p>
         </div>
     </section>
 
-    <section id="excel">
-        <div class="section-label">Sistem</div>
-        <h3>Excel'de Toplanan Veriler</h3>
-        <p>Kampanya sayfasında yer alacak her marka/blok için Excel'de aşağıdaki gibi alanlar doldurulur:</p>
-        <table class="field-table">
-            <thead>
-                <tr><th>Veri alanı</th><th>Açıklama</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Marka adı</td>
-                    <td>Kampanyada yer alacak markanın adı</td>
-                </tr>
-                <tr>
-                    <td>İndirim tutarı / oranı</td>
-                    <td>Markaya özel indirim bilgisi (ör. %30, 500 TL)</td>
-                </tr>
-                <tr>
-                    <td>Marka logosu</td>
-                    <td>Logo görsel URL'si veya referansı</td>
-                </tr>
-                <tr>
-                    <td>Diğer kampanya metrikleri</td>
-                    <td>Sayfa tasarımına göre link, sıra, kategori, kampanya kodu vb.</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="info-box">
-            <p>Excel şablonu kampanya tipine göre genişletilebilir; sistem yeni kolonları okuyup HTML şablonuna yerleştirir.</p>
-        </div>
+    <section id="ymyl">
+        <div class="section-label">Kavram</div>
+        <h3>YMYL Nedir?</h3>
+        <p><strong>YMYL (Your Money or Your Life)</strong>: Kullanıcıların finansal durumu, sağlığı, güvenliği veya genel yaşam kalitesi üzerinde doğrudan etkisi olabilecek içerikleri tanımlayan bir terimdir.</p>
+        <p>Doğrulanmamış “kusursuz / kesin çözüm / %100 garantili” gibi iddialar özellikle hassas kabul edilir; title’da içerikle desteklenmeden kullanılmamalıdır.</p>
     </section>
 
-    <section id="surec">
+    <section id="oneri">
         <div class="section-label">Sistem</div>
-        <h3>Çalışma Akışı</h3>
+        <h3>Seller Office Önerisi</h3>
         <div class="flow">
-            <span class="flow-node">Growth / Kategori Excel doldurur</span>
+            <span class="flow-node">Satıcı title + açıklama girer</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-node">Excel sisteme yüklenir</span>
+            <span class="flow-node">LLM Spam Guardrail</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-node">Veriler okunur</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-node">HTML otomatik üretilir</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-node">Kampanya sayfasına aktarılır</span>
+            <span class="flow-node">Önerilen title gösterilir</span>
         </div>
         <table class="field-table">
             <thead>
-                <tr><th>Adım</th><th>Kim?</th><th>Ne yapılır?</th></tr>
+                <tr><th>Adım</th><th>Ne olur?</th></tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>1. Veri girişi</td>
-                    <td>Growth &amp; Kategori</td>
-                    <td>Kampanya Excel şablonunu marka, indirim, logo vb. ile doldurur</td>
+                    <td>1. Ürün girişi</td>
+                    <td>Seller Office’te ürün başlığı ve açıklama eklenir</td>
                 </tr>
                 <tr>
-                    <td>2. Üretim</td>
-                    <td>Sistem</td>
-                    <td>Excel okunur, kampanya HTML kodu otomatik oluşturulur</td>
+                    <td>2. Guardrail kontrolü</td>
+                    <td>LLM clickbait, stuffing, uzunluk, iddia–içerik uyumunu tarar</td>
                 </tr>
                 <tr>
-                    <td>3. Kontrol &amp; yayın</td>
-                    <td>Frontend</td>
-                    <td>Üretilen HTML önizlenir ve Backoffice'e aktarılır</td>
+                    <td>3. Öneri</td>
+                    <td>Temizlenmiş / kısaltılmış title satıcıya önerilir</td>
                 </tr>
             </tbody>
         </table>
-    </section>
-
-    <section id="kimler">
-        <div class="section-label">Proje Detayları</div>
-        <h3>Kimler Kullanır?</h3>
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-icon">📈</div>
-                <h4>Growth ekibi</h4>
-                <p>Kampanya markalarını, indirimleri ve metrikleri Excel'e girer; HTML ile uğraşmaz.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🏷️</div>
-                <h4>Kategori ekibi</h4>
-                <p>Kategori bazlı kampanya içeriklerini aynı Excel akışıyla iletir.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">💻</div>
-                <h4>Frontend ekibi</h4>
-                <p>Manuel kod yazmak yerine üretilen HTML'i kontrol edip yayına alır; revize taleplerinde Excel güncellenir, HTML yeniden üretilir.</p>
-            </div>
-        </div>
     </section>
 
     <section id="faydalar">
         <div class="section-label">Sistem</div>
-        <h3>Faydalar</h3>
+        <h3>Beklenen Faydalar</h3>
         <div class="card-grid">
             <div class="card">
-                <div class="card-icon">⚡</div>
-                <h4>Dramatik hız artışı</h4>
-                <p>Saatler süren kampanya HTML hazırlığı saniyelere indi; yoğun dönemlerde operasyonel darboğaz kalktı.</p>
+                <div class="card-icon">🛡️</div>
+                <h4>E-E-A-T koruması</h4>
+                <p>Clickbait ve abartılı iddiaların Trust / Experience’e zararını azaltır.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🧹</div>
+                <h4>Daha temiz SERP</h4>
+                <p>Kısa, tekrar etmeyen title’lar SERP’te kesilmeden okunur.</p>
             </div>
             <div class="card">
                 <div class="card-icon">✅</div>
-                <h4>Hata azaltma</h4>
-                <p>Manuel kopyala-yapıştır ve yazım hataları standart şablonla minimize edildi.</p>
+                <h4>İddia doğrulama</h4>
+                <p>“Kusursuz” vb. ifadeler açıklama/yorumla örtüşmezse uyarılır.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🔄</div>
-                <h4>Kolay revize</h4>
-                <p>Marka veya indirim değişikliği Excel'de güncellenir; HTML tek tıkla yeniden üretilir.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🤝</div>
-                <h4>Ekip uyumu</h4>
-                <p>Growth/kategori veri girer, frontend üretir ve yayınlar — net sorumluluk ayrımı.</p>
+                <div class="card-icon">🏪</div>
+                <h4>Satıcıya rehberlik</h4>
+                <p>Seller Office’te anında öneri; kaliteli title üretimi ölçeklenir.</p>
             </div>
         </div>
     </section>

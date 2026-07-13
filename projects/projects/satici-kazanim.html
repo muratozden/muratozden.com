@@ -3,216 +3,625 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ProjectFlow — Satıcı Kazanım Projesi</title>
+    <title>ProjectFlow — Active Seller Projesi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
     <style>
         :root {
-            --m-50: #ff44ed; --m-60: #cc35be;
-            --b-05: #eaf4fd; --b-20: #a9d6f5; --b-70: #1b5fa0;
-            --success-05: #edf8f0; --success-20: #b5e6ae; --success-70: #227a23;
-            --y-05: #fefbea; --y-20: #feed9d; --y-70: #463e17;
+            --m-50: #ff44ed;
+            --m-60: #cc35be;
+            --b-05: #eaf4fd;
+            --b-20: #a9d6f5;
+            --b-70: #1b5fa0;
+            --success-05: #edf8f0;
+            --success-20: #b5e6ae;
+            --success-70: #227a23;
+            --y-05: #fefbea;
+            --y-20: #feed9d;
+            --y-70: #463e17;
             --beige-10: #faf9f7;
-            --n-00: #ffffff; --n-10: #ececec; --n-50: #5b5b5b; --n-60: #4f4f4f; --n-80: #1c1c1e;
+            --n-00: #ffffff;
+            --n-10: #ececec;
+            --n-50: #5b5b5b;
+            --n-60: #4f4f4f;
+            --n-80: #1c1c1e;
             --d-70: #252d40;
-            --accent: var(--m-50); --accent-dark: var(--m-60);
+            --accent: var(--m-50);
+            --accent-dark: var(--m-60);
             --gradient: linear-gradient(135deg, var(--m-50) 0%, #ff68f1 45%, #fe8ef4 100%);
             --gradient-soft: linear-gradient(135deg, rgba(255, 68, 237, 0.08) 0%, rgba(255, 104, 241, 0.05) 100%);
-            --sidebar-width: 280px; --bg: var(--beige-10); --surface: var(--n-00);
-            --text: var(--n-80); --text-secondary: var(--n-60); --text-muted: var(--n-50);
+            --sidebar-width: 280px;
+            --bg: var(--beige-10);
+            --surface: var(--n-00);
+            --text: var(--n-80);
+            --text-secondary: var(--n-60);
+            --text-muted: var(--n-50);
             --border: rgba(28, 28, 30, 0.06);
-            --sidebar-bg: var(--d-70); --sidebar-surface: rgba(255, 255, 255, 0.04);
+            --sidebar-bg: var(--d-70);
+            --sidebar-surface: rgba(255, 255, 255, 0.04);
             --sidebar-border: rgba(255, 255, 255, 0.07);
-            --radius: 14px; --radius-sm: 10px;
+            --radius: 14px;
+            --radius-sm: 10px;
             --shadow: 0 4px 24px rgba(28, 28, 30, 0.06), 0 1px 2px rgba(28, 28, 30, 0.04);
             --font: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; scroll-padding-top: 3rem; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 3rem;
+        }
+
         body {
-            font-family: var(--font); background: var(--bg); color: var(--text);
-            line-height: 1.75; display: flex; min-height: 100vh; -webkit-font-smoothing: antialiased;
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+            display: flex;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
+
         body::before {
-            content: ''; position: fixed; inset: 0;
+            content: '';
+            position: fixed;
+            inset: 0;
             background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 68, 237, 0.1), transparent),
-                radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 104, 241, 0.06), transparent);
-            pointer-events: none; z-index: 0;
+            radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 104, 241, 0.06), transparent);
+            pointer-events: none;
+            z-index: 0;
         }
+
         .sidebar {
-            position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
-            background: var(--sidebar-bg); display: flex; flex-direction: column;
-            overflow-y: auto; z-index: 100; border-right: 1px solid var(--sidebar-border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+            border-right: 1px solid var(--sidebar-border);
         }
+
         .sidebar::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 200px;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
             background: linear-gradient(180deg, rgba(255, 68, 237, 0.14) 0%, transparent 100%);
             pointer-events: none;
         }
-        .sidebar-header { position: relative; padding: 2rem 1.5rem 1.5rem; }
-        .logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem; }
+
+        .sidebar-header {
+            position: relative;
+            padding: 2rem 1.5rem 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.35rem;
+        }
+
         .logo-icon {
-            width: 36px; height: 36px; border-radius: 10px; background: var(--gradient);
-            display: flex; align-items: center; justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             box-shadow: 0 4px 16px rgba(255, 68, 237, 0.35);
         }
-        .logo-icon svg { width: 18px; height: 18px; color: #fff; }
-        .sidebar-header h1 { font-size: 1.2rem; font-weight: 700; color: #fff; letter-spacing: -0.03em; }
-        .sidebar-header p { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.15rem; padding-left: 2.85rem; }
-        .sidebar nav { position: relative; padding: 0.5rem 1rem 2rem; flex: 1; }
-        .nav-group { margin-bottom: 1.75rem; }
+
+        .logo-icon svg {
+            width: 18px;
+            height: 18px;
+            color: #fff;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.03em;
+        }
+
+        .sidebar-header p {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.15rem;
+            padding-left: 2.85rem;
+        }
+
+        .sidebar nav {
+            position: relative;
+            padding: 0.5rem 1rem 2rem;
+            flex: 1;
+        }
+
+        .nav-group {
+            margin-bottom: 1.75rem;
+        }
+
         .nav-group-title {
-            font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.12em; color: rgba(255,255,255,0.3);
-            padding: 0 0.75rem; margin-bottom: 0.6rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.3);
+            padding: 0 0.75rem;
+            margin-bottom: 0.6rem;
         }
+
         .sidebar nav a {
-            display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.85rem;
-            border-radius: var(--radius-sm); color: rgba(255,255,255,0.55);
-            text-decoration: none; font-size: 0.875rem; font-weight: 500;
-            transition: all 0.2s ease; margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 0.85rem;
+            border-radius: var(--radius-sm);
+            color: rgba(255, 255, 255, 0.55);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-bottom: 2px;
         }
+
         .sidebar nav a::before {
-            content: ''; width: 4px; height: 4px; border-radius: 50%;
-            background: rgba(255,255,255,0.2); flex-shrink: 0;
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
         }
-        .sidebar nav a:hover { background: var(--sidebar-surface); color: rgba(255,255,255,0.9); }
-        .sidebar nav a.active { background: rgba(255, 68, 237, 0.16); color: var(--m-20); }
-        .sidebar nav a.active::before { background: var(--accent); box-shadow: 0 0 8px var(--accent); width: 6px; height: 6px; }
-        .sidebar-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--sidebar-border); }
-        .sidebar-footer span { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+
+        .sidebar nav a:hover {
+            background: var(--sidebar-surface);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .sidebar nav a.active {
+            background: rgba(255, 68, 237, 0.16);
+            color: #fff;
+        }
+
+        .sidebar nav a.active::before {
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+            width: 6px;
+            height: 6px;
+        }
+
+        .sidebar-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--sidebar-border);
+        }
+
+        .sidebar-footer span {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
         .main {
-            position: relative; z-index: 1; margin-left: var(--sidebar-width);
-            flex: 1; padding: 3rem 4rem 5rem; max-width: 1024px;
+            position: relative;
+            z-index: 1;
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 3rem 4rem 5rem;
+            max-width: 1024px;
         }
+
         .hero {
-            margin-bottom: 3.5rem; padding: 2.5rem; background: var(--surface);
-            border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px);
-            box-shadow: var(--shadow); position: relative; overflow: hidden;
+            margin-bottom: 3.5rem;
+            padding: 2.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: calc(var(--radius) + 4px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
+
         .hero::before {
-            content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px;
-            background: var(--gradient); opacity: 0.06; border-radius: 50%; transform: translate(30%, -40%);
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient);
+            opacity: 0.06;
+            border-radius: 50%;
+            transform: translate(30%, -40%);
         }
-        .hero-meta { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+
+        .hero-meta {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
         .badge {
-            display: inline-flex; align-items: center; gap: 0.35rem;
-            background: var(--gradient-soft); border: 1px solid rgba(255, 68, 237, 0.18);
-            color: var(--accent-dark); font-size: 0.72rem; font-weight: 600;
-            padding: 0.3rem 0.75rem; border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--gradient-soft);
+            border: 1px solid rgba(255, 68, 237, 0.18);
+            color: var(--accent-dark);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
         }
-        .badge-active { background: var(--success-05); border-color: var(--success-20); color: var(--success-70); }
-        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success-50); }
-        .badge-progress { background: var(--y-05); border-color: var(--y-20); color: var(--y-70); }
+
+        .badge-active {
+            background: var(--success-05);
+            border-color: var(--success-20);
+            color: var(--success-70);
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success-50);
+        }
+
+        .badge-progress {
+            background: var(--y-05);
+            border-color: var(--y-20);
+            color: var(--y-70);
+        }
+
         .hero h2 {
-            font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -0.04em;
-            line-height: 1.15; margin-bottom: 0.75rem;
-            background: var(--gradient); -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; background-clip: text;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .hero .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 640px; line-height: 1.65; }
-        .progress-block { margin-top: 1.5rem; max-width: 360px; }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            line-height: 1.65;
+        }
+
+        .progress-block {
+            margin-top: 1.5rem;
+            max-width: 360px;
+        }
+
         .progress-block label {
-            display: flex; justify-content: space-between; font-size: 0.82rem;
-            color: var(--text-muted); margin-bottom: 0.45rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.45rem;
         }
-        .progress-block label strong { color: var(--text); }
-        .progress-track { height: 8px; background: var(--n-10); border-radius: 999px; overflow: hidden; }
-        .progress-fill { height: 100%; border-radius: 999px; background: var(--gradient); width: 10%; }
+
+        .progress-block label strong {
+            color: var(--text);
+        }
+
+        .progress-track {
+            height: 8px;
+            background: var(--n-10);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: var(--gradient);
+            width: 10%;
+        }
+
         .dev-credit {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            margin-top: 1.25rem; padding: 0.6rem 1rem;
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: var(--radius-sm); font-size: 0.875rem; color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            padding: 0.6rem 1rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
         }
-        .dev-credit strong { color: var(--text); }
-        section { margin-bottom: 3.5rem; scroll-margin-top: 3rem; }
+
+        .dev-credit strong {
+            color: var(--text);
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+            scroll-margin-top: 3rem;
+        }
+
         .section-label {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.6rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
         }
-        .section-label::before { content: ''; width: 16px; height: 2px; background: var(--gradient); border-radius: 2px; }
-        section h3 { font-size: 1.65rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
-        section > p { margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.975rem; }
+
+        .section-label::before {
+            content: '';
+            width: 16px;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        section h3 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        section > p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.975rem;
+        }
+
         .card-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem; margin-top: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
         }
+
         .card {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: var(--radius); padding: 1.5rem; transition: all 0.25s ease;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: all 0.25s ease;
         }
-        .card:hover { border-color: rgba(255, 68, 237, 0.22); box-shadow: var(--shadow); transform: translateY(-2px); }
+
+        .card:hover {
+            border-color: rgba(255, 68, 237, 0.22);
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
         .card-icon {
-            width: 40px; height: 40px; border-radius: 10px; background: var(--gradient-soft);
-            display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--gradient-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
-        .card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+
+        .card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
         .flow {
-            display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
-            margin: 1rem 0; padding: 1.5rem; background: var(--surface);
-            border: 1px solid var(--border); border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
         }
+
         .flow-node {
-            padding: 0.55rem 1rem; background: var(--gradient-soft);
-            border: 1px solid rgba(255, 68, 237, 0.18); border-radius: 8px;
-            font-size: 0.85rem; font-weight: 600; color: var(--accent-dark);
+            padding: 0.55rem 1rem;
+            background: var(--gradient-soft);
+            border: 1px solid rgba(255, 68, 237, 0.18);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-dark);
         }
-        .flow-arrow { color: var(--text-muted); font-size: 0.85rem; }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
         .info-box {
-            background: var(--gradient-soft); border: 1px solid rgba(255, 68, 237, 0.18);
-            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1rem;
+            background: var(--gradient-soft);
+            border: 1px solid rgba(255, 68, 237, 0.18);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-top: 1rem;
         }
-        .info-box p { margin-bottom: 0; font-size: 0.925rem; color: var(--text-secondary); }
+
+        .info-box p {
+            margin-bottom: 0;
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+        }
+
         .field-table {
-            width: 100%; border-collapse: collapse; margin-top: 1rem;
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: var(--radius); overflow: hidden; font-size: 0.875rem;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.875rem;
         }
+
         .field-table th, .field-table td {
-            padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
         }
+
         .field-table th {
-            background: var(--gradient-soft); font-weight: 600; color: var(--accent-dark);
-            font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
+            background: var(--gradient-soft);
+            font-weight: 600;
+            color: var(--accent-dark);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
-        .field-table tr:last-child td { border-bottom: none; }
-        .timeline { position: relative; margin-top: 1rem; padding-left: 1.5rem; }
+
+        .field-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
         .timeline::before {
-            content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px;
-            background: linear-gradient(180deg, var(--accent), rgba(255, 68, 237, 0.1)); border-radius: 2px;
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), rgba(255, 68, 237, 0.1));
+            border-radius: 2px;
         }
-        .timeline-item { position: relative; padding: 0 0 1.75rem 1.5rem; }
-        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 1.75rem 1.5rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
         .timeline-item::before {
-            content: ''; position: absolute; left: -1.5rem; top: 0.45rem;
-            width: 12px; height: 12px; border-radius: 50%; background: var(--surface);
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.45rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--surface);
             border: 2px solid var(--accent);
         }
-        .timeline-item.done::before { background: var(--accent); }
+
+        .timeline-item.done::before {
+            background: var(--accent);
+        }
+
         .timeline-item .period {
-            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.2rem;
         }
-        .timeline-item .title { font-weight: 600; color: var(--text); font-size: 0.95rem; margin-bottom: 0.25rem; }
-        .timeline-item .desc { font-size: 0.875rem; color: var(--text-muted); }
+
+        .timeline-item .title {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-item .desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
         .menu-toggle {
-            display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200;
-            width: 44px; height: 44px; background: var(--sidebar-bg); color: #fff;
-            border: 1px solid var(--sidebar-border); border-radius: 12px; cursor: pointer;
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 200;
+            width: 44px;
+            height: 44px;
+            background: var(--sidebar-bg);
+            color: #fff;
+            border: 1px solid var(--sidebar-border);
+            border-radius: 12px;
+            cursor: pointer;
         }
-        .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90; }
-        .overlay.visible { display: block; }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+        }
+
+        .overlay.visible {
+            display: block;
+        }
+
         @media (max-width: 768px) {
-            .menu-toggle { display: flex; align-items: center; justify-content: center; }
-            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
-            .sidebar.open { transform: translateX(0); }
-            .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 2.5rem 1.5rem 4rem;
+                padding-top: 4.5rem;
+            }
         }
-    
+
         /* Proje aşaması özeti */
         .asama-panel {
             background: var(--surface);
@@ -221,12 +630,14 @@
             padding: 1.5rem;
             box-shadow: var(--shadow);
         }
+
         .asama-meta {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 1rem;
             margin-bottom: 1.25rem;
         }
+
         .asama-meta-item .meta-label {
             display: block;
             font-size: 0.72rem;
@@ -236,16 +647,33 @@
             color: var(--text-muted);
             margin-bottom: 0.25rem;
         }
+
         .asama-meta-item .meta-value {
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text);
         }
-        .meta-value.status-active { color: var(--success-70, #227a23); }
-        .meta-value.status-completed { color: var(--success-70, #227a23); }
-        .meta-value.status-planning { color: var(--y-70, #463e17); }
-        .meta-value.status-paused { color: var(--text-muted); }
-        .asama-progress { margin-bottom: 1.25rem; }
+
+        .meta-value.status-active {
+            color: var(--success-70, #227a23);
+        }
+
+        .meta-value.status-completed {
+            color: var(--success-70, #227a23);
+        }
+
+        .meta-value.status-planning {
+            color: var(--y-70, #463e17);
+        }
+
+        .meta-value.status-paused {
+            color: var(--text-muted);
+        }
+
+        .asama-progress {
+            margin-bottom: 1.25rem;
+        }
+
         .asama-progress label {
             display: flex;
             justify-content: space-between;
@@ -253,28 +681,38 @@
             color: var(--text-muted);
             margin-bottom: 0.45rem;
         }
-        .asama-progress label strong { color: var(--text); }
+
+        .asama-progress label strong {
+            color: var(--text);
+        }
+
         .asama-progress .progress-track {
             height: 8px;
             background: var(--n-10, #ececec);
             border-radius: 999px;
             overflow: hidden;
         }
+
         .asama-progress .progress-fill {
             height: 100%;
             border-radius: 999px;
             background: var(--gradient);
         }
+
         .asama-ozet {
             padding-top: 1.25rem;
             border-top: 1px solid var(--border);
         }
+
         .asama-ozet p {
             margin: 0 0 0.75rem;
             font-size: 0.95rem;
             color: var(--text-secondary);
         }
-        .asama-ozet p:last-child { margin-bottom: 0; }
+
+        .asama-ozet p:last-child {
+            margin-bottom: 0;
+        }
 
     </style>
 </head>
@@ -295,7 +733,7 @@
             </div>
             <h1>ProjectFlow</h1>
         </div>
-        <p>Satıcı Kazanım Projesi</p>
+        <p>Active Seller Projesi</p>
     </div>
     <nav id="nav">
         <div class="nav-group">
@@ -327,13 +765,15 @@
                 <span class="badge badge-active"><span class="badge-dot"></span> Aktif</span>
                 <span class="badge badge-progress">%10</span>
                 <span class="badge">Trendyol → n11</span>
-                <span class="badge">Satıcı Kazanım</span>
+                <span class="badge">Active Seller</span>
             </div>
-            <h2>Satıcı Kazanım Projesi</h2>
-            <p class="subtitle">n11'de üye olmayan ancak Trendyol'da aktif ve yüksek satış potansiyeline sahip satıcıları tespit etmek için geliştirdiğimiz veri toplama ve analiz projesi. Satıcıya ait puan, ürün adedi, iletişim ve resmi bilgiler tek merkezde toplanır.</p>
+            <h2>Active Seller Projesi</h2>
+            <p class="subtitle">n11'de üye olmayan ancak eticaret'te aktif ve yüksek satış potansiyeline sahip satıcıları tespit etmek için geliştirdiğimiz veri toplama ve analiz projesi. Satıcıya ait puan, ürün adedi, iletişim ve resmi bilgiler tek merkezde toplanır.</p>
             <div class="progress-block">
                 <label><span>Proje ilerlemesi</span><strong>%10</strong></label>
-                <div class="progress-track"><div class="progress-fill"></div></div>
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                </div>
             </div>
             <div class="dev-credit">Geliştirici: <strong>Murat Özden</strong></div>
         </div>
@@ -366,11 +806,13 @@
             </div>
             <div class="asama-progress">
                 <label><span>Genel ilerleme</span><strong>%10</strong></label>
-                <div class="progress-track"><div class="progress-fill" style="width: 10%"></div></div>
+                <div class="progress-track">
+                    <div class="progress-fill" style="width: 10%"></div>
+                </div>
             </div>
             <div class="asama-ozet">
-            <p>Proje şu an <strong>%10</strong> aşamasında. Temel sistem hazır ve aktif olarak veri toplamaya devam ediliyor.</p>
-            <p><strong>Şu an:</strong> Altyapı kuruldu, satıcı verileri toplanıyor. Sonraki aşamalarda filtreleme, skorlama ve kazanım ekibine aktarım süreçleri genişletilecek.</p>
+                <p>Proje şu an <strong>%10</strong> aşamasında. Temel sistem hazır ve aktif olarak veri toplamaya devam ediliyor.</p>
+                <p><strong>Şu an:</strong> Altyapı kuruldu, satıcı verileri toplanıyor. Sonraki aşamalarda filtreleme, skorlama ve kazanım ekibine aktarım süreçleri genişletilecek.</p>
             </div>
         </div>
     </section>
@@ -400,50 +842,54 @@
         </div>
     </section>
 
-    
+
     <section id="veri">
         <div class="section-label">Sistem</div>
         <h3>Toplanan Veriler</h3>
         <p>Her satıcı için kazanım sürecinde ihtiyaç duyulabilecek bilgiler mümkün olduğunca kapsamlı toplanır:</p>
         <table class="field-table">
             <thead>
-                <tr><th>Veri alanı</th><th>Açıklama</th><th>Kullanım</th></tr>
+            <tr>
+                <th>Veri alanı</th>
+                <th>Açıklama</th>
+                <th>Kullanım</th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Satıcı puanı</td>
-                    <td>Platformdaki genel mağaza/değerlendirme puanı</td>
-                    <td>Kalite ve güvenilirlik ön değerlendirmesi</td>
-                </tr>
-                <tr>
-                    <td>Ürün adedi</td>
-                    <td>Mağazadaki toplam ürün sayısı</td>
-                    <td>Operasyonel büyüklük ve katalog derinliği</td>
-                </tr>
-                <tr>
-                    <td>Değerlendirme</td>
-                    <td>Yorum ve puan istatistikleri</td>
-                    <td>Müşteri memnuniyeti sinyali</td>
-                </tr>
-                <tr>
-                    <td>Vergi kimlik no</td>
-                    <td>Resmi vergi kimlik bilgisi</td>
-                    <td>Kurumsal doğrulama ve onboarding</td>
-                </tr>
-                <tr>
-                    <td>KEP adresi</td>
-                    <td>Kayıtlı elektronik posta adresi</td>
-                    <td>Resmi yazışma ve yasal iletişim</td>
-                </tr>
-                <tr>
-                    <td>Telefon</td>
-                    <td>İletişim numarası</td>
-                    <td>Doğrudan satıcı iletişimi</td>
-                </tr>
+            <tr>
+                <td>Satıcı puanı</td>
+                <td>Platformdaki genel mağaza/değerlendirme puanı</td>
+                <td>Kalite ve güvenilirlik ön değerlendirmesi</td>
+            </tr>
+            <tr>
+                <td>Ürün adedi</td>
+                <td>Mağazadaki toplam ürün sayısı</td>
+                <td>Operasyonel büyüklük ve katalog derinliği</td>
+            </tr>
+            <tr>
+                <td>Değerlendirme</td>
+                <td>Yorum ve puan istatistikleri</td>
+                <td>Müşteri memnuniyeti sinyali</td>
+            </tr>
+            <tr>
+                <td>Vergi kimlik no</td>
+                <td>Resmi vergi kimlik bilgisi</td>
+                <td>Kurumsal doğrulama ve onboarding</td>
+            </tr>
+            <tr>
+                <td>KEP adresi</td>
+                <td>Kayıtlı elektronik posta adresi</td>
+                <td>Resmi yazışma ve yasal iletişim</td>
+            </tr>
+            <tr>
+                <td>Telefon</td>
+                <td>İletişim numarası</td>
+                <td>Doğrudan satıcı iletişimi</td>
+            </tr>
             </tbody>
         </table>
         <div class="info-box">
-            <p>Liste ihtiyaçlara göre genişletilebilir; amaç satıcı kazanım ekibinin tek ekranda karar verebileceği kadar zengin profil oluşturmaktır.</p>
+            <p>Liste ihtiyaçlara göre genişletilebilir; amaç Active Seller ekibinin tek ekranda karar verebileceği kadar zengin profil oluşturmaktır.</p>
         </div>
     </section>
 
@@ -463,29 +909,32 @@
         </div>
         <table class="field-table">
             <thead>
-                <tr><th>Adım</th><th>Ne yapılır?</th></tr>
+            <tr>
+                <th>Adım</th>
+                <th>Ne yapılır?</th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1. Keşif</td>
-                    <td>Trendyol'daki satıcılar sistem tarafından taranır</td>
-                </tr>
-                <tr>
-                    <td>2. Filtreleme</td>
-                    <td>n11'de kayıtlı olmayan satıcılar ayrıştırılır</td>
-                </tr>
-                <tr>
-                    <td>3. Skorlama</td>
-                    <td>Ürün adedi, puan ve değerlendirme gibi sinyallerle potansiyel belirlenir</td>
-                </tr>
-                <tr>
-                    <td>4. Zenginleştirme</td>
-                    <td>Vergi kimlik, KEP, telefon gibi iletişim ve resmi bilgiler toplanır</td>
-                </tr>
-                <tr>
-                    <td>5. Kazanım</td>
-                    <td>Öncelikli satıcı listesi kazanım ekibine sunulur</td>
-                </tr>
+            <tr>
+                <td>1. Keşif</td>
+                <td>Trendyol'daki satıcılar sistem tarafından taranır</td>
+            </tr>
+            <tr>
+                <td>2. Filtreleme</td>
+                <td>n11'de kayıtlı olmayan satıcılar ayrıştırılır</td>
+            </tr>
+            <tr>
+                <td>3. Skorlama</td>
+                <td>Ürün adedi, puan ve değerlendirme gibi sinyallerle potansiyel belirlenir</td>
+            </tr>
+            <tr>
+                <td>4. Zenginleştirme</td>
+                <td>Vergi kimlik, KEP, telefon gibi iletişim ve resmi bilgiler toplanır</td>
+            </tr>
+            <tr>
+                <td>5. Kazanım</td>
+                <td>Öncelikli satıcı listesi kazanım ekibine sunulur</td>
+            </tr>
             </tbody>
         </table>
     </section>
@@ -563,6 +1012,7 @@
             sidebar.classList.remove('open');
             overlay.classList.remove('visible');
         }
+
         menuToggle.addEventListener('click', function () {
             sidebar.classList.contains('open') ? closeSidebar() : (sidebar.classList.add('open'), overlay.classList.add('visible'));
         });
@@ -572,6 +1022,7 @@
                 if (window.innerWidth <= 768) closeSidebar();
             });
         });
+
         function setActiveLink() {
             let current = '';
             sections.forEach(function (section) {
@@ -581,7 +1032,8 @@
                 link.classList.toggle('active', link.getAttribute('href') === '#' + current);
             });
         }
-        window.addEventListener('scroll', setActiveLink, { passive: true });
+
+        window.addEventListener('scroll', setActiveLink, {passive: true});
         setActiveLink();
     })();
 </script>

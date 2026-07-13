@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ProjectFlow — Otomatik Kampanya Sayfa Oluşturma</title>
+    <title>ProjectFlow — Attribute</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
@@ -12,6 +12,7 @@
             --m-50: #ff44ed; --m-60: #cc35be;
             --error-05: #feeeef; --error-20: #ffb1b1; --error-70: #752526;
             --success-05: #edf8f0; --success-20: #b5e6ae; --success-70: #227a23;
+            --y-05: #fefbea; --y-20: #feed9d; --y-70: #463e17;
             --beige-10: #faf9f7;
             --n-00: #ffffff; --n-10: #ececec; --n-50: #5b5b5b; --n-60: #4f4f4f; --n-80: #1c1c1e;
             --d-70: #252d40;
@@ -102,6 +103,8 @@
             padding: 0.3rem 0.75rem; border-radius: 999px;
         }
         .badge-completed { background: var(--success-05); border-color: var(--success-20); color: var(--success-70); }
+        .badge-planning { background: var(--y-05); border-color: var(--y-20); color: var(--y-70); }
+        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--y-20); }
         .hero h2 {
             font-size: clamp(1.85rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.04em;
             line-height: 1.15; margin-bottom: 0.75rem;
@@ -202,6 +205,19 @@
             font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
         }
         .field-table tr:last-child td { border-bottom: none; }
+        .stat-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;
+        }
+        .stat-card {
+            text-align: center; padding: 1.25rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: var(--radius);
+        }
+        .stat-card .num {
+            font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em;
+            background: var(--gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-card .desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.35rem; }
         .menu-toggle {
             display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200;
             width: 44px; height: 44px; background: var(--sidebar-bg); color: #fff;
@@ -214,7 +230,7 @@
             .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
             .sidebar.open { transform: translateX(0); }
             .main { margin-left: 0; padding: 2.5rem 1.5rem 4rem; padding-top: 4.5rem; }
-            .compare, .impact-row { grid-template-columns: 1fr; }
+            .compare, .impact-row, .stat-row { grid-template-columns: 1fr; }
             .impact-arrow { text-align: center; transform: rotate(90deg); }
         }
     
@@ -300,7 +316,7 @@
             </div>
             <h1>ProjectFlow</h1>
         </div>
-        <p>Otomatik Kampanya Sayfa</p>
+        <p>Attribute</p>
     </div>
     <nav id="nav">
         <div class="nav-group">
@@ -311,15 +327,14 @@
             <div class="nav-group-title">Genel</div>
             <a href="#proje-tanitimi">Proje Tanıtımı</a>
             <a href="#proje-asama">Proje Aşaması</a>
-            <a href="#problem">Eski Süreç</a>
-            <a href="#cozum">Yeni Süreç</a>
+            <a href="#amac">Amaç</a>
+            <a href="#kaynaklar">Veri Kaynakları</a>
         </div>
         <div class="nav-group">
-            <div class="nav-group-title">Sistem</div>
-            <a href="#excel">Excel Verileri</a>
+            <div class="nav-group-title">Plan</div>
             <a href="#surec">Çalışma Akışı</a>
-            <a href="#kimler">Kimler Kullanır?</a>
-            <a href="#faydalar">Faydalar</a>
+            <a href="#yol-haritasi">Yol Haritası</a>
+            <a href="#faydalar">Beklenen Faydalar</a>
         </div>
     </nav>
     <div class="sidebar-footer"><span>© 2026 ProjectFlow</span></div>
@@ -330,27 +345,16 @@
     <section id="proje-tanitimi">
         <div class="hero">
             <div class="hero-meta">
-                <span class="badge badge-completed">Tamamlandı</span>
-                <span class="badge">Excel → HTML</span>
-                <span class="badge">Kampanya</span>
-                <span class="badge">Otomasyon</span>
+                <span class="badge badge-planning"><span class="badge-dot"></span> Planlama</span>
+                <span class="badge">Ürün Attribute</span>
+                <span class="badge">Akakçe</span>
+                <span class="badge">PDP</span>
             </div>
-            <h2>Otomatik Kampanya Sayfa Oluşturma</h2>
-            <p class="subtitle">Growth ve kategori ekiplerinin Excel ile ilettiği kampanya verilerini okuyup kampanya sayfasına ait HTML kodunu otomatik üreten sistem. Geçmişte saatler süren manuel HTML hazırlığı artık saniyeler içinde tamamlanıyor.</p>
-            <div class="impact-row">
-                <div class="impact-box before">
-                    <div class="value">Saatler</div>
-                    <div class="label">Eski süreç</div>
-                </div>
-                <div class="impact-arrow">→</div>
-                <div class="impact-box after">
-                    <div class="value">Saniyeler</div>
-                    <div class="label">Yeni süreç</div>
-                </div>
-            </div>
-            <div class="dev-credit">Geliştirici: <strong>Tuğba Özbek</strong></div>
+            <h2>Attribute</h2>
+            <p class="subtitle">n11.com ürün detay sayfalarındaki ürün attribute (özellik) verisini genişletmek için Hepsiburada, Akakçe, Trendyol gibi e-ticaret platformlarından attr bilgisi toplayıp, ortaklaştırarak PDP sayfalarına aktarmayı hedefleyen proje.</p>
         </div>
     </section>
+
     <section id="proje-asama">
         <div class="section-label">Durum Özeti</div>
         <h3>Proje Aşaması</h3>
@@ -358,104 +362,79 @@
             <div class="asama-meta">
                 <div class="asama-meta-item">
                     <span class="meta-label">Durum</span>
-                    <span class="meta-value status-completed">Tamamlandı</span>
+                    <span class="meta-value status-planning">Planlama</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">İlerleme</span>
-                    <span class="meta-value">%100</span>
+                    <span class="meta-value">%0</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Milestone</span>
-                    <span class="meta-value">3 / 3</span>
+                    <span class="meta-value">0 / 4</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Sorumlu</span>
-                    <span class="meta-value">Tuğba Özbek</span>
+                    <span class="meta-value">Service Design Development</span>
                 </div>
                 <div class="asama-meta-item">
                     <span class="meta-label">Son güncelleme</span>
-                    <span class="meta-value">27 Haziran 2026</span>
+                    <span class="meta-value">13 Temmuz 2026</span>
                 </div>
             </div>
             <div class="asama-progress">
-                <label><span>Genel ilerleme</span><strong>%100</strong></label>
-                <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                <label><span>Genel ilerleme</span><strong>%0</strong></label>
+                <div class="progress-track"><div class="progress-fill" style="width: 0%"></div></div>
             </div>
             <div class="asama-ozet">
-            <p>Excel'den kampanya HTML üretimi canlı kullanımda; growth ve kategori ekipleri günlük operasyonda.</p>
-            <p>Saatler süren manuel HTML hazırlığı saniyelere indi.</p>
+            <p>Proje planlama aşamasında. İlk odak: <strong>Akakçe</strong> üzerinden ürün eşleştirme ve attribute çekimi.</p>
+            <p>Sonraki adımlar: attr mapping / ortaklaştırma ve n11 PDP sayfalarına aktarım.</p>
             </div>
         </div>
     </section>
 
-
-    <section id="problem">
-        <div class="section-label">Problem Analizi</div>
-        <h3>Eski Süreç: Manuel HTML</h3>
-        <p>Kampanya dönemlerinde growth ve kategori ekipleri, sayfada yer alacak markaları, indirim tutarlarını, marka logolarını ve diğer metrikleri Excel dosyası olarak frontend ekibine iletiyordu.</p>
-        <p>Frontend ekibi bu bilgileri alıp <strong>her marka ve blok için tek tek HTML kodu</strong> yazıyordu. Çok markalı, sık güncellenen kampanyalarda bu süreç saatler alıyor ve hata riski taşıyordu.</p>
-        <div class="compare">
-            <div class="compare-col before">
-                <h4>❌ Önce</h4>
-                <ul>
-                    <li>Excel → manuel HTML yazımı</li>
-                    <li>Her marka/blok ayrı kodlanır</li>
-                    <li>Saatler süren operasyon</li>
-                    <li>Kopyala-yapıştır hataları</li>
-                    <li>Revize = baştan kodlama</li>
-                </ul>
-            </div>
-            <div class="compare-col after">
-                <h4>✅ Sonra</h4>
-                <ul>
-                    <li>Excel → otomatik HTML üretimi</li>
-                    <li>Tüm satırlar tek seferde işlenir</li>
-                    <li>Saniyeler içinde tamamlanır</li>
-                    <li>Standart şablon, tutarlı çıktı</li>
-                    <li>Revize = Excel güncelle, yeniden üret</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="cozum">
+    <section id="amac">
         <div class="section-label">Proje Detayları</div>
-        <h3>Yeni Süreç: Excel'den Otomatik HTML</h3>
-        <p>Kategori ve growth ekipleri kampanya bilgilerini standart Excel şablonuna doldurur. Sistem dosyayı okur, satır satır verileri işler ve kampanya sayfasının tam HTML kodunu otomatik oluşturur.</p>
-        <div class="info-box">
-            <p>Operasyonel yük frontend'den iş birimlerine kaydırılmadı — ekipler zaten Excel kullanıyordu. Değişen, Excel'den sonra HTML'in <strong>insan eli değmeden</strong> üretilmesi.</p>
+        <h3>Amaç</h3>
+        <p>n11 ürün detay sayfalarındaki attribute alanları çoğu zaman sınırlı veya eksik kalabiliyor. Bu proje, rakip ve karşılaştırma sitelerindeki zengin ürün özellik verisini toplayarak n11 PDP'lerindeki attr setini genişletmeyi hedefler.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h4>Daha zengin PDP</h4>
+                <p>Ürün özellikleri (renk, boyut, teknik özellik vb.) daha kapsamlı ve tutarlı gösterilir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h4>Keşfedilebilirlik</h4>
+                <p>Zengin attr verisi filtreleme, karşılaştırma ve arama deneyimini güçlendirir.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h4>Ortak veri modeli</h4>
+                <p>Farklı platformlardan gelen attr'ler mapping ile tek bir ortak yapıya indirgenir.</p>
+            </div>
         </div>
     </section>
 
-    <section id="excel">
+    <section id="kaynaklar">
         <div class="section-label">Sistem</div>
-        <h3>Excel'de Toplanan Veriler</h3>
-        <p>Kampanya sayfasında yer alacak her marka/blok için Excel'de aşağıdaki gibi alanlar doldurulur:</p>
-        <table class="field-table">
-            <thead>
-                <tr><th>Veri alanı</th><th>Açıklama</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Marka adı</td>
-                    <td>Kampanyada yer alacak markanın adı</td>
-                </tr>
-                <tr>
-                    <td>İndirim tutarı / oranı</td>
-                    <td>Markaya özel indirim bilgisi (ör. %30, 500 TL)</td>
-                </tr>
-                <tr>
-                    <td>Marka logosu</td>
-                    <td>Logo görsel URL'si veya referansı</td>
-                </tr>
-                <tr>
-                    <td>Diğer kampanya metrikleri</td>
-                    <td>Sayfa tasarımına göre link, sıra, kategori, kampanya kodu vb.</td>
-                </tr>
-            </tbody>
-        </table>
+        <h3>Veri Kaynakları</h3>
+        <p>Attribute bilgisi aşağıdaki e-ticaret / karşılaştırma platformlarından toplanacak:</p>
+        <div class="stat-row">
+            <div class="stat-card">
+                <div class="num">1.</div>
+                <div class="desc">Akakçe — ilk öncelik</div>
+            </div>
+            <div class="stat-card">
+                <div class="num">2.</div>
+                <div class="desc">Hepsiburada</div>
+            </div>
+            <div class="stat-card">
+                <div class="num">3.</div>
+                <div class="desc">Trendyol</div>
+            </div>
+        </div>
         <div class="info-box">
-            <p>Excel şablonu kampanya tipine göre genişletilebilir; sistem yeni kolonları okuyup HTML şablonuna yerleştirir.</p>
+            <p>İlk fazda yalnızca <strong>Akakçe</strong> üzerinden eşleştirme ve attr çekimi yapılacak; diğer kaynaklar sonraki genişletme adımlarında eklenecek.</p>
         </div>
     </section>
 
@@ -463,85 +442,96 @@
         <div class="section-label">Sistem</div>
         <h3>Çalışma Akışı</h3>
         <div class="flow">
-            <span class="flow-node">Growth / Kategori Excel doldurur</span>
+            <span class="flow-node">n11 ürünü</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-node">Excel sisteme yüklenir</span>
+            <span class="flow-node">Akakçe eşleştirme</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-node">Veriler okunur</span>
+            <span class="flow-node">Attr çekimi</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-node">HTML otomatik üretilir</span>
+            <span class="flow-node">Mapping / ortaklama</span>
             <span class="flow-arrow">→</span>
-            <span class="flow-node">Kampanya sayfasına aktarılır</span>
+            <span class="flow-node">n11 PDP aktarımı</span>
         </div>
         <table class="field-table">
             <thead>
-                <tr><th>Adım</th><th>Kim?</th><th>Ne yapılır?</th></tr>
+                <tr><th>Adım</th><th>Ne yapılır?</th></tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>1. Veri girişi</td>
-                    <td>Growth &amp; Kategori</td>
-                    <td>Kampanya Excel şablonunu marka, indirim, logo vb. ile doldurur</td>
+                    <td>1. Ürün eşleştirme</td>
+                    <td>n11 ürünü ile Akakçe'deki karşılık ürün bulunur (barkod, model, başlık vb. sinyallerle)</td>
                 </tr>
                 <tr>
-                    <td>2. Üretim</td>
-                    <td>Sistem</td>
-                    <td>Excel okunur, kampanya HTML kodu otomatik oluşturulur</td>
+                    <td>2. Attr verisi çekme</td>
+                    <td>Eşleşen üründen attribute alanları ve değerleri toplanır</td>
                 </tr>
                 <tr>
-                    <td>3. Kontrol &amp; yayın</td>
-                    <td>Frontend</td>
-                    <td>Üretilen HTML önizlenir ve Backoffice'e aktarılır</td>
+                    <td>3. Mapping / ortaklama</td>
+                    <td>Kaynak attr isimleri n11 ortak attribute modeline map edilir; çakışmalar ve eksikler çözülür</td>
+                </tr>
+                <tr>
+                    <td>4. PDP aktarımı</td>
+                    <td>Ortaklaştırılmış attr verisi n11 ürün detay sayfalarına yazılır / yayınlanır</td>
                 </tr>
             </tbody>
         </table>
     </section>
 
-    <section id="kimler">
-        <div class="section-label">Proje Detayları</div>
-        <h3>Kimler Kullanır?</h3>
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-icon">📈</div>
-                <h4>Growth ekibi</h4>
-                <p>Kampanya markalarını, indirimleri ve metrikleri Excel'e girer; HTML ile uğraşmaz.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🏷️</div>
-                <h4>Kategori ekibi</h4>
-                <p>Kategori bazlı kampanya içeriklerini aynı Excel akışıyla iletir.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">💻</div>
-                <h4>Frontend ekibi</h4>
-                <p>Manuel kod yazmak yerine üretilen HTML'i kontrol edip yayına alır; revize taleplerinde Excel güncellenir, HTML yeniden üretilir.</p>
-            </div>
-        </div>
+    <section id="yol-haritasi">
+        <div class="section-label">Plan</div>
+        <h3>Yol Haritası</h3>
+        <table class="field-table">
+            <thead>
+                <tr><th>Faz</th><th>Hedef</th><th>Durum</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Faz 1</td>
+                    <td>Akakçe ürün eşleştirme altyapısı</td>
+                    <td>Planlandı</td>
+                </tr>
+                <tr>
+                    <td>Faz 2</td>
+                    <td>Akakçe'den attribute çekimi</td>
+                    <td>Planlandı</td>
+                </tr>
+                <tr>
+                    <td>Faz 3</td>
+                    <td>Attr mapping ve ortak veri modeli</td>
+                    <td>Planlandı</td>
+                </tr>
+                <tr>
+                    <td>Faz 4</td>
+                    <td>n11 PDP sayfalarına aktarım</td>
+                    <td>Planlandı</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
     <section id="faydalar">
         <div class="section-label">Sistem</div>
-        <h3>Faydalar</h3>
+        <h3>Beklenen Faydalar</h3>
         <div class="card-grid">
             <div class="card">
-                <div class="card-icon">⚡</div>
-                <h4>Dramatik hız artışı</h4>
-                <p>Saatler süren kampanya HTML hazırlığı saniyelere indi; yoğun dönemlerde operasyonel darboğaz kalktı.</p>
+                <div class="card-icon">📈</div>
+                <h4>Daha dolu ürün sayfaları</h4>
+                <p>Eksik veya zayıf attribute'lar rakip kaynaklardan tamamlanır.</p>
             </div>
             <div class="card">
-                <div class="card-icon">✅</div>
-                <h4>Hata azaltma</h4>
-                <p>Manuel kopyala-yapıştır ve yazım hataları standart şablonla minimize edildi.</p>
+                <div class="card-icon">🧭</div>
+                <h4>Standart attribute seti</h4>
+                <p>Mapping ile farklı sitelerdeki dağınık özellik isimleri ortak modele oturtulur.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🔄</div>
-                <h4>Kolay revize</h4>
-                <p>Marka veya indirim değişikliği Excel'de güncellenir; HTML tek tıkla yeniden üretilir.</p>
+                <div class="card-icon">🚀</div>
+                <h4>Ölçeklenebilir kaynaklar</h4>
+                <p>Akakçe ile başlayan akış, Hepsiburada ve Trendyol ile genişletilebilir.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🤝</div>
-                <h4>Ekip uyumu</h4>
-                <p>Growth/kategori veri girer, frontend üretir ve yayınlar — net sorumluluk ayrımı.</p>
+                <div class="card-icon">🛍️</div>
+                <h4>Daha iyi alışveriş deneyimi</h4>
+                <p>Kullanıcı ürünü karşılaştırırken ve filtrelerken daha net özellik bilgisi görür.</p>
             </div>
         </div>
     </section>
