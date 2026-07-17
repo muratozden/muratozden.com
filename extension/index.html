@@ -13,9 +13,11 @@
       --m-60: #cc35be;
       --beige-10: #faf9f7;
       --n-00: #ffffff;
+      --n-40: #8a8a8a;
       --n-50: #5b5b5b;
       --n-60: #4f4f4f;
       --n-80: #1c1c1e;
+      --line: rgba(28, 28, 30, 0.1);
       --gradient: linear-gradient(135deg, #ff44ed 0%, #ff68f1 45%, #fe8ef4 100%);
       --font: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -31,6 +33,7 @@
       align-items: center;
       justify-content: center;
       -webkit-font-smoothing: antialiased;
+      padding: 2rem 1.25rem;
     }
 
     body::before {
@@ -38,49 +41,40 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 68, 237, 0.1), transparent),
-        radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 104, 241, 0.06), transparent);
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(255, 68, 237, 0.12), transparent),
+        radial-gradient(ellipse 50% 40% at 100% 10%, rgba(255, 104, 241, 0.07), transparent);
       pointer-events: none;
     }
 
     .page {
       position: relative;
       z-index: 1;
-      text-align: center;
-      padding: 2rem;
-      max-width: 480px;
-    }
-
-    .icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 1.5rem;
-      border-radius: 16px;
-      background: var(--gradient);
-      display: flex;
+      width: 100%;
+      max-width: 960px;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 3rem;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 32px rgba(255, 68, 237, 0.25);
     }
 
-    .icon svg {
-      width: 32px;
-      height: 32px;
-      fill: #fff;
+    .download {
+      text-align: left;
     }
 
-    h1 {
-      font-size: clamp(1.5rem, 4vw, 1.875rem);
+    .download h1 {
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
       font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.875rem;
     }
 
-    p {
+    .lead {
       color: var(--n-60);
-      font-size: 1rem;
+      font-size: 1.0625rem;
       line-height: 1.6;
       margin-bottom: 2rem;
+      max-width: 22rem;
     }
 
     .download-btn {
@@ -117,23 +111,227 @@
     }
 
     .hint {
-      margin-top: 1.25rem;
+      margin-top: 1rem;
       font-size: 0.8125rem;
       color: var(--n-50);
+    }
+
+    .steps {
+      text-align: left;
+    }
+
+    .steps-header {
+      margin-bottom: 1.25rem;
+    }
+
+    .steps-header h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.35rem;
+    }
+
+    .steps-header p {
+      color: var(--n-50);
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .step-list {
+      background-color: var(--n-00);
+      border-radius: 16px;
+      border: 2px dashed #ff44ed44;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 2.25rem 1fr;
+      column-gap: 1rem;
+      position: relative;
+    }
+
+    .step-marker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: var(--n-00);
+      border: 2px solid rgba(255, 68, 237, 0.35);
+      color: var(--m-60);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 1;
+      box-shadow: 0 0 0 4px var(--n-00);
+    }
+
+    .step:first-child .step-number,
+    .step:last-child .step-number {
+      background: var(--gradient);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .step:not(:last-child) .step-marker::after {
+      content: '';
+      width: 2px;
+      flex: 1;
+      min-height: 1.25rem;
+      background: linear-gradient(to bottom, rgba(255, 68, 237, 0.35), rgba(255, 68, 237, 0.08));
+      margin: 0.35rem 0;
+    }
+
+    .step-body {
+      padding-bottom: 1.25rem;
+      padding-top: 0.2rem;
+    }
+
+    .step:last-child .step-body {
+      padding-bottom: 0;
+    }
+
+    .step-title {
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--n-80);
+      line-height: 1.35;
+      margin-bottom: 0.25rem;
+    }
+
+    .step-desc {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--n-60);
+    }
+
+    .step-desc code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      background: rgba(255, 68, 237, 0.1);
+      color: var(--m-60);
+      padding: 0.12em 0.4em;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .step-desc strong {
+      color: var(--n-80);
+      font-weight: 600;
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        max-width: 520px;
+      }
+
+      .download {
+        text-align: center;
+      }
+
+      .lead {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <h1>Productivity Extension</h1>
-    <p>n11.com ve Back Office üzerinde çalışan ekipler için Chrome tarayıcı eklentisi.</p>
-    <a class="download-btn" href="n11-ProductivityExtension.zip" download="n11-ProductivityExtension.zip">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-      </svg>
-      Eklentiyi İndir
-    </a>
-    <p class="hint">version: 1.2.2</p>
+    <section class="download">
+      <h1>Productivity Extension</h1>
+      <p class="lead">n11.com ve Back Office üzerinde çalışan ekipler için Chrome tarayıcı eklentisi.</p>
+      <a class="download-btn" href="n11-ProductivityExtension.zip" download="n11-ProductivityExtension.zip">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        Eklentiyi İndir
+      </a>
+      <p class="hint">version: 1.2.2</p>
+    </section>
+
+    <section class="steps" aria-labelledby="install-heading">
+      <div class="steps-header">
+        <h2 id="install-heading">Chrome’a nasıl kurulur?</h2>
+        <p>Zip’i indirdikten sonra aşağıdaki adımları sırayla uygulayın.</p>
+      </div>
+
+      <ol class="step-list">
+        <li class="step">
+          <div class="step-marker" aria-hidden="true">
+            <span class="step-number">1</span>
+          </div>
+          <div class="step-body">
+            <h3 class="step-title">Eklentiyi indirin</h3>
+            <p class="step-desc">Soldaki butonla <strong>n11-ProductivityExtension.zip</strong> dosyasını bilgisayarınıza indirin.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="step-marker" aria-hidden="true">
+            <span class="step-number">2</span>
+          </div>
+          <div class="step-body">
+            <h3 class="step-title">Zip dosyasını açın</h3>
+            <p class="step-desc">İndirdiğiniz zip’i bir klasöre çıkarın. Kurulumda bu klasörü seçeceksiniz.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="step-marker" aria-hidden="true">
+            <span class="step-number">3</span>
+          </div>
+          <div class="step-body">
+            <h3 class="step-title">Eklentiler sayfasını açın</h3>
+            <p class="step-desc">Chrome adres çubuğuna <code>chrome://extensions</code> yazıp Enter’a basın.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="step-marker" aria-hidden="true">
+            <span class="step-number">4</span>
+          </div>
+          <div class="step-body">
+            <h3 class="step-title">Geliştirici modunu açın</h3>
+            <p class="step-desc">Sayfanın sağ üstündeki <strong>Geliştirici modu</strong> anahtarını etkinleştirin.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="step-marker" aria-hidden="true">
+            <span class="step-number">5</span>
+          </div>
+          <div class="step-body">
+            <h3 class="step-title">Paketlenmemiş öğeyi yükleyin</h3>
+            <p class="step-desc"><strong>Paketlenmemiş öğe yükle</strong> butonuna tıklayın, zip’ten çıkardığınız klasörü seçin ve onaylayın.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="step-marker" aria-hidden="true">
+            <span class="step-number">6</span>
+          </div>
+          <div class="step-body">
+            <h3 class="step-title">Kurulum tamam</h3>
+            <p class="step-desc">Eklenti listede görünüyorsa kurulum başarılıdır.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
   </main>
 </body>
 </html>
