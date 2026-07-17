@@ -322,6 +322,12 @@
       border: 1px solid var(--b-20);
     }
 
+    .status-backlog {
+      background: #f0f0f0;
+      color: #5b5b5b;
+      border: 1px solid #d4d4d4;
+    }
+
     .status-paused {
       background: var(--error-05);
       color: var(--error-70);
@@ -478,17 +484,18 @@
     <footer class="footer">© <b>2012</b> - <b>∞</b> 🩷 <b>Services Design Development</b> - ProjectFlow</footer>
   </div>
 
-  <script src="projects.js?v=20260713-spam-guard"></script>
+  <script src="projects.js?v=20260714-backlog"></script>
   <script>
     (function () {
       const statusLabels = {
         active: 'Aktif',
         planning: 'Planlama',
+        backlog: 'Backlog',
         completed: 'Tamamlandı',
         paused: 'Duraklatıldı'
       };
-      // Aktif → Planlama → Tamamlandı → Duraklatıldı
-      const statusOrder = { active: 0, planning: 1, completed: 2, paused: 3 };
+      // Aktif → Planlama → Backlog → Tamamlandı → Duraklatıldı
+      const statusOrder = { active: 0, planning: 1, backlog: 2, completed: 3, paused: 4 };
 
       const projects = (window.PROJECTS || []).slice().sort(function (a, b) {
         var orderA = Object.prototype.hasOwnProperty.call(statusOrder, a.status) ? statusOrder[a.status] : 99;

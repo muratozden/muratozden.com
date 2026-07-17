@@ -1,8 +1,8 @@
 /**
  * Proje listesi — yeni proje eklemek için bu dosyaya kayıt ekleyin.
  * progress: 0–100
- * status: active | planning | completed | paused
- * Sıralama: Aktif → Planlama → Tamamlandı → Duraklatıldı
+ * status: active | planning | backlog | completed | paused
+ * Sıralama: Aktif → Planlama → Backlog → Tamamlandı → Duraklatıldı
  */
 window.PROJECTS = [
   // —— Aktif ——
@@ -12,7 +12,7 @@ window.PROJECTS = [
     description: 'E-ticaret platformlarından veri toplayan, düzenleyen ve tek merkezde birleştiren akıllı veri yönetim sistemi.',
     status: 'active',
     progress: 60,
-    owner: 'Service Design Development',
+    owner: 'Murat Özden',
     updated: '2026-06-27',
     url: 'projects/ahtapot.html',
     milestones: { completed: 1, total: 3 },
@@ -83,7 +83,7 @@ window.PROJECTS = [
     id: 'search-journeys',
     name: 'Search Journeys',
     description: 'Araştır → karşılaştır → karar ver → satın al yolculuğunu destekleyen editöryal rehber sayfaları. Helpful Content ve E-E-A-T odaklı; 3–5 ürün, LLM üretimi yok, 6 ayda bir güncelleme.',
-    status: 'planning',
+    status: 'backlog',
     progress: 0,
     owner: 'Service Design Development',
     updated: '2026-07-13',
@@ -95,7 +95,7 @@ window.PROJECTS = [
     id: 'user-dna',
     name: 'User DNA Hyper-Personalization',
     description: 'Kullanıcıyı kategori ve yaşam tarzı verileriyle tanıyarak one-click kişiselleştirilmiş listeler sunan proje. E-E-A-T Experience & Trust; stok vitrininden uzman platforma geçiş.',
-    status: 'planning',
+    status: 'backlog',
     progress: 0,
     owner: 'Service Design Development',
     updated: '2026-07-13',
@@ -107,7 +107,7 @@ window.PROJECTS = [
     id: 'programmatic-search-listing',
     name: 'Programmatic Search Listing',
     description: 'LLM ile ürünleri intent etiketleriyle işaretleyip clean URL listing sayfaları ve sitemap üreten SEO projesi. Organik + searchbar; rakipsiz SERP yüzeyi ve crawl budget verimliliği.',
-    status: 'planning',
+    status: 'backlog',
     progress: 0,
     owner: 'Service Design Development',
     updated: '2026-07-13',
@@ -119,7 +119,7 @@ window.PROJECTS = [
     id: 'programmatic-group-listing',
     name: 'Programmatic Group Listing',
     description: 'PSL etiketlerini senaryo bazlı grup rehberlerine taşıyan proje. Yeni ev / bebek odası gibi long-tail sayfalar; kategori başına 3 ürün, dinamik besleme, SEO URL→Title→SD zinciri.',
-    status: 'planning',
+    status: 'backlog',
     progress: 0,
     owner: 'Service Design Development',
     updated: '2026-07-13',
@@ -131,7 +131,7 @@ window.PROJECTS = [
     id: 'llm-spam-guardrail',
     name: 'LLM Spam Guardrail (Over-optimization)',
     description: 'Title/heading’de clickbait, keyword stuffing ve içerikle örtüşmeyen abartılı ifadeleri LLM ile tespit edip Seller Office’te temiz title öneren SEO koruma katmanı.',
-    status: 'planning',
+    status: 'backlog',
     progress: 0,
     owner: 'Service Design Development',
     updated: '2026-07-13',
@@ -151,6 +151,8 @@ window.PROJECTS = [
     milestones: { completed: 1, total: 4 },
     tags: ['LLM', 'Organik Trafik']
   },
+  // —— Backlog ——
+
   // —— Tamamlandı ——
   {
     id: 'abtest',
