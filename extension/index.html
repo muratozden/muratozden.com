@@ -1,229 +1,96 @@
-<section class="guide" data-bg="#f5f3ef" data-layout="fixed">
-  <meta charset="UTF-8">
-  <script src="https://n11scdn.akamaized.net/custom/upload/50/05/6494921899790939190.js" data-name="jquery"></script>
-  <script src="https://n11scdn.akamaized.net/custom/upload/68/52/8583428981493839014.js" data-name="UtilJS"></script>
-  <script src="https://n11scdn.akamaized.net/custom/upload/60/26/7017409197930623181.js" data-name="campaign-functional"></script>
-  <link rel="stylesheet" href="https://n11scdn.akamaized.net/custom/upload/76/81/3957017041942301882.css">
-  <link rel="stylesheet" href="https://n11scdn.akamaized.net/custom/upload/75/52/6977188140228588443.css">
-  <link rel="stylesheet" href="https://n11scdn.akamaized.net/custom/upload/75/47/8847659360462354732.css">
-  <style>
-    .guide .component b {
-      font-size: inherit;
-    }
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>n11 Productivity Extension — İndir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+  <style> :root { --m-50: #ff44ed; --m-60: #cc35be; --beige-10: #faf9f7; --n-00: #ffffff; --n-40: #8a8a8a; --n-50: #5b5b5b; --n-60: #4f4f4f; --n-80: #1c1c1e; --line: rgba(28, 28, 30, 0.1); --gradient: linear-gradient(135deg, #ff44ed 0%, #ff68f1 45%, #fe8ef4 100%); --font: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif; } * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: var(--font); background: var(--beige-10); color: var(--n-80); min-height: 100vh; display: flex; align-items: center; justify-content: center; -webkit-font-smoothing: antialiased; padding: 2rem 1.25rem; } body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 20% -10%, rgba(255, 68, 237, 0.12), transparent), radial-gradient(ellipse 50% 40% at 100% 10%, rgba(255, 104, 241, 0.07), transparent); pointer-events: none; } .page { position: relative; z-index: 1; width: 100%; max-width: 960px; display: grid; grid-template-columns: 1fr 1.15fr; gap: 3rem; align-items: center; } .download { text-align: center; } .download h1 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.875rem; } .lead { color: var(--n-60); font-size: 1.0625rem; line-height: 1.6; margin-bottom: 2rem; max-width: 22rem; } .download-btn { display: inline-flex; align-items: center; gap: 0.625rem; padding: 0.875rem 1.75rem; background: var(--gradient); color: #fff; font-family: var(--font); font-size: 1rem; font-weight: 600; text-decoration: none; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 20px rgba(255, 68, 237, 0.3); transition: transform 0.15s ease, box-shadow 0.15s ease; } .download-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255, 68, 237, 0.35); } .download-btn:active { transform: translateY(0); } .download-btn svg { width: 20px; height: 20px; fill: currentColor; } .hint { margin-top: 1rem; font-size: 0.8125rem; color: var(--n-50); } .steps { text-align: left; } .steps-header { margin-bottom: 1.25rem; } .steps-header h2 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.35rem; } .steps-header p { color: var(--n-50); font-size: 0.875rem; line-height: 1.5; } .step-list { background-color: var(--n-00); border-radius: 16px; border: 2px dashed #ff44ed44; list-style: none; display: flex; flex-direction: column; padding: 1.5rem; } .step { display: grid; grid-template-columns: 2.25rem 1fr; column-gap: 1rem; position: relative; } .step-marker { display: flex; flex-direction: column; align-items: center; position: relative; } .step-number { width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--n-00); border: 2px solid rgba(255, 68, 237, 0.35); color: var(--m-60); font-size: 0.8125rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; box-shadow: 0 0 0 4px var(--n-00); } .step:first-child .step-number, .step:last-child .step-number { background: var(--gradient); border-color: transparent; color: #fff; } .step:not(:last-child) .step-marker::after { content: ''; width: 2px; flex: 1; min-height: 1.25rem; background: linear-gradient(to bottom, rgba(255, 68, 237, 0.35), rgba(255, 68, 237, 0.08)); margin: 0.35rem 0; } .step-body { padding-bottom: 1.25rem; padding-top: 0.2rem; } .step:last-child .step-body { padding-bottom: 0; } .step-title { font-size: 0.975rem; font-weight: 600; color: var(--n-80); line-height: 1.35; margin-bottom: 0.25rem; } .step-desc { font-size: 0.875rem; line-height: 1.55; color: var(--n-60); } .step-desc code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.8rem; background: rgba(255, 68, 237, 0.1); color: var(--m-60); padding: 0.12em 0.4em; border-radius: 4px; font-weight: 500; } .step-desc strong { color: var(--n-80); font-weight: 600; } @media (max-width: 800px) { .page { grid-template-columns: 1fr; gap: 2.5rem; max-width: 520px; } .download { text-align: center; } .lead { margin-left: auto; margin-right: auto; } } </style>
+</head>
+<body>
+<main class="page">
+  <section class="download">
+    <h1>Productivity Extension</h1>
+    <p class="lead">n11.com ve Back Office üzerinde çalışan ekipler için Chrome tarayıcı eklentisi.</p>
+    <a class="download-btn" href="n11-ProductivityExtension.zip" download="n11-ProductivityExtension.zip">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+      </svg>
+      Eklentiyi İndir
+    </a>
+    <p class="hint">version: 1.2.2</p>
+  </section>
 
-    .guide .component a:before {
-      background-color: #EDEFF3;
-      border-radius: 4px;
-      content: attr(data-time);
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 9px;
-      position: absolute;
-      height: 18px;
-      line-height: 18px;
-      bottom: 9px;
-      right: 9px;
-      padding: 0 7px;
-      z-index: 12;
-    }
-
-    .guide .component span {
-      padding-top: 6px;
-    }
-
-    body[data-platform="app"] .guide .campaign-favorite, body[data-platform="app"] .guide .component a button {
-      display: none !important;
-    }
-  </style>
-  <!-- @Start: HTML -->
-
-  <div class="container">
-    <div class="head">
-      <img src="https://n11scdn.akamaized.net/a1/org/26/07/03/46/11/76/33/97/77/35/69/63/86185615173586471271.jpg" alt="Spor & Outdoor Kampanyası">
+  <section class="steps" aria-labelledby="install-heading">
+    <div class="steps-header">
+      <h2 id="install-heading">Chrome’a nasıl kurulur?</h2>
+      <p>Zip’i indirdikten sonra aşağıdaki adımları sırayla uygulayın.</p>
     </div>
-    <section class="campaign-navigator">
-      <div class="campaign-nav-wrap">
-        <button type="button" class="nav-arrow nav-arrow-prev nav-arrow-hidden" aria-label="Sol"><img src="https://n11scdn.akamaized.net/custom/upload/89/53/6709550475469866514.svg" alt=""></button>
-        <div class="nav-gradient nav-gradient-left nav-gradient-hidden"></div>
-        <div class="nav-gradient nav-gradient-right"></div>
-        <div class="campaign-nav-scroll">
-          <nav class="rounded">
-            <a href="javascript:void(0)" data-filter="all" class="active">Tümü</a>
-            <a href="javascript:void(0)" data-filter="sport">Sport</a>
-            <a href="javascript:void(0)" data-filter="outdoor">Outdoor</a>
-          </nav>
+
+    <ol class="step-list">
+      <li class="step">
+        <div class="step-marker" aria-hidden="true">
+          <span class="step-number">1</span>
         </div>
-        <button type="button" class="nav-arrow nav-arrow-next" aria-label="Sağ"><img
-                src="https://n11scdn.akamaized.net/custom/upload/88/56/1063725226604347324.svg" alt=""></button>
-      </div>
-      <div class="campaign-search">
-        <input type="text" placeholder="Ürün, kategori veya marka ara">
-      </div>
-    </section>
-    <div class="component">
-      <a href="https://www.n11.com/arama?promotions=2082423" data-category="sport" data-brand="Kamp Ürünleri" title="Kamp Ürünleri" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2082423">
-        <figure><img src="https://n11scdn.akamaized.net/a1/320/11/46/08/28/IMG-6788487631297124511.jpg" alt=""></figure>
-        <h3>Kamp Ürünleri</h3>
-        <span>%20'ye Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=1963405" data-category="sport" data-brand="Bisiklet & Scooter" title="Bisiklet & Scooter" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=1963405">
-        <figure><img src="https://n11scdn.akamaized.net/a1/320/08/52/55/67/IMG-1670498175817738409.png" alt="Erol Denizcilik"></figure>
-        <h3>Bisiklet & Scooter</h3>
-        <span>%11 Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2068444" data-category="sport" data-brand="Avcılık & Balıkçılık" title="Avcılık & Balıkçılık" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2068444">
-        <figure><img src="https://n11scdn.akamaized.net/a1/320/03/92/58/11/IMG-8616657200845710582.jpg" alt=""></figure>
-        <h3>Avcılık & Balıkçılık</h3>
-        <span>%20'ye Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2173508" data-category="sport" data-brand="WALKE" title="WALKE" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2173508">
-        <figure><img src="https://n11scdn.akamaized.net/a1/320/26/06/30/90/95/73/12/30/46/08/47/95/34078058094506298422.png" alt="WALKE"></figure>
-        <h3>Walke</h3>
-        <span>%20'e Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2078408" data-category="sport" data-brand="Proforce" title="Proforce" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2078408">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/org/26/04/16/67/94/83/74/60/97/17/47/56/61253317924965729849.png" alt="Proforce">
-        </figure>
-        <h3>Proforce</h3>
-        <span>%22'e Varan Sepette indirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2092404" data-category="outdoor" data-brand="Avfoni" title="Avfoni" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2092404">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/org/26/04/14/69/48/02/81/70/55/65/79/18/2344238151471745179.png" alt="">
-        </figure>
-        <h3>Avfoni</h3>
-        <span>%20'ye Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2082436" data-category="sport" data-brand="Interspor" title="Interspor" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2082436">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/26/03/08/90/72/61/22/63/29/40/13/36/56027887291722481352.png" alt="Interspor">
-        </figure>
-        <h3>Interspor</h3>
-        <span>%11 Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2026412" data-category="sport" data-brand="Züber" title="Züber" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2026412">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/25/03/13/87/24/39/08/86/70/17/94/59/58720339402106552632.png" alt="Züber">
-        </figure>
-        <h3>Züber</h3>
-        <span>%40'a Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2112432" data-category="outdoor" data-brand="Stanley Termos" title="Stanley Termos" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2112432">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/25/02/06/53/53/58/87/37/16/63/58/66/58189857340490104214.png" alt="">
-        </figure>
-        <h3>Stanley Termos</h3>
-        <span>%10 Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2112435" data-category="sport" data-brand="HIQnutrition" title="HIQnutrition" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2112435">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/320/15/22/04/89/IMG-2770925252476114916.jpg" alt="">
-        </figure>
-        <h3>HIQnutrition</h3>
-        <span>%8 Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2103458" data-category="sport" data-brand="Fellas" title="Fellas" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2103458">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/24/03/28/62/89/13/29/38/95/66/77/73/3145241160788297466.png" alt="Fellas">
-        </figure>
-        <h3>Fellas</h3>
-        <span>%40'a Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2092402" data-category="outdoor" data-brand="Aksiyon Kameraları" title="Aksiyon Kameraları" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2092402">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/320/12/81/15/31/IMG-4265315048860983883.webp" alt="">
-        </figure>
-        <h3>Aksiyon Kameraları</h3>
-        <span>%7'ye Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2103436" data-category="outdoor" data-brand="Kamp Sandalyesi " title="Kamp Sandalyesi " data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2103436">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/320/07/52/02/12/IMG-2330605117383351085.jpg" alt="">
-        </figure>
-        <h3>Kamp Sandalyesi</h3>
-        <span>%20'ye Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=1878456" data-category="sport" data-brand="Tekne Yat Malzemeleri" title="Tekne Yat Malzemeleri" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=1878456">
-        <figure><img src="https://n11scdn.akamaized.net/a1/320/01/91/64/76/IMG-91107734985918962.jpg" alt=""></figure>
-        <h3>Tekne Yat Malzemeleri</h3>
-        <span>%15 Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2086439" data-category="outdoor" data-brand="Urbanbadger" title="Urbanbadger" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2086439">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/25/01/07/73/44/14/37/89/06/71/08/97/28615975346640958423.png" alt="Urbanbadger">
-        </figure>
-        <h3>Urbanbadger</h3>
-        <span>%25'e Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2086438" data-category="outdoor" data-brand="Outdoor Dünyası" title="Outdoor Dünyası" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2086438">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/25/05/07/52/63/82/30/84/24/79/64/93/16764018513929025367.jpg" alt="Outdoor Dünyası">
-        </figure>
-        <h3>Outdoor Dünyası</h3>
-        <span>%20'ye Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2105404" data-category="outdoor" data-brand="Aygaz" title="Aygaz" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2105404">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/25/12/08/61/05/45/00/98/13/45/34/36/34163431296942389270.png" alt="Aygaz">
-        </figure>
-        <h3>Aygaz</h3>
-        <span>%20'ye Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2067463" data-category="outdoor" data-brand="Espressolab" title="Espressolab" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2067463">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/25/03/06/55/75/06/17/03/02/89/28/57/92177940796053765334.png" alt="Espressolab">
-        </figure>
-        <h3>Espresso Lab</h3>
-        <span>%12 Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2108475" data-category="outdoor" data-brand="Lerato" title="Lerato" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2108475">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/org/26/04/14/89/30/98/12/58/45/13/22/12/71868505571384734486.png" alt="">
-        </figure>
-        <h3>Lerato</h3>
-        <span>%25'e Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2112438" data-category="outdoor" data-brand="Oxyoutdoor" title="Oxyoutdoor" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2112438">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/org/26/04/14/65/75/81/13/73/30/45/76/82/93376744714121923344.png" alt="">
-        </figure>
-        <h3>Oxyoutdoor</h3>
-        <span>%12 Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2110402" data-category="outdoor" data-brand="Oceanmarine" title="Oceanmarine" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2110402">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/24/09/05/80/99/08/42/59/01/47/34/68/23224296563172132049.png" alt="Oceanmarine">
-        </figure>
-        <h3>Ocean Marine</h3>
-        <span>%15'e Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2103457" data-category="sport" data-brand="Waspco" title="Waspco" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2103457">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/opt/24/10/24/77/44/77/85/56/11/42/01/92/84576440083033050817.png" alt="Waspco">
-        </figure>
-        <h3>Waspco</h3>
-        <span>%40'a Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2110404" data-category="sport" data-brand="Erol Denizcilik" title="Erol Denizcilik" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2110404">
-        <figure><img src="https://n11scdn.akamaized.net/a1/320/16/03/21/61/31/34/68/25/18/12/33/69/5543923712462339436.jpg" alt="Erol Denizcilik"></figure>
-        <h3>Erol Denizcilik</h3>
-        <span>%11'e Varan Sepette İndirim</span>
-      </a>
-      <a href="https://www.n11.com/magaza/smegturkiye" data-category="sport" data-brand="smeg türkiye" title="smeg türkiye" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=nss&pd=2889307">
-        <figure><img src="https://n11scdn.akamaized.net/a1/320/24/10/25/71/13/11/46/94/78/74/51/66/43918113601679868844.png" alt="smeg türkiye"></figure>
-        <h3>Smeg Termoslarda</h3>
-        <span>3.500 TL'ye 500 TL Kupon</span>
-      </a>
-      <a href="https://www.n11.com/arama?promotions=2058423" data-category="sport" data-brand="Pilates Ürünleri" title="Pilates Ürünleri" data-time="31 Temmuz Son" target="_top" data-app="n11mf://n11.com?pt=spp&pd=2058423">
-        <figure>
-          <img src="https://n11scdn.akamaized.net/a1/320/10/04/61/47/IMG-2897262348647476315.png" alt="">
-        </figure>
-        <h3>Pilates Ürünleri</h3>
-        <span>%11'e Varan Sepette İndirim</span>
-      </a>
-    </div>
-  </div>
-  <!-- @End: HTML -->
-</section>
-<script src="https://n11scdn.akamaized.net/custom/upload/90/68/516994150351064255.js" data-name="app-controller"></script>
+        <div class="step-body">
+          <h3 class="step-title">Eklentiyi indirin</h3>
+          <p class="step-desc">Soldaki butonla <strong>n11-ProductivityExtension.zip</strong> dosyasını bilgisayarınıza indirin.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="step-marker" aria-hidden="true">
+          <span class="step-number">2</span>
+        </div>
+        <div class="step-body">
+          <h3 class="step-title">Zip dosyasını açın</h3>
+          <p class="step-desc">İndirdiğiniz zip’i bir klasöre çıkarın. Kurulumda bu klasörü seçeceksiniz.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="step-marker" aria-hidden="true">
+          <span class="step-number">3</span>
+        </div>
+        <div class="step-body">
+          <h3 class="step-title">Eklentiler sayfasını açın</h3>
+          <p class="step-desc">Chrome adres çubuğuna <code>chrome://extensions</code> yazıp Enter’a basın.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="step-marker" aria-hidden="true">
+          <span class="step-number">4</span>
+        </div>
+        <div class="step-body">
+          <h3 class="step-title">Geliştirici modunu açın</h3>
+          <p class="step-desc">Sayfanın sağ üstündeki <strong>Geliştirici modu</strong> anahtarını etkinleştirin.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="step-marker" aria-hidden="true">
+          <span class="step-number">5</span>
+        </div>
+        <div class="step-body">
+          <h3 class="step-title">Paketlenmemiş öğeyi yükleyin</h3>
+          <p class="step-desc"><strong>Paketlenmemiş öğe yükle</strong> butonuna tıklayın, zip’ten çıkardığınız klasörü seçin ve onaylayın.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="step-marker" aria-hidden="true">
+          <span class="step-number">6</span>
+        </div>
+        <div class="step-body">
+          <h3 class="step-title">Kurulum tamam</h3>
+          <p class="step-desc">Eklenti listede görünüyorsa kurulum başarılıdır.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+</main>
+</body>
+</html>
